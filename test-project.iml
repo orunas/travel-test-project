@@ -15,20 +15,34 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="Leiningen: clj-sparql:0.2.0" level="project" />
     <orderEntry type="library" name="Leiningen: clojure-complete:0.2.4" level="project" />
-    <orderEntry type="library" name="Leiningen: commons-codec:1.6" level="project" />
+    <orderEntry type="library" name="Leiningen: com.fasterxml.jackson.core/jackson-annotations:2.9.0" level="project" />
+    <orderEntry type="library" name="Leiningen: com.fasterxml.jackson.core/jackson-core:2.9.0" level="project" />
+    <orderEntry type="library" name="Leiningen: com.fasterxml.jackson.core/jackson-databind:2.9.0" level="project" />
+    <orderEntry type="library" name="Leiningen: com.github.andrewoma.dexx/collection:0.7" level="project" />
+    <orderEntry type="library" name="Leiningen: com.github.jsonld-java/jsonld-java:0.11.1" level="project" />
+    <orderEntry type="library" name="Leiningen: commons-cli:1.4" level="project" />
+    <orderEntry type="library" name="Leiningen: commons-codec:1.9" level="project" />
+    <orderEntry type="library" name="Leiningen: commons-io:2.6" level="project" />
     <orderEntry type="library" name="Leiningen: http-kit:2.2.0" level="project" />
-    <orderEntry type="library" name="Leiningen: log4j:1.2.16" level="project" />
-    <orderEntry type="library" name="Leiningen: org.apache.httpcomponents/httpclient:4.2.3" level="project" />
-    <orderEntry type="library" name="Leiningen: org.apache.httpcomponents/httpcore:4.2.2" level="project" />
-    <orderEntry type="library" name="Leiningen: org.apache.jena/jena-arq:2.11.1" level="project" />
-    <orderEntry type="library" name="Leiningen: org.apache.jena/jena-core:2.11.1" level="project" />
-    <orderEntry type="library" name="Leiningen: org.apache.jena/jena-iri:1.0.1" level="project" />
-    <orderEntry type="library" name="Leiningen: org.clojure/clojure:1.8.0" level="project" />
+    <orderEntry type="library" name="Leiningen: org.apache.commons/commons-csv:1.5" level="project" />
+    <orderEntry type="library" name="Leiningen: org.apache.commons/commons-lang3:3.4" level="project" />
+    <orderEntry type="library" name="Leiningen: org.apache.httpcomponents/httpclient-cache:4.5.3" level="project" />
+    <orderEntry type="library" name="Leiningen: org.apache.httpcomponents/httpclient:4.5.3" level="project" />
+    <orderEntry type="library" name="Leiningen: org.apache.httpcomponents/httpcore:4.4.6" level="project" />
+    <orderEntry type="library" name="Leiningen: org.apache.jena/jena-arq:3.6.0" level="project" />
+    <orderEntry type="library" name="Leiningen: org.apache.jena/jena-base:3.6.0" level="project" />
+    <orderEntry type="library" name="Leiningen: org.apache.jena/jena-core:3.6.0" level="project" />
+    <orderEntry type="library" name="Leiningen: org.apache.jena/jena-iri:3.6.0" level="project" />
+    <orderEntry type="library" name="Leiningen: org.apache.jena/jena-shaded-guava:3.6.0" level="project" />
+    <orderEntry type="library" name="Leiningen: org.apache.jena/jena-tdb:3.6.0" level="project" />
+    <orderEntry type="library" name="Leiningen: org.apache.thrift/libthrift:0.10.0" level="project" />
+    <orderEntry type="library" name="Leiningen: org.clojure/clojure:1.9.0" level="project" />
+    <orderEntry type="library" name="Leiningen: org.clojure/core.specs.alpha:0.1.24" level="project" />
     <orderEntry type="library" name="Leiningen: org.clojure/data.json:0.2.6" level="project" />
+    <orderEntry type="library" name="Leiningen: org.clojure/spec.alpha:0.1.143" level="project" />
     <orderEntry type="library" name="Leiningen: org.clojure/tools.nrepl:0.2.12" level="project" />
-    <orderEntry type="library" name="Leiningen: org.slf4j/jcl-over-slf4j:1.6.4" level="project" />
-    <orderEntry type="library" name="Leiningen: org.slf4j/slf4j-api:1.6.4" level="project" />
-    <orderEntry type="library" name="Leiningen: org.slf4j/slf4j-log4j12:1.6.4" level="project" />
+    <orderEntry type="library" name="Leiningen: org.slf4j/jcl-over-slf4j:1.7.25" level="project" />
+    <orderEntry type="library" name="Leiningen: org.slf4j/slf4j-api:1.7.25" level="project" />
     <orderEntry type="library" name="Leiningen: xerces/xercesImpl:2.11.0" level="project" />
     <orderEntry type="library" name="Leiningen: xml-apis:1.4.01" level="project" />
   </component>

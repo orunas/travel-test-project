@@ -23,41 +23,37 @@
   (let [[k1 k2] (clojure.string/split (name k) #":")]
     (str "<" (nspcs (keyword k1)) k2 "> ")))
 
+
+(defn rdf-item-to-ttl
+  [ns item]
+  (if (keyword? item) (keyword-to-rdf ns item) item ))
+
+(defn rdf1subj2ttl
+  "Generates RDF/turtle from vector that same subject triples"
+  [ns subject & rest]
+    (if (empty? rest)
+    ""
+    (str
+      (rdf-item-to-ttl ns subject) " "
+      (rdf-item-to-ttl ns (first rest)) " "
+      (rdf-item-to-ttl ns (second rest)) ".\n"
+      (apply rdf1subj2ttl ns subject (drop 2 rest)))))
+
 (defn rdf
-  "Generate RDF/Turtle serialized data from a set of triples defined by clj-turtle."
-  [& rest]
-  (loop [forms rest
-         n3 "@prefix xsd:   <http://www.w3.org/2001/XMLSchema#> . \n"]
-    (if-not (empty? forms)
-      (if (and (get (into [] forms) 3)                      ;cia panasu tikrina ar trippe su rein into - join collections (cia panasu vercia i array. ir ziuri ar yra 4'as
-               (vector? (nth forms 3)))                     ;tikrina ar grazintas 4'asis yra vectorius
-        (recur (drop 4 forms)
-               (apply str n3 (nth forms 0) (nth forms 1) (nth forms 2)" .\n"
-                    (->> (nth forms 3)
-                         (map #(str (nth forms 0) %1 " .\n"))
-                         )))
-        (recur (drop 3 forms)
-               (apply str n3 (nth forms 0) (nth forms 1) (nth forms 2)" .\n")))
-      n3)))
+  "Generate RDF/Turtle from vector list where each vector represents triples for same subject.
+  First parameter is namespaces.  From it creates namespaces with prefixes"
+  [ns & rest]
+  (clojure.string/join (map #(apply rdf1subj2ttl ns %) rest)) )
+
+
+
 
 (def turtle "Alias for the (rdf) function" rdf)
-
-(defmacro defns
-  "Create a new namespace that can be used to create the clj-turtle triples"
-  [prefix namespace]
-  (let [entity (gensym "entity-")
-        body (gensym "body-")]
-    `(defn ~prefix
-       [~entity & ~body]
-       (str "<" ~namespace (name ~entity) "> " (apply str (rest ~body))))))
-
 
 
 (defn variable?
   [v]
   (= (first (str v)) \?))
-
-
 
 (defn iri
   "Serialize a URI where you provide the full URI as a string"
@@ -92,8 +88,8 @@
      ; if you want to use an abreviated URI you can do this that way
      (literal \"bob\" :type \"xsd:string\")"
   [v & {:keys [lang type]
-        :or [lang nil
-             type nil]}]
+        :or   {lang nil
+                type nil}}]
   (apply str
          (str "\"\"\"" (if (keyword? v)
                          (escape (name v))
@@ -103,15 +99,8 @@
            (when type
              (str "^^" (name type))))))
 
-(defn rei
-  "Reify a clj-turtle triple"
-  [& rest]
-  (loop [forms rest
-         statements []]
-    (if-not (empty? forms)
-      (recur (drop 2 forms)
-             (into statements [(apply str (nth forms 0) (nth forms 1))]))
-      statements)))
+
+
 
 
 (defn gen-id
@@ -144,9 +133,9 @@
   "docstring"
   [v]
   (cond
-    (= (type v) java.time.LocalDateTime) (literal v :type "xsd:dateTime")
-    (= (type v) java.time.ZonedDateTime) (literal (.format v (java.time.format.DateTimeFormatter/ISO_INSTANT)) :type "xsd:dateTime")
-    (= (type v) java.lang.String) (literal v :type "xsd:string")
+    (= (type v) java.time.LocalDateTime) (literal v :type "<http://www.w3.org/2001/XMLSchema#dateTime>")
+    (= (type v) java.time.ZonedDateTime) (literal (.format v (java.time.format.DateTimeFormatter/ISO_INSTANT)) :type "<http://www.w3.org/2001/XMLSchema#dateTime>")
+    (= (type v) java.lang.String) (literal v :type "<http://www.w3.org/2001/XMLSchema#string>")
     :else v ))
 
 (defn dateTime-to-id
@@ -183,3 +172,24 @@
       )
     )
   )
+
+; old code
+(comment defmacro defns
+         "Create a new namespace that can be used to create the clj-turtle triples"
+         [prefix namespace]
+         (let [entity (gensym "entity-")
+               body (gensym "body-")]
+           `(defn ~prefix
+              [~entity & ~body]
+              (str "<" ~namespace (name ~entity) "> " (apply str (rest ~body))))))
+
+
+(comment "we don't need this anymore" defn rei
+         "Reify a clj-turtle triple"
+         [& rest]
+         (loop [forms rest
+                statements []]
+           (if-not (empty? forms)
+             (recur (drop 2 forms)
+                    (into statements [(apply str (nth forms 0) (nth forms 1))]))
+             statements)))

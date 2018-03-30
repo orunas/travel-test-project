@@ -27,14 +27,7 @@
    :body         '(true ((print "doing... get-home \n")))
    })
 
-(def namespaces-prefixes
-  {
-    :rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-    :t "http://travelplanning.ex/"
-    :xsd "http://www.w3.org/2001/XMLSchema#"
-    :tc "http://travelplanning.ex/Campaign/"
-    :ta "http://travelplanning.ex/Airline/"
-    :tcu "http://travelplanning.ex/ConnectionUpdate/"})
+
 
 (def update-data-on-campaign
   {
