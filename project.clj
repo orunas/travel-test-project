@@ -8,4 +8,6 @@
                  [org.apache.jena/jena-arq "3.6.0"]
                  [org.apache.jena/jena-tdb "3.6.0"]
                   [org.apache.jena/jena-iri "3.6.0"]
+                 [aysylu/loom "1.0.1"]
+                 [com.datomic/client-pro "0.8.14"]
                  ])
