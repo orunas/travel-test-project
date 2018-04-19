@@ -173,7 +173,7 @@
   :namespaces namespaces-prefixes :actions actions         ;don't want to make global var actions
   :precondition ([?fromAirport t:AirportTimezoneUTCOffset ?fromOff]
                   [?toAirport t:AirportTimezoneUTCOffset ?toOff]
-                  (:filter (s/f>= ?iterEndDate ?finalEndDate))
+                  (:filter (s/f> ?iterEndDate ?finalEndDate)) ; turi but >=
                   )
   :body [#((actions :call-action-generic)
             "http://localhost:8080/flightService/webapi/W6/Flights"
@@ -208,5 +208,136 @@
                            t:AirportLocationLongtitude ?long
                            t:AirportLocationLatitude ?lat]))
   :body [(fn [_] (println "task :task-airport-data completed"))])
+
+(def datetime1 (java.time.ZonedDateTime/parse "2017-10-16T00:00:01.390Z") )
+
+(def intention-graph
+  {
+   :0                                                       ; root element
+   {
+    :id 0
+    :type :root}
+   }
+  :1                                                        ; event will be mapped to corresponding methods so after root is only method
+  {
+   :id 1
+   :type :method
+   :method :update-data-on-campaign
+   :?campaign   {:type :uri, :value "00000001", :prefix-ns "http://travelplanning.ex/Campaign/"},
+   :?salesStart {:type     :literal,
+                 :datatype "http://www.w3.org/2001/XMLSchema#dateTime",
+                 :value    datetime1}
+   :?travelStart {:type     :literal,
+                  :datatype "http://www.w3.org/2001/XMLSchema#dateTime",
+                  :value    datetime1}
+   :steps         [:2 :14]
+   :parent :0
+   }
+
+  :14 {:id 14
+       :type :step
+       :?campaign   {:type :uri, :value "00000001", :prefix-ns "http://travelplanning.ex/Campaign/"},
+       :?salesStart {:type     :literal,
+                     :datatype "http://www.w3.org/2001/XMLSchema#dateTime",
+                     :value    datetime1}
+       :?travelStart {:type     :literal,
+                      :datatype "http://www.w3.org/2001/XMLSchema#dateTime",
+                      :value    datetime1}
+       :body       (fn [_] (print "do something"))
+       :parent :1
+       }
+
+  ; taks is now
+  {:2
+   {
+    :id       2
+    :type :task
+    ; galetu buti taip jei be content kurio viduje visi paramsai
+    :task :update-data-task
+    :parameters [{:type :uri, :value "W6", :prefix-ns "http://travelplanning.ex/Airline/"}
+                 {:type     :literal,
+                  :datatype "http://www.w3.org/2001/XMLSchema#dateTime",
+                  :value    datetime1}]
+
+    ; pvz kaip su content
+    :content
+    '(task
+      {:type :uri, :value "W6", :prefix-ns "http://travelplanning.ex/Airline/"}
+      {:type     :literal,
+       :datatype "http://www.w3.org/2001/XMLSchema#dateTime",
+       :value    datetime1}
+      )
+    :parent   :1
+
+    }
+   :3
+   {:id       3
+    :type :method
+    :method     :update-data-method,
+    :?airline   {:type :uri, :value "W6", :prefix-ns "http://travelplanning.ex/Airline/"},
+    :?beginDate {:type     :literal,
+                 :datatype "http://www.w3.org/2001/XMLSchema#dateTime",
+                 :value    datetime1},
+    :parent   :2
+    :steps  [:5 :6]
+    }
+   :5
+   {
+    :id 5
+    :type :step
+    :content
+    {
+     :?airline   {:type :uri, :value "W6", :prefix-ns "http://travelplanning.ex/Airline/"},
+     :?beginDate {:type     :literal,
+                  :datatype "http://www.w3.org/2001/XMLSchema#dateTime",
+                  :value    datetime1}
+     :body       (fn [_] (print "1st"))
+     }
+    :parent   :3
+    }
+   :6
+   {
+    ;panasiai kaip ir 5 tik nera
+    :id 6
+    :type :step
+    :?airline   {:type :uri, :value "W6", :prefix-ns "http://travelplanning.ex/Airline/"},
+    :?beginDate {:type     :literal,
+                 :datatype "http://www.w3.org/2001/XMLSchema#dateTime",
+                 :value    datetime1}
+    :body       (fn [_] (print "2nd"))
+    :parent   :3
+    }
+
+
+
+
+   :4
+   {
+    :id 4                                                   ; pabandymas bet matosi kad nelabai prasmingas 3 geriau
+    :type :method
+    :content
+    {:task       :update-data-task,
+     :method     :update-data-method,
+     :?airline   {:type :uri, :value "W6", :prefix-ns "http://travelplanning.ex/Airline/"},
+     :?beginDate {:type     :literal,
+                  :datatype "http://www.w3.org/2001/XMLSchema#dateTime",
+                  :value    datetime1}
+     :steps       [{
+                    :task       :update-data-task,
+                    :method     :update-data-method,
+                    :?airline   {:type :uri, :value "W6", :prefix-ns "http://travelplanning.ex/Airline/"},
+                    :?beginDate {:type     :literal,
+                                 :datatype "http://www.w3.org/2001/XMLSchema#dateTime",
+                                 :value    datetime1}
+                    :body (fn [_] (print "1st"))
+                    }
+                   {
+
+                    }
+                   (fn [_] (print "2nd")) ]}
+    :parent   :2
+    }
+   })
+
 
 
