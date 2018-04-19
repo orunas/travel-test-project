@@ -280,9 +280,20 @@ SELECT
   (e/add-to-agenda
     @e/methods-lib
     {:stacks []}
-    [{:method       :update-data-on-campaign-salesStart,
+    [{:method       :update-data-on-campaign,
       :?campaign    {:type :uri, :value "12345678", :prefix-ns "http://travelplanning.ex/Campaign/"},
       :?salesStart  {:type     :literal,
                      :datatype "http://www.w3.org/2001/XMLSchema#dateTime",
                      :value    (java.time.ZonedDateTime/parse "2017-10-10T00:00:01.390Z")},
       :?fromAirport {:type :uri, :value "KUN", :prefix-ns "http://travelplanning.ex/Airport/"}}]))
+
+
+(comment (e/add-event-to-agenda
+   @e/methods-lib
+   {:r0 {:type :root :id :r0}}
+   [{:method       :update-data-on-campaign,
+     :?campaign    {:type :uri, :value "12345678", :prefix-ns "http://travelplanning.ex/Campaign/"},
+     :?salesStart  {:type     :literal,
+                    :datatype "http://www.w3.org/2001/XMLSchema#dateTime",
+                    :value    (java.time.ZonedDateTime/parse "2017-10-10T00:00:01.390Z")},
+     :?fromAirport {:type :uri, :value "KUN", :prefix-ns "http://travelplanning.ex/Airport/"}}]))

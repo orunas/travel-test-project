@@ -45,7 +45,28 @@
              :precondition (s/build-precondition ~namespaces ~(set parameters) ~precondition)
              :body         ~body})))
 
-(defn add-to-agenda
+(defn add-child-steps
+  "by adding need to update parent with steps value"
+  [steps parent ordered]
+  (conj steps
+    (assoc parent :steps
+                  (map #(:id %) steps)
+                  :steps-ordered ordered))
+  )
+
+(defn extract-steps [a-method-lib method-map]
+  (let [body (:body (a-method-lib (:method method-map)))]
+    (-> (map #(assoc method-map
+             :parent (:id method-map)                       ;parent is updated id
+             :type :step
+             :body %
+             :id (keyword (gensym "s"))
+             ) body)
+        (add-child-steps method-map (vector? body)))
+    )
+  )
+
+(defn add-event-to-agenda
   "add event that are relevant to agent
   Events is vector where each event is binding/context with variables bound
   a-method-lib is map of methods definitions where key is method name
@@ -54,9 +75,12 @@
   [a-method-lib agenda events]
   (if (not (empty? events))
     ; list is because we use list for stack implementation empty list - empty stack
-    (let [added (map #(conj '() (assoc % :unprocessed-body ((a-method-lib (% :method)) :body))) events)]
-      ;(println "Adding to agenda:" added)
-      {:stacks (into (agenda :stacks) added)})
+    (->> (map #(assoc % :type :method :parent :r0 :id (keyword (gensym "m")) :steps []) events)
+         (map #(extract-steps a-method-lib %))
+         (reduce concat )
+         (reduce #(assoc %1 (:id %2) %2) agenda)
+         )
+    ;(let [added ]       {:stacks (into (agenda :stacks) added)})
     agenda ))
 
 ; agenda is vector of list where each list is a stack

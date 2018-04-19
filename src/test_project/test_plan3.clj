@@ -57,7 +57,7 @@
   update-data-on-campaign
   [?campaign]
   ;just a place to modify code to reload
-  :test 'nothing1
+  :test 'nothing
   ;for event type plans parameters are in event desciption
   ; +bgp does nothing. All events are additions of some information
   :event [?campaign :rdf:type :tc:PromotionalCampaignType]
@@ -217,7 +217,7 @@
    {
     :id 0
     :type :root}
-   }
+
   :1                                                        ; event will be mapped to corresponding methods so after root is only method
   {
    :id 1
@@ -248,7 +248,7 @@
        }
 
   ; taks is now
-  {:2
+  :2
    {
     :id       2
     :type :task
@@ -307,36 +307,13 @@
     :body       (fn [_] (print "2nd"))
     :parent   :3
     }
+   })
 
-
-
-
-   :4
-   {
-    :id 4                                                   ; pabandymas bet matosi kad nelabai prasmingas 3 geriau
-    :type :method
-    :content
-    {:task       :update-data-task,
-     :method     :update-data-method,
-     :?airline   {:type :uri, :value "W6", :prefix-ns "http://travelplanning.ex/Airline/"},
-     :?beginDate {:type     :literal,
-                  :datatype "http://www.w3.org/2001/XMLSchema#dateTime",
-                  :value    datetime1}
-     :steps       [{
-                    :task       :update-data-task,
-                    :method     :update-data-method,
-                    :?airline   {:type :uri, :value "W6", :prefix-ns "http://travelplanning.ex/Airline/"},
-                    :?beginDate {:type     :literal,
-                                 :datatype "http://www.w3.org/2001/XMLSchema#dateTime",
-                                 :value    datetime1}
-                    :body (fn [_] (print "1st"))
-                    }
-                   {
-
-                    }
-                   (fn [_] (print "2nd")) ]}
-    :parent   :2
-    }
+(def steps
+  {
+   :active    #{}
+   :normal    #{:5}
+   :suspended #{:6 :14}
    })
 
 
