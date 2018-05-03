@@ -5,12 +5,17 @@
             [test-project.rdf :as r]
             [test-project.sparql :as s]
     ;[test-project.test-plan2 :as t2]
-            [test-project.receive :as rc]))
+            [test-project.receive :as rc]
+            [clojure.core.logic :as l]))
 
 ;********************* setup
 (def actions
   {                                                         ;:call-action-generic #(test-project.ea/call-action %1 %2)
-   :call-action-generic #(println "Executing action. uri:" %1 " data:" %2)})
+   :call-action-generic #(println "Executing action. uri:" %1 " data:" %2)
+   :call-action-test (fn [var1] (print "doing something"))
+   }
+  )
+
 
 (def namespaces-prefixes
   {
@@ -111,9 +116,100 @@
                 (fn [vars]
                   (print "just something")))])
 
+(def loc-methods-lib (atom {}) )
+
+(e/def-method
+  test-method-for-step-extract
+  []
+  :task (:some-task)
+  :namespaces namespaces-prefixes :actions actions :methods loc-methods-lib
+  :precondition nil
+  :body [1 2])
+
+(e/def-method
+  test-method-2
+  []
+  :task (:task2)
+  :namespaces namespaces-prefixes :actions actions :methods loc-methods-lib
+  :precondition nil
+  :body [#(test-project.ea/add-action :some-action) ])
+
+(e/def-method
+  test-method-1
+  []
+  :task (:task1)
+  :namespaces namespaces-prefixes :actions actions :methods loc-methods-lib
+  :precondition nil
+  :body (list (fn [vars] (test-project.task/add-task :task2)) #(println "something" %)))
+
+(def agenda-0  {:intention-graph {:r0 {:type :root :id :r0}},
+                :normal-step-keys []})
 
 
-; ************ actual tests
+; ************* some code part for manual tests
+
+(comment
+  "just run code inside ->>"
+  (->>
+    (e/add-events-to-agenda @loc-methods-lib (atom agenda-0) [{:id 1 :method :test-method-1}])
+    (e/progress-in-agenda t3/namespaces-prefixes @loc-methods-lib #(first %)))
+
+  ; After second run 1st key removed, but added second which points to newly added nodes
+  ;
+  )
+
+
+(comment
+  (e/add-to-agenda
+    @e/methods-lib
+    {:stacks []}
+    [{:method       :update-data-on-campaign,
+      :?campaign    {:type :uri, :value "12345678", :prefix-ns "http://travelplanning.ex/Campaign/"},
+      :?salesStart  {:type     :literal,
+                     :datatype "http://www.w3.org/2001/XMLSchema#dateTime",
+                     :value    (java.time.ZonedDateTime/parse "2017-10-10T00:00:01.390Z")},
+      :?fromAirport {:type :uri, :value "KUN", :prefix-ns "http://travelplanning.ex/Airport/"}}]))
+
+
+(comment (e/add-events-to-agenda
+           @e/methods-lib
+           [{:r0 {:type :root :id :r0}} []]
+           [{:method       :update-data-on-campaign,
+             :?campaign    {:type :uri, :value "12345678", :prefix-ns "http://travelplanning.ex/Campaign/"},
+             :?salesStart  {:type     :literal,
+                            :datatype "http://www.w3.org/2001/XMLSchema#dateTime",
+                            :value    (java.time.ZonedDateTime/parse "2017-10-10T00:00:01.390Z")},
+             :?fromAirport {:type :uri, :value "KUN", :prefix-ns "http://travelplanning.ex/Airport/"}}]))
+; ************ actual automated tests
+
+(def t
+  (e/extract-steps @loc-methods-lib {:id 1 :method :test-method-for-step-extract}))
+
+(deftest
+  test-extract-steps
+  (is
+    (= (count
+           (l/run* [x y]
+                   (l/== (e/extract-steps @loc-methods-lib {:id 1 :method :test-method-for-step-extract})
+                         [(list {:id 1, :method :test-method-for-step-extract, :steps (list x y), :steps-ordered true}
+                                {:id x, :method :test-method-for-step-extract, :parent 1, :type :step, :body 1}
+                                {:id y, :method :test-method-for-step-extract, :parent 1, :type :step, :body 2})
+                          (list x)])))                      ; tik vienas nes ordered
+       1)))
+
+
+
+(deftest
+  add-event-and-progess-test
+  (let [a (atom agenda-0)
+        f (e/add-events-to-agenda @loc-methods-lib a [{:id 1 :method :test-method-1}])
+        s  (e/progress-in-agenda namespaces-prefixes @loc-methods-lib #(first %) a)]
+    (is (= (count (:intention-graph f)) 4)) ;result first (inner) should return 4 nodes (with :r0,  3 added)
+    (is (= (count (:intention-graph  s)) 6)) ; second run second 6 (2 added).
+    (is (= (count (:normal-step-keys f)) 2))                     ;First run returns 2 keys in :normal-step-keys.
+    (is (= (count (:normal-step-keys s)) 2))
+    (is (= (second (:normal-step-keys f)) (first (:normal-step-keys s))))
+    ))
 
 (deftest
   test-process-precondition-query-results
@@ -201,6 +297,7 @@ SELECT
 (defn first-select [v]
   (first v))
 
+;testas pasenes - neveiks ant grafo
 (deftest
   test-process-body-item2times-until-empty
   (is
@@ -275,25 +372,3 @@ SELECT
                            :datatype "http://www.w3.org/2001/XMLSchema#dateTime",
                            :value    (java.time.ZonedDateTime/parse "2017-11-10T00:00:01.390Z")},
           :?fromAirport   {:type :uri, :value "KUN", :prefix-ns "http://travelplanning.ex/Airport/"}})))))
-
-(comment
-  (e/add-to-agenda
-    @e/methods-lib
-    {:stacks []}
-    [{:method       :update-data-on-campaign,
-      :?campaign    {:type :uri, :value "12345678", :prefix-ns "http://travelplanning.ex/Campaign/"},
-      :?salesStart  {:type     :literal,
-                     :datatype "http://www.w3.org/2001/XMLSchema#dateTime",
-                     :value    (java.time.ZonedDateTime/parse "2017-10-10T00:00:01.390Z")},
-      :?fromAirport {:type :uri, :value "KUN", :prefix-ns "http://travelplanning.ex/Airport/"}}]))
-
-
-(comment (e/add-event-to-agenda
-   @e/methods-lib
-   {:r0 {:type :root :id :r0}}
-   [{:method       :update-data-on-campaign,
-     :?campaign    {:type :uri, :value "12345678", :prefix-ns "http://travelplanning.ex/Campaign/"},
-     :?salesStart  {:type     :literal,
-                    :datatype "http://www.w3.org/2001/XMLSchema#dateTime",
-                    :value    (java.time.ZonedDateTime/parse "2017-10-10T00:00:01.390Z")},
-     :?fromAirport {:type :uri, :value "KUN", :prefix-ns "http://travelplanning.ex/Airport/"}}]))

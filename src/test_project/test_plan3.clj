@@ -26,6 +26,7 @@
   {
    :call-action-generic #(test-project.ea/call-action %1 %2)
    ;:call-action-generic #(println "Executing action. uri:" %1 " data:" %2)
+   :call-action-test (fn [var1] (print "doing something"))
    }
   )
 
@@ -40,6 +41,8 @@
    :tcn "http://travelplanning.ex/Connection/"
    :tcu "http://travelplanning.ex/ConnectionUpdate/"
    :tcd "http://travelplanning.ex/ConnectionData/"})
+
+(def loc-methods-lib (atom {}) )
 
 (defn add-airport-data [vars]
   (if-let [airport-data (air/get-airport-timezone (s/var-val vars :?airport))]
@@ -57,11 +60,11 @@
   update-data-on-campaign
   [?campaign]
   ;just a place to modify code to reload
-  :test 'nothing
+  :test 'nothing1
   ;for event type plans parameters are in event desciption
   ; +bgp does nothing. All events are additions of some information
   :event [?campaign :rdf:type :tc:PromotionalCampaignType]
-  :namespaces namespaces-prefixes :actions actions
+  :namespaces namespaces-prefixes :actions actions :methods loc-methods-lib
   :precondition ((?campaign rdf:type tc:PromotionalCampaignType
                             t:campaignAirline ?airline
                             t:campaignSalesStartDate ?salesStart
@@ -84,7 +87,7 @@
 (e/def-method
   update-connection-when-resentdataexists-method [?airline]
   :task  (:check-connections ?airline)
-  :namespaces namespaces-prefixes :actions actions         ;don't want to make global var actions
+  :namespaces namespaces-prefixes :actions actions :methods loc-methods-lib       ;don't want to make global var actions
   :precondition ((?connectionData t:CreatedDateTime ?createdTime
                                                tcd:Connection ?connection)
                   (?connection t:ConnectionAirline ?airline)
@@ -95,7 +98,7 @@
 (e/def-method
   update-connection-when-no-recent-data [?airline]
   :task  (:check-connections ?airline)
-  :namespaces namespaces-prefixes :actions actions         ;don't want to make global var actions
+  :namespaces namespaces-prefixes :actions actions :methods loc-methods-lib        ;don't want to make global var actions
   :precondition (:not-exists (?connectionData tcd:Connection ?connection
                                               t:CreatedDateTime ?createdTime)
                   (?connection t:ConnectionAirline ?airline)
@@ -105,7 +108,7 @@
 (e/def-method
   update-flights-method [?airline ?dateFrom ?dateTo ?oldestOfferDate]
   :task (:update-airline-flights ?airline ?dateFrom ?dateTo ?oldestOfferDate)
-  :namespaces namespaces-prefixes :actions actions         ;don't want to make global var actions
+  :namespaces namespaces-prefixes :actions actions  :methods loc-methods-lib         ;don't want to make global var actions
   ; find flightdates for airline in provided range, that doesn't have offer information
   :precondition  ([?connection t:ConnectionAirline ?airline
                                 t:ConnectionFromAirport ?departureAirport
@@ -127,7 +130,7 @@
 (e/def-method
   update-flights-method-done [?airline ?dateFrom ?dateTo ?oldestOfferDate]
   :task (:update-airline-flights ?airline ?dateFrom ?dateTo ?oldestOfferDate)
-  :namespaces namespaces-prefixes :actions actions         ;don't want to make global var actions
+  :namespaces namespaces-prefixes :actions actions :methods loc-methods-lib       ;don't want to make global var actions
   :precondition  (:not-exists [?connection t:ConnectionAirline ?airline
                                            t:ConnectionFromAirport ?departureAirport
                                            t:ConnectionToAirport ?arrivalAirport
@@ -145,8 +148,9 @@
 (e/def-method
   update-data-by-7-days-method
   [?airline ?fromAirport ?toAirport ?startDate ?iterEndDate ?finalEndDate]
+
    :task  (:update-data-task ?airline ?connection ?fromAirport ?toAirport ?startDate ?iterEndDate ?finalEndDate )
-   :namespaces namespaces-prefixes :actions actions         ;don't want to make global var actions
+   :namespaces namespaces-prefixes :actions actions :methods loc-methods-lib       ;don't want to make global var actions
    :precondition ([?fromAirport t:AirportTimezoneUTCOffset ?fromOff]
                    [?toAirport t:AirportTimezoneUTCOffset ?toOff]
                    (:filter (s/f< ?iterEndDate ?finalEndDate))
@@ -170,7 +174,7 @@
   update-data-by-7-days-method2
   [?airline ?fromAirport ?toAirport ?startDate ?iterEndDate ?finalEndDate]
   :task  (:update-data-task ?airline ?connection ?fromAirport ?toAirport ?startDate ?iterEndDate ?finalEndDate )
-  :namespaces namespaces-prefixes :actions actions         ;don't want to make global var actions
+  :namespaces namespaces-prefixes :actions actions :methods loc-methods-lib        ;don't want to make global var actions
   :precondition ([?fromAirport t:AirportTimezoneUTCOffset ?fromOff]
                   [?toAirport t:AirportTimezoneUTCOffset ?toOff]
                   (:filter (s/f> ?iterEndDate ?finalEndDate)) ; turi but >=
@@ -190,7 +194,7 @@
   achieve-all-airport-data
   []
   :task (:task-airport-data)
-  :namespaces namespaces-prefixes :actions actions
+  :namespaces namespaces-prefixes :actions actions :methods loc-methods-lib
   :precondition ([?connection t:ConnectionFromAirport ?airport]
                   (:minus [?airport t:AirportTimezoneUTCOffset ?offset
                            t:AirportLocationLongtitude ?long
@@ -202,7 +206,7 @@
   achieve-all-airport-data-done
   []
   :task (:task-airport-data)
-  :namespaces namespaces-prefixes :actions actions
+  :namespaces namespaces-prefixes :actions actions :methods loc-methods-lib
   :precondition (:not-exists [?connection t:ConnectionFromAirport ?airport]
                   (:minus [?airport t:AirportTimezoneUTCOffset ?offset
                            t:AirportLocationLongtitude ?long

@@ -29,7 +29,8 @@
 (def methods-lib (atom {}) )
 
 
-(defmacro def-method
+(defmacro
+  def-method
   [name parameters & {:keys [event task namespaces methods actions precondition body] :or {methods 'test-project.ea/methods-lib}}]
   (comment `(def ~name {:event        (s/build-event ~namespaces (quote ~event))
                 :precondition (s/build-pre-query ~namespaces ~(set parameters) ~precondition)
@@ -45,53 +46,101 @@
              :precondition (s/build-precondition ~namespaces ~(set parameters) ~precondition)
              :body         ~body})))
 
-(defn add-child-steps
-  "by adding need to update parent with steps value"
-  [steps parent ordered]
-  (conj steps
-    (assoc parent :steps
-                  (map #(:id %) steps)
-                  :steps-ordered ordered))
-  )
 
-(defn extract-steps [a-method-lib method-map]
-  (let [body (:body (a-method-lib (:method method-map)))]
-    (-> (map #(assoc method-map
-             :parent (:id method-map)                       ;parent is updated id
-             :type :step
-             :body %
-             :id (keyword (gensym "s"))
-             ) body)
-        (add-child-steps method-map (vector? body)))
-    )
-  )
+(defn extract-steps [a-method-lib parent-method-map]
+  (let [body (:body (a-method-lib (:method parent-method-map)))
+        ordered (vector? body)
+        steps (map #(assoc parent-method-map
+                      :parent (:id parent-method-map)       ;parent is updated id
+                      :type :step
+                      :body %
+                      :id (keyword (gensym "s"))
+                      ) body)
+        step-ids (map #(:id %) steps)]
+    [(conj steps
+           (assoc parent-method-map :steps step-ids
+                                    :steps-ordered ordered))
+     (if ordered (list (first step-ids)) step-ids) ]))
 
-(defn add-event-to-agenda
-  "add event that are relevant to agent
+(defn multiple-update-in
+  "mp - map
+  keys-fs-vals - vector [:key f val] whe"
+  [mp fs-keysv-vals]
+  (reduce #(update-in %1 (second %2) (first %2) (nth 2 %2 )) mp fs-keysv-vals))
+
+(defn update-agenda-data
+  [agenda-map new-node-map step-keys-to-add step-key-to-remove]
+  ;(println new-node-map)
+  (->
+    agenda-map
+    (update-in  [:intention-graph] merge new-node-map)
+     (update-in [:normal-step-keys] #(remove %2 %1) #{step-key-to-remove})
+     (update-in [:normal-step-keys] concat step-keys-to-add)))
+
+
+
+(comment defn add-event-to-agenda
+  "Add event that are relevant to agent.
   Events is vector where each event is binding/context with variables bound
   a-method-lib is map of methods definitions where key is method name
-  Agenda is vector, where each item is same binding/context extended with :unprocessed-body.
-  Initially that :unprocessed-body is method's body"
-  [a-method-lib agenda events]
+  Agenda-atom hold map.
+  1st is a graph that is stored as map, where each node has references (by keyword) to other nodes. Node data is same binding/context.
+  2nd is collection of active steps."
+  [a-method-lib agenda-atom events]
   (if (not (empty? events))
     ; list is because we use list for stack implementation empty list - empty stack
-    (->> (map #(assoc % :type :method :parent :r0 :id (keyword (gensym "m")) :steps []) events)
-         (map #(extract-steps a-method-lib %))
-         (reduce concat )
-         (reduce #(assoc %1 (:id %2) %2) agenda)
-         )
+    (let [[nodes step-ids]
+          (->> (map #(assoc % :type :method :parent :r0 :id (keyword (gensym "m")) :steps []) events)
+               (map #(extract-steps a-method-lib %))        ; list of vectors [stepnodes stepids]
+               (reduce #(list (concat (first %1) (first %2)) (concat (second %1) (second %2)))) ; list of maps
+               ;(reduce #(assoc %1 (:id %2) %2) (first agenda))
+               ) ]
+      (do
+        (swap! agenda-atom #(update-in %1 [:intention-graph] merge  %2)) (reduce #(assoc %1 (:id %2) %2) {} nodes)
+        (swap! agenda-atom #(update-in %1 [:normal-step-keys] concat %2) step-ids)))
     ;(let [added ]       {:stacks (into (agenda :stacks) added)})
-    agenda ))
+    agenda-atom ))
 
-; agenda is vector of list where each list is a stack
+(defn get-new-steps
+  [a-method-lib method-instance parent-keyword]
+  (->> (assoc method-instance :type :method :parent parent-keyword :id (keyword (gensym "m")) :steps [])
+       (extract-steps a-method-lib)                   ; vector [stepnodes stepids]
+       ;(reduce #(assoc %1 (:id %2) %2) (first agenda))
+       ))
+
+(defn add-expanded-method-instance-to-agenda
+  "add expanded (with steps as child nodes
+  method-instance is a context/binding map"
+  [a-method-lib a-agenda-atom method-instance parent-keyword]
+  ; (print "added")
+  (let [[nodes new-step-ids] (get-new-steps a-method-lib method-instance parent-keyword)
+        nodes-map (reduce #(assoc %1 (:id %2) %2) {} nodes)]
+    ;[nodes-map new-step-ids]
+    (swap! a-agenda-atom update-agenda-data nodes-map new-step-ids parent-keyword)))
+
+
+(defn add-events-to-agenda
+  ;([a-method-lib agenda-atom events]   (add-event-to-agenda a-method-lib agenda-atom (first events) (next events)))
+  ([a-method-lib agenda-atom events]
+   (let [curr-event (first events)]
+     (if (nil? curr-event)
+      @agenda-atom
+      (do
+        (add-expanded-method-instance-to-agenda a-method-lib agenda-atom curr-event :r0)
+        (add-events-to-agenda a-method-lib agenda-atom (rest events)))))))
+
+
+  ; agenda is vector of list where each list is a stack
+  ; probably don't need this anymore
 (defn get-stack-from-agenda
   "currently very simple - takes last item (since agenda has on stacks which is vector) but latter could change"
   [{stacks :stacks}]
   ;ideally it should have selection function how to choose from stacks
   ; currenly it will act as queue
-  (peek stacks) )
+  (peek stacks))
 
 ;not very good definition maybe find something better later
+  ;obsolete. todo: remove after migration to graph
 (defn update-stack
   ""
   [statements stack stack-item]
@@ -111,6 +160,7 @@
     (eval form)))
 
 
+; old version shoulb be removed when new method is added
 (defn process-body-item
   "processed on item in body
   Returns remainder"
@@ -157,7 +207,59 @@
           ; if it is empty then something is error
           [nil :error])))))
 
-(defn update-agenda
+
+(defn remove-step
+  [{:keys [intention-graph step-ids] :as agenda-map} step-keyword]
+  (let [parent-key (-> intention-graph step-keyword :parent)
+        new-step-ids (remove #{step-keyword} step-ids)]
+    ; we return vector of changes
+    (assoc agenda-map :intention-graph
+                     ;first element - graph
+                     (-> intention-graph
+                         (dissoc step-keyword)
+                         (update-in [parent-key :steps] #(remove #{step-keyword} %))
+                         )
+                 :step-ids
+                 ; second is update steps. If not ordered parent no changes, else add first that has left after removal (of completed)
+                 (if (-> intention-graph parent-key :step-ordered)
+                   (conj new-step-ids (-> intention-graph parent-key :step first))
+                   new-step-ids))))
+
+; should just evaluate function
+(defn process-step-node
+  ""
+  [methods candidate-select-fn agenda-atom]
+  ;(println (step-keyword intention-graph))
+  (let [step-keyword (-> @agenda-atom :normal-step-keys first )
+        ; new-steps (subvec step-ids 1)
+        step-node (-> @agenda-atom :intention-graph step-keyword )
+        stmnt (step-node  :body )
+        res (eval-form-with-context stmnt step-node)]
+    ;if returned a task
+    (cond
+      (and (coll? res) (= (first res) 'task))
+        ;TODO: cia
+        (do
+          ; (println "Found task:" (map s/context-var-to-simple-vector res))
+          (if-let [candidate (t/get-task-instance methods candidate-select-fn (rest res))]
+            ;[(conj (update-stack statements stack stack-item) candidate) nil]
+            (add-expanded-method-instance-to-agenda methods agenda-atom candidate (:id step-node))
+            (u/println-and-last-out "Error: not candidates for task found" [nil nil :error-no-candidates-for-task])))
+      (and (coll? res) (= (first res) :action))
+      (do (println "Executing action" res)
+          (swap! agenda-atom remove-step step-keyword))
+      (keyword? res)                                        ;keyworod means we got an error
+        [nil res]
+      (nil? res)
+        (swap! agenda-atom remove-step step-keyword)
+      :else
+        [nil res :error-unexpected-response]
+      ;[(update-stack statements stack stack-item) nil]
+      )
+    ;(eval-body-form (parse-body-for-vars stmnt stack-item var-defs) var-defs)
+    ))
+
+(defn update-agenda-old
   "returns updated agenda - stack pushed to first position of vector. If empty removed"
   [agenda [stack error]]
   ; agent is map with key stack which point o a vector of stack
@@ -169,7 +271,7 @@
         (into (vector stack) (pop (agenda :stacks))))} nil]))
 
 (defn events-to-agenda
-  [a-method-lib candidate-select-fn agenda]
+  [a-method-lib candidate-select-fn agenda-atom]
   (let [events (rc/get-events)]
     (println "received events:" events)
     (->>
@@ -179,46 +281,45 @@
       (rc/filter-applicable-methods-on-preconditions a-method-lib candidate-select-fn)
       (rc/filter-and-remove-unhandled-events events)
       ;(u/println-and-last-out "filtered applicable methods:")
-      (add-to-agenda a-method-lib agenda)
+      (add-events-to-agenda a-method-lib agenda-atom)
       ;(u/pprintln-and-out "Agenda after events:")
       )))
 
 (defn progress-in-agenda
   "progressed on step in agenda and returns updated agenda"
-  [namspcs-prefxs methods candidate-select-fn agenda]
-  ;(print agenda)
-  (if (not (empty? (agenda :stacks)))
-    (->>
-      (get-stack-from-agenda agenda)
+  [namspcs-prefxs methods candidate-select-fn agenda-atom]
+  ;(print step-ids)
+  (if (not (empty? (:normal-step-keys @agenda-atom)))
+    (process-step-node methods candidate-select-fn agenda-atom)
+    ;    (->>
+      ;(get-stack-from-agenda agenda)
       ; (u/pprintln-and-out "got stack from agenda:" simplify-stack-for-print)
       ; form this we return vector [data error]
-      (process-body-item methods candidate-select-fn)
-      (update-agenda agenda)
-      ;(u/pprintln-and-out "Agenda update after step:")
-      )
-    [agenda nil]))
+      ; (update-agenda agenda)
+      ;(u/pprintln-and-out "Agenda update after step:")      )
+    agenda-atom))
 
 (defn main
-  ([namspcs-prefxs a-method-lib max-limit] (main namspcs-prefxs a-method-lib max-limit {:stacks []}))
-  ([namspcs-prefxs a-method-lib max-limit agenda-param]
+  ([namspcs-prefxs a-method-lib max-limit] (main namspcs-prefxs a-method-lib max-limit (atom {:intention-graph {:r0 {:type :root :id :r0}}})))
+  ([namspcs-prefxs a-method-lib max-limit agenda-atom]
 
    (if (empty? a-method-lib)
       (println "Empty methods library")
       (let [started (java.time.LocalDateTime/now)
-            candidate-select-fn #(first %)]
+            candidate-select-fn #(first %)
+            ]
         (println "started" started)
-        (->> (loop [i 0   i-agenda agenda-param]
+        (->> (loop [i 0   ]
                (if (< i max-limit)
                  (do
                    (println "step" i)
-                   (let [agnd (events-to-agenda a-method-lib candidate-select-fn i-agenda)
+                   (let [agnd (events-to-agenda a-method-lib candidate-select-fn agenda-atom)
                          res (progress-in-agenda namspcs-prefxs a-method-lib candidate-select-fn agnd)]
                      (if (nil? (second res))
                        (recur
-                         (inc i)
-                         (first res))
+                         (inc i)                  )
                        (println "stopped on error:" (second res)))))
-                 i-agenda))
+                 agenda-atom))
              (u/pprintln-and-out "Completed. Agenda:" simplify-agenda-for-print))
         (print (format "Ended: %s Completed:%s sec" (java.time.LocalDateTime/now) (u/date-diff-in-seconds started (java.time.LocalDateTime/now))))))))
 
@@ -229,7 +330,9 @@
    (ws/CallWS url (str "PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>\n" body)
               {"Content-Type" "text/turtle"})))
 
-
+(defn add-action
+  [key & parameters]
+  (concat (list :action key ) parameters))
 
 
 
