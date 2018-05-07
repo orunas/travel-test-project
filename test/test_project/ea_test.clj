@@ -132,7 +132,7 @@
   :task (:task2)
   :namespaces namespaces-prefixes :actions actions :methods loc-methods-lib
   :precondition nil
-  :body [#(test-project.ea/add-action :some-action) ])
+  :body [(fn [_] (test-project.ea/add-action :some-action)) ])
 
 (e/def-method
   test-method-1
@@ -143,10 +143,18 @@
   :body (list (fn [vars] (test-project.task/add-task :task2)) #(println "something" %)))
 
 (def agenda-0  {:intention-graph {:r0 {:type :root :id :r0}},
-                :normal-step-keys []})
+                :normal-step-keys []
+                :active-step-keys []})
 
 
 ; ************* some code part for manual tests
+
+(comment                                                    ;"code to run in REPL"
+  (def a1 (atom et/agenda-0))
+  (def f1 (e/add-events-to-agenda @et/loc-methods-lib a1 [{:id 1 :method :test-method-1}]))
+  (def f2 (e/progress-in-agenda  et/namespaces-prefixes @et/loc-methods-lib #(first %) a1))
+  (def f3 (e/progress-in-agenda  et/namespaces-prefixes @et/loc-methods-lib #(first %) a1))
+         )
 
 (comment
   "just run code inside ->>"

@@ -5,6 +5,7 @@
             [test-project.sparql :as s]
             [test-project.task :as t]
             [test-project.receive :as rc]
+            [clojure.core.async :as async :refer [>! <! >!! <!! go chan]]
             [test-project.jena :as j] :reload))
 
 ; need to remove somewhere
@@ -208,10 +209,16 @@
           [nil :error])))))
 
 
+(defn set-step-active-on-map
+  [agenda-map step-keyword]
+  (assoc agenda-map :normal-step-keys (remove #{step-keyword} (:normal-step-keys agenda-map) )
+                    :active-step-keys (conj (:active-step-keys agenda-map) step-keyword)))
+
 (defn remove-step
-  [{:keys [intention-graph step-ids] :as agenda-map} step-keyword]
+  [{:keys [intention-graph normal-step-keys active-step-keys] :as agenda-map} step-keyword]
   (let [parent-key (-> intention-graph step-keyword :parent)
-        new-step-ids (remove #{step-keyword} step-ids)]
+        new-normal-step-ids (remove #{step-keyword} normal-step-keys)]
+    ; when step is removed we need add steps that waited for completion
     ; we return vector of changes
     (assoc agenda-map :intention-graph
                      ;first element - graph
@@ -219,11 +226,12 @@
                          (dissoc step-keyword)
                          (update-in [parent-key :steps] #(remove #{step-keyword} %))
                          )
-                 :step-ids
-                 ; second is update steps. If not ordered parent no changes, else add first that has left after removal (of completed)
-                 (if (-> intention-graph parent-key :step-ordered)
-                   (conj new-step-ids (-> intention-graph parent-key :step first))
-                   new-step-ids))))
+                      :normal-step-keys
+                     ; second is update steps. If not ordered parent no changes, else add first that has left after removal (of completed)
+                     (if (-> intention-graph parent-key :step-ordered)
+                       (conj new-normal-step-ids (-> intention-graph parent-key :step first))
+                       new-normal-step-ids)
+                      :active-step-keys (remove #{active-step-keys} step-keyword))))
 
 ; should just evaluate function
 (defn process-step-node
@@ -246,8 +254,14 @@
             (add-expanded-method-instance-to-agenda methods agenda-atom candidate (:id step-node))
             (u/println-and-last-out "Error: not candidates for task found" [nil nil :error-no-candidates-for-task])))
       (and (coll? res) (= (first res) :action))
-      (do (println "Executing action" res)
-          (swap! agenda-atom remove-step step-keyword))
+        (let [c (chan)]
+          (go
+            (swap! agenda-atom set-step-active-on-map step-keyword)
+            (println "Executing action" res)
+            (>! c "done"))
+          (go
+            (println "finished" (<! c))
+            (swap! agenda-atom remove-step step-keyword)))
       (keyword? res)                                        ;keyworod means we got an error
         [nil res]
       (nil? res)
