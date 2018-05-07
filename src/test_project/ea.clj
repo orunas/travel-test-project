@@ -222,25 +222,31 @@
      ))
   )
 
+(defn dissoc-if
+  [m f k]
+  (if (apply f (list m)) (dissoc m k) m))
+
 (defn remove-step
   [{:keys [intention-graph normal-step-keys active-step-keys] :as agenda-map} step-keyword]
   (let [parent-key (-> intention-graph step-keyword :parent)
         new-normal-step-ids (remove #{step-keyword} normal-step-keys)]
     ; when step is removed we need add steps that waited for completion
     ; we return vector of changes
+    (println  "inside" new-normal-step-ids)
     (assoc agenda-map :intention-graph
                      ;first element - graph
                      (-> intention-graph
                          ;todo changes here
                          (dissoc step-keyword)
                          (update-in [parent-key :steps] #(remove #{step-keyword} %))
+                         (dissoc-if #(empty? (-> % parent-key :steps)) parent-key)
                          )
                       :normal-step-keys
                      ; second is update steps. If not ordered parent no changes, else add first that has left after removal (of completed)
                      (if (-> intention-graph parent-key :step-ordered)
                        (conj new-normal-step-ids (-> intention-graph parent-key :steps first))
                        new-normal-step-ids)
-                      :active-step-keys (remove #{active-step-keys} step-keyword))))
+                      :active-step-keys (remove #{step-keyword} active-step-keys))))
 
 ; should just evaluate function
 (defn process-step-node
