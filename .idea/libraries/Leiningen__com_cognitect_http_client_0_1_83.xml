@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="Leiningen: com.cognitect/http-client:0.1.83">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/cognitect/http-client/0.1.83/http-client-0.1.83.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
