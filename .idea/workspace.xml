@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6ee8fef7-a94b-4b92-96ee-e58ce53bb662" name="Default" comment="" />
+    <list default="true" id="6ee8fef7-a94b-4b92-96ee-e58ce53bb662" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test_project/ea.clj" beforeDir="false" afterPath="$PROJECT_DIR$/src/test_project/ea.clj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/test_project/ea_test.clj" beforeDir="false" afterPath="$PROJECT_DIR$/test/test_project/ea_test.clj" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -14,13 +18,32 @@
       <file leaf-file-name="ea.clj" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/test_project/ea.clj">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1497">
-              <caret line="190" column="22" selection-start-line="190" selection-start-column="22" selection-end-line="190" selection-end-column="22" />
+            <state relative-caret-position="255">
+              <caret line="221" column="7" lean-forward="true" selection-start-line="221" selection-start-column="7" selection-end-line="221" selection-end-column="7" />
+              <folding>
+                <element signature="e#6392#8639#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ea_test.clj" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test/test_project/ea_test.clj">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="680">
+              <caret line="166" lean-forward="true" selection-start-line="166" selection-end-line="166" />
             </state>
           </provider>
         </entry>
       </file>
     </leaf>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>order</find>
+      <find>add</find>
+      <find>normal-ste</find>
+    </findStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -29,6 +52,7 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/test/test_project/ea_test.clj" />
+        <option value="$PROJECT_DIR$/src/test_project/ea.clj" />
       </list>
     </option>
   </component>
@@ -81,16 +105,16 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
       <pane id="AndroidView" />
       <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="preferences.keymap" />
   </component>
-  <component name="ReplState" timestamp="1525692122757">{:repl-history {:ide [], :local [{:command &quot;(require '[test-project.ea :as e] '[test-project.ea-test :as et])&quot;, :offset 65, :ns &quot;user&quot;} {:command &quot;(clojure.test/run-tests 'test-project.ea-test)&quot;, :offset 46, :ns &quot;user&quot;}], :remote []}}</component>
+  <component name="ReplState" timestamp="1525706130227">{:repl-history {:ide [], :local [{:command &quot;(require '[ttest-project.ea :as e] '[test-project.ea-test :as et])&quot;, :offset 66, :ns &quot;user&quot;} {:command &quot;(require '[test-project.ea :as e] '[test-project.ea-test :as et])&quot;, :offset 65, :ns &quot;user&quot;} {:command &quot;(pst)&quot;, :offset 5, :ns &quot;user&quot;} {:command &quot;(@a1 :normal-step-keys)&quot;, :offset 23, :ns &quot;user&quot;} {:command &quot;(first (@a1 :normal-step-keys) )&quot;, :offset 32, :ns &quot;user&quot;} {:command &quot;(e/process-step-node et/loc-methods-lib #(first %) @a1 )&quot;, :offset 56, :ns &quot;user&quot;} {:command &quot;(e/process-step-node et/loc-methods-lib #(first %) a1 )&quot;, :offset 55, :ns &quot;user&quot;} {:command &quot;(def f2 (e/progress-in-agenda  et/namespaces-prefixes @et/loc-methods-lib #(first %) a1))\n&quot;, :offset 90, :ns &quot;user&quot;} {:command &quot;(e/progress-in-agenda  et/namespaces-prefixes @et/loc-methods-lib #(first %) a1)&quot;, :offset 80, :ns &quot;user&quot;} {:command &quot;(conj [1 2] 3)\\&quot;, :offset 15, :ns &quot;user&quot;} {:command &quot;(mapv inc (1 2 3))&quot;, :offset 18, :ns &quot;user&quot;} {:command &quot;(mapv inc '(1 2 3))&quot;, :offset 19, :ns &quot;user&quot;} {:command &quot;(mapv inc (list 1 2 3))&quot;, :offset 23, :ns &quot;user&quot;} {:command &quot;(e/extract-steps @loc-methods-lib {:id 1 :method :test-method-for-step-extract})&quot;, :offset 80, :ns &quot;user&quot;} {:command &quot;(e/extract-steps @et/loc-methods-lib {:id 1 :method :test-method-for-step-extract})&quot;, :offset 83, :ns &quot;user&quot;} {:command &quot;(def v1 (e/extract-steps @et/loc-methods-lib {:id 1 :method :test-method-for-step-extract}))&quot;, :offset 92, :ns &quot;user&quot;} {:command &quot;(require '[clojure.core.logic :as l])&quot;, :offset 37, :ns &quot;user&quot;} {:command &quot;(l/run* [x y]\n        (l/== (e/extract-steps @et/loc-methods-lib {:id 1 :method :test-method-for-step-extract})\n              [[ {:id x, :method :test-method-for-step-extract, :parent 1, :type :step, :body 1}\n                {:id y, :method :test-method-for-step-extract, :parent 1, :type :step, :body 2}\n                {:id 1, :method :test-method-for-step-extract, :steps [x y], :steps-ordered true}]\n               [x]]))&quot;, :offset 425, :ns &quot;user&quot;} {:command &quot;(count (l/run* [x y]\n         (l/== (e/extract-steps @et/loc-methods-lib {:id 1 :method :test-method-for-step-extract})\n               [[{:id x, :method :test-method-for-step-extract, :parent 1, :type :step, :body 1}\n                 {:id y, :method :test-method-for-step-extract, :parent 1, :type :step, :body 2}\n                 {:id 1, :method :test-method-for-step-extract, :steps [x y], :steps-ordered true}]\n                [x]])))&quot;, :offset 437, :ns &quot;user&quot;} {:command &quot;(clojure.test/run-tests 'test-project.ea-test)&quot;, :offset 46, :ns &quot;user&quot;} {:command &quot;(remove [1 2] #{2}) &quot;, :offset 19, :ns &quot;user&quot;} {:command &quot;(remove  #{2} [1 2]) &quot;, :offset 21, :ns &quot;user&quot;} {:command &quot;(concat [1 2] [ 3 4])&quot;, :offset 21, :ns &quot;user&quot;} {:command &quot;def f2 (e/progress-in-agenda  et/namespaces-prefixes @et/loc-methods-lib #(first %) a1))&quot;, :offset 88, :ns &quot;user&quot;} {:command &quot;(def a1 (atom et/agenda-0))&quot;, :offset 27, :ns &quot;user&quot;} {:command &quot;(def f1 (e/add-events-to-agenda @et/loc-methods-lib a1 [{:id 1 :method :test-method-1}]))&quot;, :offset 89, :ns &quot;user&quot;} {:command &quot;(def f2 (e/progress-in-agenda  et/namespaces-prefixes @et/loc-methods-lib #(first %) a1))&quot;, :offset 89, :ns &quot;user&quot;} {:command &quot;(def f3 (e/progress-in-agenda  et/namespaces-prefixes @et/loc-methods-lib #(first %) a1))&quot;, :offset 89, :ns &quot;user&quot;} {:command &quot;f1&quot;, :offset 2, :ns &quot;user&quot;} {:command &quot;f2&quot;, :offset 2, :ns &quot;user&quot;} {:command &quot;f3&quot;, :offset 2, :ns &quot;user&quot;} {:command &quot;(def f4 (e/progress-in-agenda  et/namespaces-prefixes @et/loc-methods-lib #(first %) a1))&quot;, :offset 89, :ns &quot;user&quot;} {:command &quot;f4&quot;, :offset 2, :ns &quot;user&quot;} {:command &quot;a1&quot;, :offset 2, :ns &quot;user&quot;} {:command &quot;@a1&quot;, :offset 3, :ns &quot;user&quot;} {:command &quot;(@a1 :m25500 :step first) &quot;, :offset 26, :ns &quot;user&quot;} {:command &quot;(@a1 :intention-graph :m25500 :step first) &quot;, :offset 43, :ns &quot;user&quot;} {:command &quot;(-&gt; @a1 :intention-graph :m25500 :step first) &quot;, :offset 46, :ns &quot;user&quot;} {:command &quot;()&quot;, :offset 2} {:command &quot;(-&gt; @a1 :intention-graph :m25500 :steps first) &quot;, :offset 47, :ns &quot;user&quot;} {:command &quot;(-&gt; @a1 :intention-graph :m25500 :steps) &quot;, :offset 40, :ns &quot;user&quot;} {:command &quot;(-&gt; @a1 :intention-graph :m25492 :steps) &quot;, :offset 41, :ns &quot;user&quot;} {:command &quot;(e/select-removable-nodes (@a1 :intention-graph) :m25500 )&quot;, :offset 58, :ns &quot;user&quot;}], :remote []}}</component>
   <component name="RunDashboard">
     <option name="ruleStates">
       <list>
@@ -178,27 +202,27 @@
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
     <layout>
-      <window_info anchor="right" id="Palette" order="3" />
+      <window_info anchor="right" id="Palette" order="9" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="right" id="Palette&#9;" order="3" />
-      <window_info id="Image Layers" order="2" />
+      <window_info anchor="right" id="Palette&#9;" order="5" />
+      <window_info id="Image Layers" order="6" />
       <window_info anchor="right" id="Capture Analysis" order="3" />
-      <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" weight="0.32939634" />
-      <window_info anchor="right" id="Maven Projects" order="3" />
-      <window_info anchor="right" id="REPL" order="4" side_tool="true" weight="0.333125" />
-      <window_info anchor="bottom" id="Version Control" order="7" />
+      <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" weight="0.32939634" />
+      <window_info anchor="right" id="Maven Projects" order="6" />
+      <window_info anchor="right" id="REPL" order="7" side_tool="true" weight="0.46125" />
       <window_info anchor="bottom" id="Run" order="2" />
-      <window_info anchor="right" id="Leiningen" order="4" />
+      <window_info anchor="bottom" id="Version Control" order="8" weight="0.32939634" />
+      <window_info anchor="right" id="Leiningen" order="8" />
       <window_info anchor="bottom" id="Terminal" order="7" />
       <window_info id="Capture Tool" order="2" />
-      <window_info id="Designer" order="2" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.17125" />
+      <window_info id="Designer" order="3" />
+      <window_info content_ui="combo" id="Project" order="0" weight="0.105625" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info id="UI Designer" order="2" />
-      <window_info anchor="right" id="Theme Preview" order="3" />
-      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info id="UI Designer" order="4" />
+      <window_info anchor="right" id="Theme Preview" order="4" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info id="Favorites" order="5" side_tool="true" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -214,7 +238,22 @@
     <MESSAGE value="async test projects" />
     <option name="LAST_COMMIT_MESSAGE" value="async test projects" />
   </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <option name="time" value="1" />
+    </breakpoint-manager>
+  </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/test_project/ea.clj">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3230">
+          <caret line="190" column="22" selection-start-line="190" selection-start-column="22" selection-end-line="190" selection-end-column="22" />
+          <folding>
+            <element signature="e#6392#8639#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/test_project/ea.clj">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3213">
@@ -264,13 +303,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test/test_project/ea_test.clj">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1513">
-          <caret line="40" column="37" selection-start-line="40" selection-start-column="37" selection-end-line="40" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/project.clj">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
@@ -278,10 +310,20 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/test/test_project/ea_test.clj">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="680">
+          <caret line="166" lean-forward="true" selection-start-line="166" selection-end-line="166" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/test_project/ea.clj">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1497">
-          <caret line="190" column="22" selection-start-line="190" selection-start-column="22" selection-end-line="190" selection-end-column="22" />
+        <state relative-caret-position="255">
+          <caret line="221" column="7" lean-forward="true" selection-start-line="221" selection-start-column="7" selection-end-line="221" selection-end-column="7" />
+          <folding>
+            <element signature="e#6392#8639#0" />
+          </folding>
         </state>
       </provider>
     </entry>

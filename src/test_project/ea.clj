@@ -61,7 +61,7 @@
     [(conj steps
            (assoc parent-method-map :steps step-ids
                                     :steps-ordered ordered))
-     (if ordered (list (first step-ids)) step-ids) ]))
+     (if ordered (vector (first step-ids)) step-ids) ]))
 
 (defn multiple-update-in
   "mp - map
@@ -161,7 +161,7 @@
     (eval form)))
 
 
-; old version shoulb be removed when new method is added
+; old version should be removed when new method is added
 (defn process-body-item
   "processed on item in body
   Returns remainder"
@@ -214,6 +214,14 @@
   (assoc agenda-map :normal-step-keys (remove #{step-keyword} (:normal-step-keys agenda-map) )
                     :active-step-keys (conj (:active-step-keys agenda-map) step-keyword)))
 
+(defn select-removable-nodes
+  [g k]
+  (let [parent-key (-> g k :parent)]
+    (if (empty? (-> g parent-key :steps))
+      parent-key
+     ))
+  )
+
 (defn remove-step
   [{:keys [intention-graph normal-step-keys active-step-keys] :as agenda-map} step-keyword]
   (let [parent-key (-> intention-graph step-keyword :parent)
@@ -223,13 +231,14 @@
     (assoc agenda-map :intention-graph
                      ;first element - graph
                      (-> intention-graph
+                         ;todo changes here
                          (dissoc step-keyword)
                          (update-in [parent-key :steps] #(remove #{step-keyword} %))
                          )
                       :normal-step-keys
                      ; second is update steps. If not ordered parent no changes, else add first that has left after removal (of completed)
                      (if (-> intention-graph parent-key :step-ordered)
-                       (conj new-normal-step-ids (-> intention-graph parent-key :step first))
+                       (conj new-normal-step-ids (-> intention-graph parent-key :steps first))
                        new-normal-step-ids)
                       :active-step-keys (remove #{active-step-keys} step-keyword))))
 

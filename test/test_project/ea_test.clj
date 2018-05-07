@@ -149,11 +149,22 @@
 
 ; ************* some code part for manual tests
 
-(comment                                                    ;"code to run in REPL"
+(comment "cmd1"                                                    ;"code to run in REPL"
   (def a1 (atom et/agenda-0))
+         ;after this empty agent with only root node
   (def f1 (e/add-events-to-agenda @et/loc-methods-lib a1 [{:id 1 :method :test-method-1}]))
+         ; after this there should be one method node with 2 children steps, unordered
+         ; normal step keys should have 2 items
   (def f2 (e/progress-in-agenda  et/namespaces-prefixes @et/loc-methods-lib #(first %) a1))
+         ; after this one item should be expanded to method with one action. So 2 nodes added
+         ; expanded node is removed from normal-step-keys but other added
   (def f3 (e/progress-in-agenda  et/namespaces-prefixes @et/loc-methods-lib #(first %) a1))
+         ; this should result with execution of an action
+         ; 2nd action in test-method-1 is executed. However 1st (expanded) still exists
+         ; therefore only 1 node is removed
+   (def f4 (e/progress-in-agenda  et/namespaces-prefixes @et/loc-methods-lib #(first %) a1))
+         ; after this only root node should remain
+
          )
 
 (comment
@@ -199,10 +210,10 @@
     (= (count
            (l/run* [x y]
                    (l/== (e/extract-steps @loc-methods-lib {:id 1 :method :test-method-for-step-extract})
-                         [(list {:id 1, :method :test-method-for-step-extract, :steps (list x y), :steps-ordered true}
-                                {:id x, :method :test-method-for-step-extract, :parent 1, :type :step, :body 1}
-                                {:id y, :method :test-method-for-step-extract, :parent 1, :type :step, :body 2})
-                          (list x)])))                      ; tik vienas nes ordered
+                         [[ {:id x, :method :test-method-for-step-extract, :parent 1, :type :step, :body 1}
+                             {:id y, :method :test-method-for-step-extract, :parent 1, :type :step, :body 2}
+                           {:id 1, :method :test-method-for-step-extract, :steps [x y], :steps-ordered true}]
+                          [x]])))                      ; tik vienas nes ordered
        1)))
 
 
