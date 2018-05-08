@@ -150,7 +150,7 @@
 ; ************* some code part for manual tests
 
 (comment "cmd1"                                                    ;"code to run in REPL"
-         (def a1 (atom et/agenda-0))
+  (def a1 (atom et/agenda-0))
          ;after this empty agent with only root node
   (def f1 (e/add-events-to-agenda @et/loc-methods-lib a1 [{:id 1 :method :test-method-1}]))
          ; after this there should be one method node with 2 children steps, unordered
