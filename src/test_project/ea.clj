@@ -222,31 +222,56 @@
      ))
   )
 
+(comment (dissoc-if graph-map #(empty? (-> % parent-key :steps)) parent-key))
 (defn dissoc-if
   [m f k]
   (if (apply f (list m)) (dissoc m k) m))
 
+(defn remove-parents [graph-map parent-key]
+  (if (or (empty? (-> graph-map parent-key :steps)) (= parent-key :r0))
+    ; hierarchy step -> method -> step
+    (->
+      ; first remove
+      (dissoc graph-map parent-key)
+      (remove-parents (:parent (graph-map parent-key))))
+    ; else do nothing just return map unchanged
+    graph-map
+    ))
+
+(comment (-> intention-graph
+             ;todo changes here
+             (dissoc step-keyword)
+             (update-in [parent-key :steps] #(remove #{step-keyword} %))
+             (remove-parents parent-key))
+
+         )
+
 (defn remove-step
-  [{:keys [intention-graph normal-step-keys active-step-keys] :as agenda-map} step-keyword]
-  (let [parent-key (-> intention-graph step-keyword :parent)
-        new-normal-step-ids (remove #{step-keyword} normal-step-keys)]
+  [{:keys [intention-graph normal-step-keys active-step-keys] :as agenda-map} node-keyword child-node-keyword]
+  (let [node (intention-graph node-keyword)
+        parent-key (node :parent)]
     ; when step is removed we need add steps that waited for completion
-    ; we return vector of changes
-    (println  "inside" new-normal-step-ids)
-    (assoc agenda-map :intention-graph
-                     ;first element - graph
-                     (-> intention-graph
-                         ;todo changes here
-                         (dissoc step-keyword)
-                         (update-in [parent-key :steps] #(remove #{step-keyword} %))
-                         (dissoc-if #(empty? (-> % parent-key :steps)) parent-key)
-                         )
-                      :normal-step-keys
-                     ; second is update steps. If not ordered parent no changes, else add first that has left after removal (of completed)
-                     (if (-> intention-graph parent-key :step-ordered)
-                       (conj new-normal-step-ids (-> intention-graph parent-key :steps first))
-                       new-normal-step-ids)
-                      :active-step-keys (remove #{step-keyword} active-step-keys))))
+    (case (node :type)
+      ; if we have method we check whether more steps exists
+      :method
+        (let [new-steps (remove #{child-node-keyword} (node :steps))]
+          (if (empty? new-steps)
+           ;   if not exists means we done with method. Remove it and check parent
+           (-> (update-in agenda-map [:intention-graph] #(dissoc % node-keyword))
+               (remove-step parent-key node-keyword))
+           (if (node :step-ordered)
+             ; if exists and they are ordered we add next one to normal-step-keys add remove child from :steps
+             (assoc agenda-map
+               :intention-graph (update-in intention-graph [node-keyword :steps] new-steps)
+               :normal-step-keys (conj normal-step-keys (-> node :steps first)))
+             ; if exists and not ordered then just remove from steps
+             (update-in agenda-map [:intention-graph node-keyword :steps] new-steps))))
+      ; if we have step we remove it and recursively check parent
+      :step
+        (-> (assoc agenda-map :intention-graph (dissoc intention-graph node-keyword)
+                         :normal-step-keys (remove #{node-keyword} normal-step-keys)
+                         :active-step-keys (remove #{node-keyword} active-step-keys))
+          (remove-step parent-key node-keyword)))))
 
 ; should just evaluate function
 (defn process-step-node
