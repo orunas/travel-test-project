@@ -164,6 +164,7 @@
          ; therefore only 1 node is removed
    (def f4 (e/progress-in-agenda  et/namespaces-prefixes @et/loc-methods-lib #(first %) a1))
          ; after this only root node should remain
+         ; kitas
 
          )
 
