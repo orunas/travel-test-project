@@ -16,8 +16,22 @@
       <file leaf-file-name="ea.clj" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/test_project/ea.clj">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
             <state relative-caret-position="323">
               <caret line="241" column="82" selection-start-line="241" selection-start-column="82" selection-end-line="241" selection-end-column="82" />
+=======
+            <state relative-caret-position="459">
+              <caret line="267" column="83" selection-start-line="267" selection-start-column="83" selection-end-line="267" selection-end-column="83" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="core.clj" pinned="false" current-in-tab="false">
+        <entry file="jar://$MAVEN_REPOSITORY$/org/clojure/clojure/1.9.0/clojure-1.9.0.jar!/clojure/core.clj">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="245">
+              <caret line="1495" column="6" selection-start-line="1495" selection-start-column="6" selection-end-line="1495" selection-end-column="6" />
+>>>>>>> a503eb749ca01b288530619cb6bdc8d43a7a9cfb
             </state>
           </provider>
         </entry>
@@ -25,8 +39,13 @@
       <file leaf-file-name="ea_test.clj" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test/test_project/ea_test.clj">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
             <state relative-caret-position="2788">
               <caret line="164" column="3" selection-start-line="164" selection-start-column="3" selection-end-line="164" selection-end-column="92" />
+=======
+            <state relative-caret-position="493">
+              <caret line="164" column="92" lean-forward="true" selection-start-line="164" selection-start-column="3" selection-end-line="164" selection-end-column="92" />
+>>>>>>> a503eb749ca01b288530619cb6bdc8d43a7a9cfb
             </state>
           </provider>
         </entry>
@@ -61,6 +80,7 @@
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
+<<<<<<< HEAD
     <panes>
       <pane id="Scope" />
       <pane id="AndroidView" />
@@ -99,6 +119,9 @@
         </subPane>
       </pane>
     </panes>
+=======
+    <panes />
+>>>>>>> a503eb749ca01b288530619cb6bdc8d43a7a9cfb
   </component>
   <component name="PropertiesComponent">
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
@@ -107,7 +130,11 @@
     <property name="project.structure.side.proportion" value="0.0" />
     <property name="settings.editor.selected.configurable" value="preferences.keymap" />
   </component>
+<<<<<<< HEAD
   <component name="ReplState" timestamp="1525727683993">{:repl-history {:ide [], :local [{:command &quot;(require '[ttest-project.ea :as e] '[test-project.ea-test :as et])&quot;, :offset 66, :ns &quot;user&quot;} {:command &quot;(@a1 :normal-step-keys)&quot;, :offset 23, :ns &quot;user&quot;} {:command &quot;(first (@a1 :normal-step-keys) )&quot;, :offset 32, :ns &quot;user&quot;} {:command &quot;(e/process-step-node et/loc-methods-lib #(first %) @a1 )&quot;, :offset 56, :ns &quot;user&quot;} {:command &quot;(e/process-step-node et/loc-methods-lib #(first %) a1 )&quot;, :offset 55, :ns &quot;user&quot;} {:command &quot;(def f2 (e/progress-in-agenda  et/namespaces-prefixes @et/loc-methods-lib #(first %) a1))\n&quot;, :offset 90, :ns &quot;user&quot;} {:command &quot;(e/progress-in-agenda  et/namespaces-prefixes @et/loc-methods-lib #(first %) a1)&quot;, :offset 80, :ns &quot;user&quot;} {:command &quot;(conj [1 2] 3)\\&quot;, :offset 15, :ns &quot;user&quot;} {:command &quot;(mapv inc (1 2 3))&quot;, :offset 18, :ns &quot;user&quot;} {:command &quot;(mapv inc '(1 2 3))&quot;, :offset 19, :ns &quot;user&quot;} {:command &quot;(mapv inc (list 1 2 3))&quot;, :offset 23, :ns &quot;user&quot;} {:command &quot;(e/extract-steps @loc-methods-lib {:id 1 :method :test-method-for-step-extract})&quot;, :offset 80, :ns &quot;user&quot;} {:command &quot;(e/extract-steps @et/loc-methods-lib {:id 1 :method :test-method-for-step-extract})&quot;, :offset 83, :ns &quot;user&quot;} {:command &quot;(def v1 (e/extract-steps @et/loc-methods-lib {:id 1 :method :test-method-for-step-extract}))&quot;, :offset 92, :ns &quot;user&quot;} {:command &quot;(require '[clojure.core.logic :as l])&quot;, :offset 37, :ns &quot;user&quot;} {:command &quot;(l/run* [x y]\n        (l/== (e/extract-steps @et/loc-methods-lib {:id 1 :method :test-method-for-step-extract})\n              [[ {:id x, :method :test-method-for-step-extract, :parent 1, :type :step, :body 1}\n                {:id y, :method :test-method-for-step-extract, :parent 1, :type :step, :body 2}\n                {:id 1, :method :test-method-for-step-extract, :steps [x y], :steps-ordered true}]\n               [x]]))&quot;, :offset 425, :ns &quot;user&quot;} {:command &quot;(count (l/run* [x y]\n         (l/== (e/extract-steps @et/loc-methods-lib {:id 1 :method :test-method-for-step-extract})\n               [[{:id x, :method :test-method-for-step-extract, :parent 1, :type :step, :body 1}\n                 {:id y, :method :test-method-for-step-extract, :parent 1, :type :step, :body 2}\n                 {:id 1, :method :test-method-for-step-extract, :steps [x y], :steps-ordered true}]\n                [x]])))&quot;, :offset 437, :ns &quot;user&quot;} {:command &quot;(clojure.test/run-tests 'test-project.ea-test)&quot;, :offset 46, :ns &quot;user&quot;} {:command &quot;(remove [1 2] #{2}) &quot;, :offset 19, :ns &quot;user&quot;} {:command &quot;(remove  #{2} [1 2]) &quot;, :offset 21, :ns &quot;user&quot;} {:command &quot;(concat [1 2] [ 3 4])&quot;, :offset 21, :ns &quot;user&quot;} {:command &quot;def f2 (e/progress-in-agenda  et/namespaces-prefixes @et/loc-methods-lib #(first %) a1))&quot;, :offset 88, :ns &quot;user&quot;} {:command &quot;f1&quot;, :offset 2, :ns &quot;user&quot;} {:command &quot;@a1&quot;, :offset 3, :ns &quot;user&quot;} {:command &quot;(@a1 :m25500 :step first) &quot;, :offset 26, :ns &quot;user&quot;} {:command &quot;(@a1 :intention-graph :m25500 :step first) &quot;, :offset 43, :ns &quot;user&quot;} {:command &quot;(-&gt; @a1 :intention-graph :m25500 :step first) &quot;, :offset 46, :ns &quot;user&quot;} {:command &quot;()&quot;, :offset 2} {:command &quot;(-&gt; @a1 :intention-graph :m25500 :steps first) &quot;, :offset 47, :ns &quot;user&quot;} {:command &quot;(-&gt; @a1 :intention-graph :m25500 :steps) &quot;, :offset 40, :ns &quot;user&quot;} {:command &quot;(-&gt; @a1 :intention-graph :m25492 :steps) &quot;, :offset 41, :ns &quot;user&quot;} {:command &quot;(e/select-removable-nodes (@a1 :intention-graph) :m25500 )&quot;, :offset 58, :ns &quot;user&quot;} {:command &quot;(require '[test-project.ea :as e] '[test-project.ea-test :as et])&quot;, :offset 65, :ns &quot;user&quot;} {:command &quot;(def a1 (atom et/agenda-0))&quot;, :offset 27, :ns &quot;user&quot;} {:command &quot;(def f1 (e/add-events-to-agenda @et/loc-methods-lib a1 [{:id 1 :method :test-method-1}]))&quot;, :offset 89, :ns &quot;user&quot;} {:command &quot;(def f2 (e/progress-in-agenda  et/namespaces-prefixes @et/loc-methods-lib #(first %) a1))&quot;, :offset 89, :ns &quot;user&quot;} {:command &quot;(def f3 (e/progress-in-agenda  et/namespaces-prefixes @et/loc-methods-lib #(first %) a1))&quot;, :offset 89, :ns &quot;user&quot;} {:command &quot;f2&quot;, :offset 2, :ns &quot;user&quot;} {:command &quot;(def f4 (e/progress-in-agenda  et/namespaces-prefixes @et/loc-methods-lib #(first %) a1))&quot;, :offset 89, :ns &quot;user&quot;} {:command &quot;f4&quot;, :offset 2, :ns &quot;user&quot;} {:command &quot;a1&quot;, :offset 2, :ns &quot;user&quot;} {:command &quot;(pst)&quot;, :offset 5, :ns &quot;user&quot;} {:command &quot;#(empty? (-&gt; % :s14503 :steps))&quot;, :offset 31, :ns &quot;user&quot;} {:command &quot;(apply #(empty? (-&gt; % :s14503 :steps)) f3 )&quot;, :offset 43, :ns &quot;user&quot;} {:command &quot;(apply #(empty? (-&gt; % :s14503 :steps)) (list f3) )&quot;, :offset 50, :ns &quot;user&quot;} {:command &quot;(apply #(empty? (-&gt; % :s14503 :steps)) (list f3))&quot;, :offset 49, :ns &quot;user&quot;} {:command &quot;(e/dissoc-if f3 #(empty? (-&gt; % :s14503 :steps)) :s14503 )&quot;, :offset 57, :ns &quot;user&quot;} {:command &quot;(dissoc f3 :s14503)&quot;, :offset 19, :ns &quot;sss&quot;} {:command &quot;(e/dissoc-if (:intention-graph f3) #(empty? (-&gt; % :s14503 :steps)) :s14503 )&quot;, :offset 76, :ns &quot;user&quot;} {:command &quot;(e/dissoc-if (:intention-graph f3) #(empty? (-&gt; % :s1453 :steps)) :s1453 )&quot;, :offset 74, :ns &quot;user&quot;} {:command &quot;fę&quot;, :offset 2, :ns &quot;user&quot;} {:command &quot;f3&quot;, :offset 2, :ns &quot;user&quot;} {:command &quot;(e/remove-step f3 :s14503)&quot;, :offset 26, :ns &quot;user&quot;}], :remote []}}</component>
+=======
+  <component name="ReplState" timestamp="1525791104077">{:repl-history {:ide [], :local [{:command &quot;(require '[ttest-project.ea :as e] '[test-project.ea-test :as et])&quot;, :offset 66, :ns &quot;user&quot;} {:command &quot;(require '[test-project.ea :as e] '[test-project.ea-test :as et])&quot;, :offset 65, :ns &quot;user&quot;} {:command &quot;(pst)&quot;, :offset 5, :ns &quot;user&quot;} {:command &quot;(@a1 :normal-step-keys)&quot;, :offset 23, :ns &quot;user&quot;} {:command &quot;(first (@a1 :normal-step-keys) )&quot;, :offset 32, :ns &quot;user&quot;} {:command &quot;(e/process-step-node et/loc-methods-lib #(first %) @a1 )&quot;, :offset 56, :ns &quot;user&quot;} {:command &quot;(e/process-step-node et/loc-methods-lib #(first %) a1 )&quot;, :offset 55, :ns &quot;user&quot;} {:command &quot;(def f2 (e/progress-in-agenda  et/namespaces-prefixes @et/loc-methods-lib #(first %) a1))\n&quot;, :offset 90, :ns &quot;user&quot;} {:command &quot;(e/progress-in-agenda  et/namespaces-prefixes @et/loc-methods-lib #(first %) a1)&quot;, :offset 80, :ns &quot;user&quot;} {:command &quot;(conj [1 2] 3)\\&quot;, :offset 15, :ns &quot;user&quot;} {:command &quot;(mapv inc (1 2 3))&quot;, :offset 18, :ns &quot;user&quot;} {:command &quot;(mapv inc '(1 2 3))&quot;, :offset 19, :ns &quot;user&quot;} {:command &quot;(mapv inc (list 1 2 3))&quot;, :offset 23, :ns &quot;user&quot;} {:command &quot;(e/extract-steps @loc-methods-lib {:id 1 :method :test-method-for-step-extract})&quot;, :offset 80, :ns &quot;user&quot;} {:command &quot;(e/extract-steps @et/loc-methods-lib {:id 1 :method :test-method-for-step-extract})&quot;, :offset 83, :ns &quot;user&quot;} {:command &quot;(def v1 (e/extract-steps @et/loc-methods-lib {:id 1 :method :test-method-for-step-extract}))&quot;, :offset 92, :ns &quot;user&quot;} {:command &quot;(require '[clojure.core.logic :as l])&quot;, :offset 37, :ns &quot;user&quot;} {:command &quot;(l/run* [x y]\n        (l/== (e/extract-steps @et/loc-methods-lib {:id 1 :method :test-method-for-step-extract})\n              [[ {:id x, :method :test-method-for-step-extract, :parent 1, :type :step, :body 1}\n                {:id y, :method :test-method-for-step-extract, :parent 1, :type :step, :body 2}\n                {:id 1, :method :test-method-for-step-extract, :steps [x y], :steps-ordered true}]\n               [x]]))&quot;, :offset 425, :ns &quot;user&quot;} {:command &quot;(count (l/run* [x y]\n         (l/== (e/extract-steps @et/loc-methods-lib {:id 1 :method :test-method-for-step-extract})\n               [[{:id x, :method :test-method-for-step-extract, :parent 1, :type :step, :body 1}\n                 {:id y, :method :test-method-for-step-extract, :parent 1, :type :step, :body 2}\n                 {:id 1, :method :test-method-for-step-extract, :steps [x y], :steps-ordered true}]\n                [x]])))&quot;, :offset 437, :ns &quot;user&quot;} {:command &quot;(clojure.test/run-tests 'test-project.ea-test)&quot;, :offset 46, :ns &quot;user&quot;} {:command &quot;(remove [1 2] #{2}) &quot;, :offset 19, :ns &quot;user&quot;} {:command &quot;(remove  #{2} [1 2]) &quot;, :offset 21, :ns &quot;user&quot;} {:command &quot;(concat [1 2] [ 3 4])&quot;, :offset 21, :ns &quot;user&quot;} {:command &quot;def f2 (e/progress-in-agenda  et/namespaces-prefixes @et/loc-methods-lib #(first %) a1))&quot;, :offset 88, :ns &quot;user&quot;} {:command &quot;(def a1 (atom et/agenda-0))&quot;, :offset 27, :ns &quot;user&quot;} {:command &quot;(def f1 (e/add-events-to-agenda @et/loc-methods-lib a1 [{:id 1 :method :test-method-1}]))&quot;, :offset 89, :ns &quot;user&quot;} {:command &quot;(def f2 (e/progress-in-agenda  et/namespaces-prefixes @et/loc-methods-lib #(first %) a1))&quot;, :offset 89, :ns &quot;user&quot;} {:command &quot;(def f3 (e/progress-in-agenda  et/namespaces-prefixes @et/loc-methods-lib #(first %) a1))&quot;, :offset 89, :ns &quot;user&quot;} {:command &quot;f1&quot;, :offset 2, :ns &quot;user&quot;} {:command &quot;f2&quot;, :offset 2, :ns &quot;user&quot;} {:command &quot;f3&quot;, :offset 2, :ns &quot;user&quot;} {:command &quot;(def f4 (e/progress-in-agenda  et/namespaces-prefixes @et/loc-methods-lib #(first %) a1))&quot;, :offset 89, :ns &quot;user&quot;} {:command &quot;f4&quot;, :offset 2, :ns &quot;user&quot;} {:command &quot;a1&quot;, :offset 2, :ns &quot;user&quot;} {:command &quot;@a1&quot;, :offset 3, :ns &quot;user&quot;} {:command &quot;(@a1 :m25500 :step first) &quot;, :offset 26, :ns &quot;user&quot;} {:command &quot;(@a1 :intention-graph :m25500 :step first) &quot;, :offset 43, :ns &quot;user&quot;} {:command &quot;(-&gt; @a1 :intention-graph :m25500 :step first) &quot;, :offset 46, :ns &quot;user&quot;} {:command &quot;()&quot;, :offset 2} {:command &quot;(-&gt; @a1 :intention-graph :m25500 :steps first) &quot;, :offset 47, :ns &quot;user&quot;} {:command &quot;(-&gt; @a1 :intention-graph :m25500 :steps) &quot;, :offset 40, :ns &quot;user&quot;} {:command &quot;(-&gt; @a1 :intention-graph :m25492 :steps) &quot;, :offset 41, :ns &quot;user&quot;} {:command &quot;(e/select-removable-nodes (@a1 :intention-graph) :m25500 )&quot;, :offset 58, :ns &quot;user&quot;}], :remote []}}</component>
+>>>>>>> a503eb749ca01b288530619cb6bdc8d43a7a9cfb
   <component name="RunDashboard">
     <option name="ruleStates">
       <list>
@@ -193,7 +220,12 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
+<<<<<<< HEAD
     <frame x="-8" y="-8" width="1696" height="1026" extended-state="6" />
+=======
+    <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
+    <editor active="true" />
+>>>>>>> a503eb749ca01b288530619cb6bdc8d43a7a9cfb
     <layout>
       <window_info anchor="right" id="Palette" order="9" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -202,8 +234,13 @@
       <window_info anchor="right" id="Capture Analysis" order="3" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" weight="0.32939634" />
       <window_info anchor="right" id="Maven Projects" order="6" />
+<<<<<<< HEAD
       <window_info anchor="right" x="1323" y="56" width="1280" height="984" id="REPL" order="7" side_tool="true" type="FLOATING" weight="0.46071428" />
       <window_info anchor="bottom" id="Version Control" order="8" weight="0.32930845" />
+=======
+      <window_info active="true" anchor="right" id="REPL" order="7" side_tool="true" visible="true" weight="0.445" />
+      <window_info anchor="bottom" id="Version Control" order="8" weight="0.32939634" />
+>>>>>>> a503eb749ca01b288530619cb6bdc8d43a7a9cfb
       <window_info anchor="bottom" id="Run" order="2" />
       <window_info anchor="right" id="Leiningen" order="8" />
       <window_info anchor="bottom" id="Terminal" order="7" />
@@ -233,12 +270,13 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="1" />
+      <option name="time" value="2" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/test_project/ea.clj">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="4097">
           <caret line="241" column="82" lean-forward="true" selection-start-line="241" selection-start-column="82" selection-end-line="241" selection-end-column="82" />
         </state>
@@ -267,6 +305,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test_project/ea.clj">
       <provider selected="true" editor-type-id="text-editor">
+=======
+>>>>>>> a503eb749ca01b288530619cb6bdc8d43a7a9cfb
         <state relative-caret-position="3757">
           <caret line="221" column="7" lean-forward="true" selection-start-line="221" selection-start-column="7" selection-end-line="221" selection-end-column="7" />
         </state>
@@ -344,15 +384,32 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/test/test_project/ea_test.clj">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="2788">
           <caret line="164" column="3" selection-start-line="164" selection-start-column="3" selection-end-line="164" selection-end-column="92" />
+=======
+        <state relative-caret-position="493">
+          <caret line="164" column="92" lean-forward="true" selection-start-line="164" selection-start-column="3" selection-end-line="164" selection-end-column="92" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/clojure/clojure/1.9.0/clojure-1.9.0.jar!/clojure/core.clj">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="245">
+          <caret line="1495" column="6" selection-start-line="1495" selection-start-column="6" selection-end-line="1495" selection-end-column="6" />
+>>>>>>> a503eb749ca01b288530619cb6bdc8d43a7a9cfb
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test_project/ea.clj">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="323">
           <caret line="241" column="82" selection-start-line="241" selection-start-column="82" selection-end-line="241" selection-end-column="82" />
+=======
+        <state relative-caret-position="459">
+          <caret line="267" column="83" selection-start-line="267" selection-start-column="83" selection-end-line="267" selection-end-column="83" />
+>>>>>>> a503eb749ca01b288530619cb6bdc8d43a7a9cfb
         </state>
       </provider>
     </entry>
