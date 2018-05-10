@@ -6,7 +6,9 @@
             [test-project.sparql :as s]
     ;[test-project.test-plan2 :as t2]
             [test-project.receive :as rc]
-            [clojure.core.logic :as l]))
+            [clojure.core.logic :as l]
+            [test-project.action]
+            [test-project.action]))
 
 ;********************* setup
 (def actions
@@ -105,7 +107,7 @@
          :body
          [true
           (list (fn [vars]
-                  ((actions :call-action-generic)
+                  (test-project.action/action :call-action-generic
                     "http://localhost:8080/flightService/webapi/W6"
                     (r/rdf namespaces-prefixes
                            [(r/gen-id "http://travelplanning.ex/" "ConnectionUpdate" (s/var-val vars :?airline) (s/var-val vars :?fromAirport) (s/var-val vars :?toAirport) (r/dateTime-to-id (r/now)))
@@ -126,13 +128,16 @@
   :precondition nil
   :body [1 2])
 
+
 (e/def-method
+  ; ordered method
   test-method-2
   []
   :task (:task2)
   :namespaces namespaces-prefixes :actions actions :methods loc-methods-lib
   :precondition nil
-  :body [(fn [_] (test-project.ea/add-action :some-action)) ])
+  :body [(fn [_] (test-project.action/action :some-action))
+         (fn [_] (test-project.action/action :some-action2)) ])
 
 (e/def-method
   test-method-1
@@ -140,7 +145,9 @@
   :task (:task1)
   :namespaces namespaces-prefixes :actions actions :methods loc-methods-lib
   :precondition nil
-  :body (list (fn [vars] (test-project.task/add-task :task2)) #(println "something" %)))
+  :body (list
+          (fn [vars] (test-project.task/add-task :task2))
+          #(println "something" %)))
 
 (def agenda-0  {:intention-graph {:r0 {:type :root :id :r0}},
                 :normal-step-keys []
@@ -162,11 +169,18 @@
          ; this should result with execution of an action
          ; 2nd action in test-method-1 is executed. However 1st (expanded) still exists
          ; therefore only 1 node is removed
-   (def f4 (e/progress-in-agenda  et/namespaces-prefixes @et/loc-methods-lib #(first %) a1))
+  (def f4 (e/progress-in-agenda  et/namespaces-prefixes @et/loc-methods-lib #(first %) a1))
+         ;here 1st action in test-method-2 is executed and 2nd is added to normal-list
+  (def f5 (e/progress-in-agenda  et/namespaces-prefixes @et/loc-methods-lib #(first %) a1))
+         ; 2nd action is executed, everything is remove apart root node
          ; after this only root node should remain
          ; kitas
-
          )
+
+; scenarios that should be tested
+; waiting step to normal - when method decomposes to several steps and one steps is waiting another to completed. After completion waiting step becomes active
+; parralel step decomposition. removal of step without anything more
+; last step completion - removal of parent
 
 (comment
   "just run code inside ->>"
@@ -219,7 +233,7 @@
 
 
 
-(deftest
+(comment deftest
   add-event-and-progess-test
   (let [a (atom agenda-0)
         f (e/add-events-to-agenda @loc-methods-lib a [{:id 1 :method :test-method-1}])
@@ -318,7 +332,8 @@ SELECT
   (first v))
 
 ;testas pasenes - neveiks ant grafo
-(deftest
+; todo rewrite for graph
+(comment deftest
   test-process-body-item2times-until-empty
   (is
     (->> (e/process-body-item

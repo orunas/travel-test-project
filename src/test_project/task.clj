@@ -6,13 +6,13 @@
 
 
 (defn find-and-unify-method-instances
-  [methods task]
+  [a-methods a-task]
   (->>
     ; we need to select only those that has :task key
-    (filter #(% :task) (vals methods))
+    (filter #(% :task) (vals a-methods))
     ;(map #(% :cue))
-    (map #(u/unify (% :task) task
-                   {:task (first task)
+    (map #(u/unify (% :task) a-task
+                   {:task (first a-task)
                     :method (% :name)
                     ; TODO: not sure if it is not to early for filling unprocessed body. In event we do this when adding to agenda
                     :unprocessed-body (% :body) }))
@@ -20,11 +20,11 @@
     (remove #(= 'failed %))))
 
 (defn get-task-instance
-  [methods candidate-select-fn task ]
+  [a-methods candidate-select-fn a-task ]
   (->>
-    (find-and-unify-method-instances methods task)
-    (rc/filter-applicable-methods-on-preconditions-for-event methods)
-    (util/println-and-last-out "Found for task:" (map s/context-var-to-simple-vector task) " After filter instances:")
+    (find-and-unify-method-instances a-methods a-task)
+    (rc/filter-applicable-methods-on-preconditions-for-event a-methods)
+    (util/println-and-last-out "Found for task:" (map s/context-var-to-simple-vector a-task) " After filter instances:")
     (candidate-select-fn)))
 
 

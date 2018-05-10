@@ -8,6 +8,7 @@
             [test-project.ea :as e]
             [test-project.airport :as air]
             [test-project.ws :as ws]
+            [test-project.action :as a]
             ))
 
 ; it is simplified version. No conditionals inside methods
@@ -24,7 +25,7 @@
 
 (def actions
   {
-   :call-action-generic #(test-project.ea/call-action %1 %2)
+   :call-action-generic #(test-project.action/call-action %1 %2)
    ;:call-action-generic #(println "Executing action. uri:" %1 " data:" %2)
    :call-action-test (fn [var1] (print "doing something"))
    }
@@ -103,7 +104,7 @@
                                               t:CreatedDateTime ?createdTime)
                   (?connection t:ConnectionAirline ?airline)
                   (:filter (s/f> ?createdTime (r/add-days (r/now) -7))))
-  :body [(fn [_] ((actions :call-action-generic) "http://localhost:8080/flightService/webapi/W6/Connections/" nil))])
+  :body [(fn [_] (test-project.action/action :call-action-generic "http://localhost:8080/flightService/webapi/W6/Connections/" nil))])
 
 (e/def-method
   update-flights-method [?airline ?dateFrom ?dateTo ?oldestOfferDate]
@@ -155,7 +156,7 @@
                    [?toAirport t:AirportTimezoneUTCOffset ?toOff]
                    (:filter (s/f< ?iterEndDate ?finalEndDate))
                    )
-   :body [#((actions :call-action-generic)
+   :body [#(test-project.action/action :call-action-generic
              "http://localhost:8080/flightService/webapi/W6/Flights"
              (r/rdf namespaces-prefixes
                     [(r/gen-id "http://travelplanning.ex/" "ConnectionUpdate" (s/var-val % :?airline) (s/var-val % :?fromAirport) (s/var-val % :?toAirport) (r/dateTime-to-id (r/now)))
@@ -179,7 +180,7 @@
                   [?toAirport t:AirportTimezoneUTCOffset ?toOff]
                   (:filter (s/f> ?iterEndDate ?finalEndDate)) ; turi but >=
                   )
-  :body [#((actions :call-action-generic)
+  :body [#(test-project.action/action :call-action-generic
             "http://localhost:8080/flightService/webapi/W6/Flights"
             (r/rdf namespaces-prefixes
                    [(r/gen-id "http://travelplanning.ex/" "ConnectionUpdate" (s/var-val % :?airline) (s/var-val % :?fromAirport) (s/var-val % :?toAirport) (r/dateTime-to-id (r/now)))

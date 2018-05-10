@@ -142,5 +142,4 @@
        ;(print i)
        (if r (println "undandled event. Index" i ))         ;" Data:" (nth events i)
        r)
-    applicable-mthds-contex)
-  )
+    applicable-mthds-contex))
