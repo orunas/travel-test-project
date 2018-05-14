@@ -2,13 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6ee8fef7-a94b-4b92-96ee-e58ce53bb662" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/src/test_project/action.clj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test_project/ea.clj" beforeDir="false" afterPath="$PROJECT_DIR$/src/test_project/ea.clj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test_project/receive.clj" beforeDir="false" afterPath="$PROJECT_DIR$/src/test_project/receive.clj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test_project/task.clj" beforeDir="false" afterPath="$PROJECT_DIR$/src/test_project/task.clj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test_project/test_plan3.clj" beforeDir="false" afterPath="$PROJECT_DIR$/src/test_project/test_plan3.clj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/test_project/ea_test.clj" beforeDir="false" afterPath="$PROJECT_DIR$/test/test_project/ea_test.clj" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -22,8 +16,8 @@
       <file leaf-file-name="ea.clj" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/test_project/ea.clj">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="750">
-              <caret line="275" column="150" lean-forward="true" selection-start-line="275" selection-start-column="150" selection-end-line="275" selection-end-column="150" />
+            <state relative-caret-position="4675">
+              <caret line="275" column="150" selection-start-line="275" selection-start-column="150" selection-end-line="275" selection-end-column="150" />
             </state>
           </provider>
         </entry>
@@ -32,7 +26,7 @@
         <entry file="file://$PROJECT_DIR$/src/test_project/task.clj">
           <provider selected="true" editor-type-id="text-editor">
             <state>
-              <caret column="21" lean-forward="true" selection-start-column="21" selection-end-column="21" />
+              <caret column="21" selection-start-column="21" selection-end-column="21" />
             </state>
           </provider>
         </entry>
@@ -41,7 +35,7 @@
         <entry file="file://$PROJECT_DIR$/src/test_project/util.clj">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="272">
-              <caret line="16" column="9" lean-forward="true" selection-start-line="16" selection-start-column="9" selection-end-line="16" selection-end-column="9" />
+              <caret line="16" column="9" selection-start-line="16" selection-start-column="9" selection-end-line="16" selection-end-column="9" />
             </state>
           </provider>
         </entry>
@@ -50,7 +44,7 @@
         <entry file="file://$PROJECT_DIR$/src/test_project/action.clj">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="238">
-              <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
+              <caret line="14" selection-start-line="14" selection-end-line="14" />
             </state>
           </provider>
         </entry>
@@ -58,8 +52,8 @@
       <file leaf-file-name="ea_test.clj" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test/test_project/ea_test.clj">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="612">
-              <caret line="150" lean-forward="true" selection-start-line="150" selection-end-line="150" />
+            <state relative-caret-position="2550">
+              <caret line="150" selection-start-line="150" selection-end-line="150" />
             </state>
           </provider>
         </entry>
@@ -67,7 +61,7 @@
       <file leaf-file-name="test_plan3.clj" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/test_project/test_plan3.clj">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="643">
+            <state relative-caret-position="82">
               <caret line="113" column="11" selection-start-line="113" selection-start-column="11" selection-end-line="113" selection-end-column="11" />
             </state>
           </provider>
@@ -118,7 +112,7 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-8" />
     <option name="y" value="-8" />
     <option name="width" value="1696" />
@@ -129,6 +123,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -162,9 +158,7 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
       <pane id="AndroidView" />
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -172,7 +166,7 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../clojure/kb-service" />
     <property name="settings.editor.selected.configurable" value="preferences.keymap" />
   </component>
-  <component name="ReplState" timestamp="1525986328182">{:repl-history {:ide [], :local [{:command &quot;(require '[ttest-project.ea :as e] '[test-project.ea-test :as et])&quot;, :offset 66, :ns &quot;user&quot;} {:command &quot;(@a1 :normal-step-keys)&quot;, :offset 23, :ns &quot;user&quot;} {:command &quot;(first (@a1 :normal-step-keys) )&quot;, :offset 32, :ns &quot;user&quot;} {:command &quot;(e/process-step-node et/loc-methods-lib #(first %) @a1 )&quot;, :offset 56, :ns &quot;user&quot;} {:command &quot;(e/process-step-node et/loc-methods-lib #(first %) a1 )&quot;, :offset 55, :ns &quot;user&quot;} {:command &quot;(def f2 (e/progress-in-agenda  et/namespaces-prefixes @et/loc-methods-lib #(first %) a1))\n&quot;, :offset 90, :ns &quot;user&quot;} {:command &quot;(conj [1 2] 3)\\&quot;, :offset 15, :ns &quot;user&quot;} {:command &quot;(mapv inc (1 2 3))&quot;, :offset 18, :ns &quot;user&quot;} {:command &quot;(mapv inc '(1 2 3))&quot;, :offset 19, :ns &quot;user&quot;} {:command &quot;(mapv inc (list 1 2 3))&quot;, :offset 23, :ns &quot;user&quot;} {:command &quot;(e/extract-steps @loc-methods-lib {:id 1 :method :test-method-for-step-extract})&quot;, :offset 80, :ns &quot;user&quot;} {:command &quot;(e/extract-steps @et/loc-methods-lib {:id 1 :method :test-method-for-step-extract})&quot;, :offset 83, :ns &quot;user&quot;} {:command &quot;(def v1 (e/extract-steps @et/loc-methods-lib {:id 1 :method :test-method-for-step-extract}))&quot;, :offset 92, :ns &quot;user&quot;} {:command &quot;(require '[clojure.core.logic :as l])&quot;, :offset 37, :ns &quot;user&quot;} {:command &quot;(l/run* [x y]\n        (l/== (e/extract-steps @et/loc-methods-lib {:id 1 :method :test-method-for-step-extract})\n              [[ {:id x, :method :test-method-for-step-extract, :parent 1, :type :step, :body 1}\n                {:id y, :method :test-method-for-step-extract, :parent 1, :type :step, :body 2}\n                {:id 1, :method :test-method-for-step-extract, :steps [x y], :steps-ordered true}]\n               [x]]))&quot;, :offset 425, :ns &quot;user&quot;} {:command &quot;(count (l/run* [x y]\n         (l/== (e/extract-steps @et/loc-methods-lib {:id 1 :method :test-method-for-step-extract})\n               [[{:id x, :method :test-method-for-step-extract, :parent 1, :type :step, :body 1}\n                 {:id y, :method :test-method-for-step-extract, :parent 1, :type :step, :body 2}\n                 {:id 1, :method :test-method-for-step-extract, :steps [x y], :steps-ordered true}]\n                [x]])))&quot;, :offset 437, :ns &quot;user&quot;} {:command &quot;(clojure.test/run-tests 'test-project.ea-test)&quot;, :offset 46, :ns &quot;user&quot;} {:command &quot;(remove [1 2] #{2}) &quot;, :offset 19, :ns &quot;user&quot;} {:command &quot;(remove  #{2} [1 2]) &quot;, :offset 21, :ns &quot;user&quot;} {:command &quot;(concat [1 2] [ 3 4])&quot;, :offset 21, :ns &quot;user&quot;} {:command &quot;def f2 (e/progress-in-agenda  et/namespaces-prefixes @et/loc-methods-lib #(first %) a1))&quot;, :offset 88, :ns &quot;user&quot;} {:command &quot;f4&quot;, :offset 2, :ns &quot;user&quot;} {:command &quot;(@a1 :m25500 :step first) &quot;, :offset 26, :ns &quot;user&quot;} {:command &quot;(@a1 :intention-graph :m25500 :step first) &quot;, :offset 43, :ns &quot;user&quot;} {:command &quot;(-&gt; @a1 :intention-graph :m25500 :step first) &quot;, :offset 46, :ns &quot;user&quot;} {:command &quot;(-&gt; @a1 :intention-graph :m25500 :steps first) &quot;, :offset 47, :ns &quot;user&quot;} {:command &quot;(-&gt; @a1 :intention-graph :m25500 :steps) &quot;, :offset 40, :ns &quot;user&quot;} {:command &quot;(-&gt; @a1 :intention-graph :m25492 :steps) &quot;, :offset 41, :ns &quot;user&quot;} {:command &quot;(e/select-removable-nodes (@a1 :intention-graph) :m25500 )&quot;, :offset 58, :ns &quot;user&quot;} {:command &quot;(-&gt; () first)&quot;, :offset 13, :ns &quot;user&quot;} {:command &quot;(e/remove-step f2 :m14493 :s14495)&quot;, :offset 34, :ns &quot;user&quot;} {:command &quot;(e/remove-step f2 :s14495)&quot;, :offset 26, :ns &quot;user&quot;} {:command &quot;(e/remove-step (e/remove-step f2 :s14495) :s14502)&quot;, :offset 50, :ns &quot;user&quot;} {:command &quot;(def f4 (e/progress-in-agenda  et/namespaces-prefixes @et/loc-methods-lib #(first %) a1))&quot;, :offset 89, :ns &quot;user&quot;} {:command &quot;(require '[test-project.ea :as e] '[test-project.ea-test :as et])&quot;, :offset 65, :ns &quot;user&quot;} {:command &quot;f1&quot;, :offset 2, :ns &quot;user&quot;} {:command &quot;f2&quot;, :offset 2, :ns &quot;user&quot;} {:command &quot;(count (f3 :intention-graph))&quot;, :offset 29, :ns &quot;user&quot;} {:command &quot;(count (f2 :intention-graph))&quot;, :offset 29, :ns &quot;user&quot;} {:command &quot;(count (@a1 :intention-graph))&quot;, :offset 30, :ns &quot;user&quot;} {:command &quot;(def f3 @a1)&quot;, :offset 12, :ns &quot;user&quot;} {:command &quot;f3&quot;, :offset 2, :ns &quot;user&quot;} {:command &quot;(e/remove-step f3 :s17916)&quot;, :offset 26, :ns &quot;user&quot;} {:command &quot;(e/remove-step (e/remove-step f3 :s17916) :s17917)&quot;, :offset 50, :ns &quot;user&quot;} {:command &quot;(def f1 (e/add-events-to-agenda @et/loc-methods-lib a1 [{:id 1 :method :test-method-1}]))&quot;, :offset 89, :ns &quot;user&quot;} {:command &quot;(def f2 (e/progress-in-agenda  et/namespaces-prefixes @et/loc-methods-lib #(first %) a1))&quot;, :offset 89, :ns &quot;user&quot;} {:command &quot;(def f3 (e/progress-in-agenda  et/namespaces-prefixes @et/loc-methods-lib #(first %) a1))&quot;, :offset 89, :ns &quot;user&quot;} {:command &quot;(e/progress-in-agenda  et/namespaces-prefixes @et/loc-methods-lib #(first %) a1)&quot;, :offset 80, :ns &quot;user&quot;} {:command &quot;et/loc-methods-lib&quot;, :offset 18, :ns &quot;user&quot;} {:command &quot;@et/loc-methods-lib&quot;, :offset 19, :ns &quot;user&quot;} {:command &quot;(require '[test-project.action :as a])&quot;, :offset 38, :ns &quot;user&quot;} {:command &quot;(a/action :my-action (:a {:a 1}))&quot;, :offset 33, :ns &quot;user&quot;} {:command &quot;~apply&quot;, :offset 6, :ns &quot;user&quot;} {:command &quot;(def v12)&quot;, :offset 9, :ns &quot;user&quot;} {:command &quot;~v12&quot;, :offset 4, :ns &quot;user&quot;} {:command &quot;t3/actions&quot;, :offset 10, :ns &quot;user&quot;} {:command &quot;(e/main t3/namespaces-prefixes t3/loc-methods-lib t3/actions 1)&quot;, :offset 63, :ns &quot;user&quot;} {:command &quot;t3/loc-methods-lib&quot;, :offset 18, :ns &quot;user&quot;} {:command &quot;(e/main t3/namespaces-prefixes @t3/loc-methods-lib t3/actions 1)&quot;, :offset 64, :ns &quot;user&quot;} {:command &quot;(def a1 (atom {:intention-graph {:r0 {:type :root :id :r0}}}))&quot;, :offset 62, :ns &quot;user&quot;} {:command &quot;(e/process-step-node @t3/loc-methods-lib t3/actions #(first %) @a1)&quot;, :offset 67, :ns &quot;user&quot;} {:command &quot;(e/process-step-node @t3/loc-methods-lib t3/actions #(first %) a1)&quot;, :offset 66, :ns &quot;user&quot;} {:command &quot;@a1&quot;, :offset 3, :ns &quot;user&quot;} {:command &quot;(def m123 {:a ()})&quot;, :offset 18, :ns &quot;user&quot;} {:command &quot;(:a m123)&quot;, :offset 9, :ns &quot;user&quot;} {:command &quot;()&quot;, :offset 1} {:command &quot;(def a2 (atom {:intention-graph {:r0 {:type :root :id :r0}} :normal-step-keys () :active-step-keys ()}) )&quot;, :offset 105, :ns &quot;user&quot;} {:command &quot;(e/main t3/namespaces-prefixes @t3/loc-methods-lib t3/actions 1 a2)&quot;, :offset 67, :ns &quot;user&quot;} {:command &quot;(pst)&quot;, :offset 5, :ns &quot;user&quot;} {:command &quot;@a2&quot;, :offset 3, :ns &quot;user&quot;} {:command &quot;(let [[a b] (list 1 2)] (println a b) )&quot;, :offset 39, :ns &quot;user&quot;} {:command &quot;(let [[_ b] (list 1 2)] (println b) )&quot;, :offset 37, :ns &quot;user&quot;} {:command &quot;(let [[_ b] (list 1)] (println b) )&quot;, :offset 35, :ns &quot;user&quot;} {:command &quot;(let [[_ b] 1] (println b) )&quot;, :offset 28, :ns &quot;user&quot;} {:command &quot;a2&quot;, :offset 2, :ns &quot;user&quot;} {:command &quot;(def a1 (atom {:intention-graph {:r0 {:type :root :id :r0}} :normal-step-keys () :active-step-keys ()}) )&quot;, :offset 105, :ns &quot;user&quot;} {:command &quot;exit&quot;, :offset 4, :ns &quot;user&quot;} {:command &quot;(require '[test-project.ea :as e] '[test-project.test-plan3 :as t3])&quot;, :offset 68, :ns &quot;user&quot;} {:command &quot;(require '[test-project.ea-test :as et])&quot;, :offset 40, :ns &quot;user&quot;} {:command &quot;(def a1 (atom et/agenda-0))&quot;, :offset 27, :ns &quot;user&quot;} {:command &quot;a1&quot;, :offset 2, :ns &quot;user&quot;} {:command &quot;(e/main t3/namespaces-prefixes @t3/loc-methods-lib t3/actions 1 a1)&quot;, :offset 67, :ns &quot;user&quot;}], :remote []}}</component>
+  <component name="ReplState" timestamp="1525986862740">{:repl-history {:ide [], :local [{:command &quot;(require '[ttest-project.ea :as e] '[test-project.ea-test :as et])&quot;, :offset 66, :ns &quot;user&quot;} {:command &quot;(@a1 :normal-step-keys)&quot;, :offset 23, :ns &quot;user&quot;} {:command &quot;(first (@a1 :normal-step-keys) )&quot;, :offset 32, :ns &quot;user&quot;} {:command &quot;(e/process-step-node et/loc-methods-lib #(first %) @a1 )&quot;, :offset 56, :ns &quot;user&quot;} {:command &quot;(e/process-step-node et/loc-methods-lib #(first %) a1 )&quot;, :offset 55, :ns &quot;user&quot;} {:command &quot;(def f2 (e/progress-in-agenda  et/namespaces-prefixes @et/loc-methods-lib #(first %) a1))\n&quot;, :offset 90, :ns &quot;user&quot;} {:command &quot;(conj [1 2] 3)\\&quot;, :offset 15, :ns &quot;user&quot;} {:command &quot;(mapv inc (1 2 3))&quot;, :offset 18, :ns &quot;user&quot;} {:command &quot;(mapv inc '(1 2 3))&quot;, :offset 19, :ns &quot;user&quot;} {:command &quot;(mapv inc (list 1 2 3))&quot;, :offset 23, :ns &quot;user&quot;} {:command &quot;(e/extract-steps @loc-methods-lib {:id 1 :method :test-method-for-step-extract})&quot;, :offset 80, :ns &quot;user&quot;} {:command &quot;(e/extract-steps @et/loc-methods-lib {:id 1 :method :test-method-for-step-extract})&quot;, :offset 83, :ns &quot;user&quot;} {:command &quot;(def v1 (e/extract-steps @et/loc-methods-lib {:id 1 :method :test-method-for-step-extract}))&quot;, :offset 92, :ns &quot;user&quot;} {:command &quot;(require '[clojure.core.logic :as l])&quot;, :offset 37, :ns &quot;user&quot;} {:command &quot;(l/run* [x y]\n        (l/== (e/extract-steps @et/loc-methods-lib {:id 1 :method :test-method-for-step-extract})\n              [[ {:id x, :method :test-method-for-step-extract, :parent 1, :type :step, :body 1}\n                {:id y, :method :test-method-for-step-extract, :parent 1, :type :step, :body 2}\n                {:id 1, :method :test-method-for-step-extract, :steps [x y], :steps-ordered true}]\n               [x]]))&quot;, :offset 425, :ns &quot;user&quot;} {:command &quot;(count (l/run* [x y]\n         (l/== (e/extract-steps @et/loc-methods-lib {:id 1 :method :test-method-for-step-extract})\n               [[{:id x, :method :test-method-for-step-extract, :parent 1, :type :step, :body 1}\n                 {:id y, :method :test-method-for-step-extract, :parent 1, :type :step, :body 2}\n                 {:id 1, :method :test-method-for-step-extract, :steps [x y], :steps-ordered true}]\n                [x]])))&quot;, :offset 437, :ns &quot;user&quot;} {:command &quot;(clojure.test/run-tests 'test-project.ea-test)&quot;, :offset 46, :ns &quot;user&quot;} {:command &quot;(remove [1 2] #{2}) &quot;, :offset 19, :ns &quot;user&quot;} {:command &quot;(remove  #{2} [1 2]) &quot;, :offset 21, :ns &quot;user&quot;} {:command &quot;(concat [1 2] [ 3 4])&quot;, :offset 21, :ns &quot;user&quot;} {:command &quot;def f2 (e/progress-in-agenda  et/namespaces-prefixes @et/loc-methods-lib #(first %) a1))&quot;, :offset 88, :ns &quot;user&quot;} {:command &quot;f4&quot;, :offset 2, :ns &quot;user&quot;} {:command &quot;(@a1 :m25500 :step first) &quot;, :offset 26, :ns &quot;user&quot;} {:command &quot;(@a1 :intention-graph :m25500 :step first) &quot;, :offset 43, :ns &quot;user&quot;} {:command &quot;(-&gt; @a1 :intention-graph :m25500 :step first) &quot;, :offset 46, :ns &quot;user&quot;} {:command &quot;(-&gt; @a1 :intention-graph :m25500 :steps first) &quot;, :offset 47, :ns &quot;user&quot;} {:command &quot;(-&gt; @a1 :intention-graph :m25500 :steps) &quot;, :offset 40, :ns &quot;user&quot;} {:command &quot;(-&gt; @a1 :intention-graph :m25492 :steps) &quot;, :offset 41, :ns &quot;user&quot;} {:command &quot;(e/select-removable-nodes (@a1 :intention-graph) :m25500 )&quot;, :offset 58, :ns &quot;user&quot;} {:command &quot;(-&gt; () first)&quot;, :offset 13, :ns &quot;user&quot;} {:command &quot;(e/remove-step f2 :m14493 :s14495)&quot;, :offset 34, :ns &quot;user&quot;} {:command &quot;(e/remove-step f2 :s14495)&quot;, :offset 26, :ns &quot;user&quot;} {:command &quot;(e/remove-step (e/remove-step f2 :s14495) :s14502)&quot;, :offset 50, :ns &quot;user&quot;} {:command &quot;(def f4 (e/progress-in-agenda  et/namespaces-prefixes @et/loc-methods-lib #(first %) a1))&quot;, :offset 89, :ns &quot;user&quot;} {:command &quot;(require '[test-project.ea :as e] '[test-project.ea-test :as et])&quot;, :offset 65, :ns &quot;user&quot;} {:command &quot;f1&quot;, :offset 2, :ns &quot;user&quot;} {:command &quot;f2&quot;, :offset 2, :ns &quot;user&quot;} {:command &quot;(count (f3 :intention-graph))&quot;, :offset 29, :ns &quot;user&quot;} {:command &quot;(count (f2 :intention-graph))&quot;, :offset 29, :ns &quot;user&quot;} {:command &quot;(count (@a1 :intention-graph))&quot;, :offset 30, :ns &quot;user&quot;} {:command &quot;(def f3 @a1)&quot;, :offset 12, :ns &quot;user&quot;} {:command &quot;f3&quot;, :offset 2, :ns &quot;user&quot;} {:command &quot;(e/remove-step f3 :s17916)&quot;, :offset 26, :ns &quot;user&quot;} {:command &quot;(e/remove-step (e/remove-step f3 :s17916) :s17917)&quot;, :offset 50, :ns &quot;user&quot;} {:command &quot;(def f1 (e/add-events-to-agenda @et/loc-methods-lib a1 [{:id 1 :method :test-method-1}]))&quot;, :offset 89, :ns &quot;user&quot;} {:command &quot;(def f2 (e/progress-in-agenda  et/namespaces-prefixes @et/loc-methods-lib #(first %) a1))&quot;, :offset 89, :ns &quot;user&quot;} {:command &quot;(def f3 (e/progress-in-agenda  et/namespaces-prefixes @et/loc-methods-lib #(first %) a1))&quot;, :offset 89, :ns &quot;user&quot;} {:command &quot;(e/progress-in-agenda  et/namespaces-prefixes @et/loc-methods-lib #(first %) a1)&quot;, :offset 80, :ns &quot;user&quot;} {:command &quot;et/loc-methods-lib&quot;, :offset 18, :ns &quot;user&quot;} {:command &quot;@et/loc-methods-lib&quot;, :offset 19, :ns &quot;user&quot;} {:command &quot;(require '[test-project.action :as a])&quot;, :offset 38, :ns &quot;user&quot;} {:command &quot;(a/action :my-action (:a {:a 1}))&quot;, :offset 33, :ns &quot;user&quot;} {:command &quot;~apply&quot;, :offset 6, :ns &quot;user&quot;} {:command &quot;(def v12)&quot;, :offset 9, :ns &quot;user&quot;} {:command &quot;~v12&quot;, :offset 4, :ns &quot;user&quot;} {:command &quot;t3/actions&quot;, :offset 10, :ns &quot;user&quot;} {:command &quot;(e/main t3/namespaces-prefixes t3/loc-methods-lib t3/actions 1)&quot;, :offset 63, :ns &quot;user&quot;} {:command &quot;t3/loc-methods-lib&quot;, :offset 18, :ns &quot;user&quot;} {:command &quot;(e/main t3/namespaces-prefixes @t3/loc-methods-lib t3/actions 1)&quot;, :offset 64, :ns &quot;user&quot;} {:command &quot;(def a1 (atom {:intention-graph {:r0 {:type :root :id :r0}}}))&quot;, :offset 62, :ns &quot;user&quot;} {:command &quot;(e/process-step-node @t3/loc-methods-lib t3/actions #(first %) @a1)&quot;, :offset 67, :ns &quot;user&quot;} {:command &quot;(e/process-step-node @t3/loc-methods-lib t3/actions #(first %) a1)&quot;, :offset 66, :ns &quot;user&quot;} {:command &quot;(def m123 {:a ()})&quot;, :offset 18, :ns &quot;user&quot;} {:command &quot;(:a m123)&quot;, :offset 9, :ns &quot;user&quot;} {:command &quot;()&quot;, :offset 1} {:command &quot;(def a2 (atom {:intention-graph {:r0 {:type :root :id :r0}} :normal-step-keys () :active-step-keys ()}) )&quot;, :offset 105, :ns &quot;user&quot;} {:command &quot;(e/main t3/namespaces-prefixes @t3/loc-methods-lib t3/actions 1 a2)&quot;, :offset 67, :ns &quot;user&quot;} {:command &quot;@a2&quot;, :offset 3, :ns &quot;user&quot;} {:command &quot;(let [[a b] (list 1 2)] (println a b) )&quot;, :offset 39, :ns &quot;user&quot;} {:command &quot;(let [[_ b] (list 1 2)] (println b) )&quot;, :offset 37, :ns &quot;user&quot;} {:command &quot;(let [[_ b] (list 1)] (println b) )&quot;, :offset 35, :ns &quot;user&quot;} {:command &quot;(let [[_ b] 1] (println b) )&quot;, :offset 28, :ns &quot;user&quot;} {:command &quot;a2&quot;, :offset 2, :ns &quot;user&quot;} {:command &quot;(def a1 (atom {:intention-graph {:r0 {:type :root :id :r0}} :normal-step-keys () :active-step-keys ()}) )&quot;, :offset 105, :ns &quot;user&quot;} {:command &quot;exit&quot;, :offset 4, :ns &quot;user&quot;} {:command &quot;(require '[test-project.ea :as e] '[test-project.test-plan3 :as t3])&quot;, :offset 68, :ns &quot;user&quot;} {:command &quot;(require '[test-project.ea-test :as et])&quot;, :offset 40, :ns &quot;user&quot;} {:command &quot;(require '[test-project.ea :as e] '[test-project.test-plan3 :as t3] '[test-project.ea-test :as et])&quot;, :offset 99, :ns &quot;user&quot;} {:command &quot;(def a1 (atom et/agenda-0))&quot;, :offset 27, :ns &quot;user&quot;} {:command &quot;(e/main et/namespaces-prefixes @et/loc-methods-lib et/actions 1 a2)&quot;, :offset 67, :ns &quot;user&quot;} {:command &quot;(e/main et/namespaces-prefixes @et/loc-methods-lib et/actions 1 a1)&quot;, :offset 67, :ns &quot;user&quot;} {:command &quot;a1&quot;, :offset 2, :ns &quot;user&quot;} {:command &quot;@a1&quot;, :offset 3, :ns &quot;user&quot;} {:command &quot;(pst)&quot;, :offset 5, :ns &quot;user&quot;} {:command &quot;(e/main t3/namespaces-prefixes @t3/loc-methods-lib t3/actions 1 a1)&quot;, :offset 67, :ns &quot;user&quot;}], :remote []}}</component>
   <component name="RunDashboard">
     <option name="ruleStates">
       <list>
@@ -272,37 +266,37 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1696" height="1026" extended-state="7" />
+    <frame x="-8" y="-8" width="1696" height="1026" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="9" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Messages" />
       <window_info anchor="right" id="Palette&#9;" order="5" />
       <window_info id="Image Layers" order="6" />
       <window_info anchor="right" id="Capture Analysis" order="3" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" weight="0.32939634" />
       <window_info anchor="right" id="Maven Projects" order="6" />
-      <window_info active="true" anchor="right" auto_hide="true" x="1681" y="31" width="1278" height="952" id="REPL" order="7" side_tool="true" type="WINDOWED" visible="true" weight="0.33571428" />
-      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="right" auto_hide="true" x="1681" y="31" width="1278" height="952" id="REPL" order="7" side_tool="true" type="WINDOWED" weight="0.33571428" />
       <window_info anchor="bottom" id="Version Control" order="8" weight="0.32930845" />
+      <window_info anchor="bottom" id="Run" order="2" />
       <window_info anchor="right" id="Leiningen" order="8" />
       <window_info anchor="bottom" id="Terminal" order="7" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="3" />
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.10535714" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32930845" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info id="UI Designer" order="4" />
       <window_info anchor="right" id="Theme Preview" order="4" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info id="Favorites" order="5" side_tool="true" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32930845" />
+      <window_info anchor="bottom" id="Messages" order="7" />
     </layout>
   </component>
   <component name="VcsContentAnnotationSettings">
@@ -319,6 +313,55 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/test_project/ea.clj">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4675">
+          <caret line="275" column="150" lean-forward="true" selection-start-line="275" selection-start-column="150" selection-end-line="275" selection-end-column="150" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test_project/task.clj">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="21" lean-forward="true" selection-start-column="21" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test_project/util.clj">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="16" column="9" lean-forward="true" selection-start-line="16" selection-start-column="9" selection-end-line="16" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test_project/action.clj">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/test_project/ea_test.clj">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2550">
+          <caret line="150" lean-forward="true" selection-start-line="150" selection-end-line="150" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test_project/receive.clj">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2448">
+          <caret line="144" column="29" selection-start-line="144" selection-start-column="29" selection-end-line="144" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test_project/test_plan3.clj">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1921">
+          <caret line="113" column="11" selection-start-line="113" selection-start-column="11" selection-end-line="113" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/test_project/ea.clj">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="4675">
@@ -469,35 +512,35 @@
     <entry file="file://$PROJECT_DIR$/src/test_project/util.clj">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
-          <caret line="16" column="9" lean-forward="true" selection-start-line="16" selection-start-column="9" selection-end-line="16" selection-end-column="9" />
+          <caret line="16" column="9" selection-start-line="16" selection-start-column="9" selection-end-line="16" selection-end-column="9" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test_project/action.clj">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="238">
-          <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
+          <caret line="14" selection-start-line="14" selection-end-line="14" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test_project/task.clj">
       <provider selected="true" editor-type-id="text-editor">
         <state>
-          <caret column="21" lean-forward="true" selection-start-column="21" selection-end-column="21" />
+          <caret column="21" selection-start-column="21" selection-end-column="21" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/test/test_project/ea_test.clj">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="612">
-          <caret line="150" lean-forward="true" selection-start-line="150" selection-end-line="150" />
+        <state relative-caret-position="2550">
+          <caret line="150" selection-start-line="150" selection-end-line="150" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test_project/ea.clj">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="750">
-          <caret line="275" column="150" lean-forward="true" selection-start-line="275" selection-start-column="150" selection-end-line="275" selection-end-column="150" />
+        <state relative-caret-position="4675">
+          <caret line="275" column="150" selection-start-line="275" selection-start-column="150" selection-end-line="275" selection-end-column="150" />
         </state>
       </provider>
     </entry>
@@ -510,7 +553,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test_project/test_plan3.clj">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="643">
+        <state relative-caret-position="82">
           <caret line="113" column="11" selection-start-line="113" selection-start-column="11" selection-end-line="113" selection-end-column="11" />
         </state>
       </provider>
