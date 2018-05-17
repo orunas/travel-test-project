@@ -23,13 +23,7 @@
   :event (+subject-uri :tc ?campaign)
   )
 
-(def actions
-  {
-   :call-action-generic #(test-project.action/call-action %1 %2)
-   ;:call-action-generic #(println "Executing action. uri:" %1 " data:" %2)
-   :call-action-test (fn [var1] (print "doing something"))
-   }
-  )
+
 
 (def namespaces-prefixes
   {
@@ -42,6 +36,15 @@
    :tcn "http://travelplanning.ex/Connection/"
    :tcu "http://travelplanning.ex/ConnectionUpdate/"
    :tcd "http://travelplanning.ex/ConnectionData/"})
+
+(def actions
+  {
+   :call-action-generic #(test-project.action/call-action %1 %2)
+   :call-action-ws-get-generic (fn [url] (a/exec-get-action url namespaces-prefixes {}))
+   ;:call-action-generic #(println "Executing action. uri:" %1 " data:" %2)
+                        :call-action-test (fn [var1] (print "doing something"))
+   }
+  )
 
 (def loc-methods-lib (atom {}) )
 
@@ -104,7 +107,7 @@
                                               t:CreatedDateTime ?createdTime)
                   (?connection t:ConnectionAirline ?airline)
                   (:filter (s/f> ?createdTime (r/add-days (r/now) -7))))
-  :body [(fn [_] (test-project.action/action :call-action-generic "http://localhost:8080/flightService/webapi/W6/Connections/" nil))])
+  :body [(fn [_] (test-project.action/action :call-action-ws-get-generic "http://localhost:8080/flightService/webapi/W6/Connections/"))])
 
 (e/def-method
   update-flights-method [?airline ?dateFrom ?dateTo ?oldestOfferDate]
@@ -154,8 +157,7 @@
    :namespaces namespaces-prefixes :actions actions :methods loc-methods-lib       ;don't want to make global var actions
    :precondition ([?fromAirport t:AirportTimezoneUTCOffset ?fromOff]
                    [?toAirport t:AirportTimezoneUTCOffset ?toOff]
-                   (:filter (s/f< ?iterEndDate ?finalEndDate))
-                   )
+                   (:filter (s/f< ?iterEndDate ?finalEndDate)))
    :body [#(test-project.action/action :call-action-generic
              "http://localhost:8080/flightService/webapi/W6/Flights"
              (r/rdf namespaces-prefixes
@@ -165,9 +167,7 @@
                      :t:RangeEnd (s/var-out (s/datetime-type-to-date % :?iterEndDate))
                      :t:RequestStartedDate (r/to-rdftype (r/now))
                      :t:FromAirportTimezoneUTCOffset (s/var-out % :?fromOff)
-                     :t:ToAirportTimezoneUTCOffset (s/var-out % :?toOff)
-                     ]
-                    ))
+                     :t:ToAirportTimezoneUTCOffset (s/var-out % :?toOff)]))
           #(test-project.task/add-task
              :update-data-task (% :?airline) (% :?connection) (% :?fromAirport) (% :?toAirport) (% :?iterEndDate) (e/apply-val-f r/add-days (% :?iterEndDate) 7) (% :?finalEndDate))])
 
@@ -190,6 +190,20 @@
                     :t:RequestStartedDate (r/to-rdftype (r/now))
                     :t:FromAirportTimezoneUTCOffset (s/var-out % :?fromOff)
                     :t:ToAirportTimezoneUTCOffset (s/var-out % :?toOff)]))])
+;params
+(comment
+  {
+   :origin (s/var-val % :?fromAirport)
+   :destination (s/var-val % :?toAirport)
+   :originGtmOff (s/var-out % :?fromOff)
+   :destinationGtmOff (s/var-out % :?toOff)
+   :departureDate (s/var-out (s/datetime-type-to-date % :?startDate))
+   :returnDate (s/var-out (s/datetime-type-to-date % :?startDate))
+   :departureDateRangeEnd  (s/var-out (s/datetime-type-to-date % :?finalEndDate))
+   :returnDateRangeEnd (s/var-out (s/datetime-type-to-date % :?finalEndDate))
+   :timeOutms 10000
+   }
+  )
 
 (e/def-method
   achieve-all-airport-data

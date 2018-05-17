@@ -2,7 +2,8 @@
   (:require [clojure.data.json :as json])
   (:import [org.apache.jena.rdf.model Model ModelFactory ResourceFactory]
           [org.apache.jena.query Query QueryFactory QueryExecutionFactory ResultSetFormatter]
-          [java.io ByteArrayInputStream ByteArrayOutputStream] ))
+          [java.io ByteArrayInputStream ByteArrayOutputStream StringWriter]
+       ))
 
 
 (defn- query-model
@@ -29,6 +30,18 @@
     (.read m (ByteArrayInputStream. (.getBytes data-input)) nil "TTL")
     (((query-model m query) :results) :bindings)
     ;(if (query-model m query)  (apply f data-input)  nil  )
+    ))
+
+; "JSON-LD", "TTL"
+;(j/read-and-output-model (json/write-str tv1) "JSON-LD" "TTL")
+(defn read-and-output-model
+  [data-input-str input-format output-format]
+  (let*
+    [m (ModelFactory/createDefaultModel)
+     sr (StringWriter. )]
+    (.read m (ByteArrayInputStream. (.getBytes data-input-str)) nil input-format)
+    (.write m sr output-format)
+    (.toString sr)
     ))
 
 (comment

@@ -145,9 +145,8 @@
 
 ; these  */*/*/* are used however not sure whether it good location for them
 (defn var-val [context var]
-  (let [var-c (context var)]
-    (if var-c
-      (var-c :value))))
+  (if-let [var-c (context var)]
+    (var-c :value)))
 
 (defn var-out
   "we expected var as keyword like :?campaign"

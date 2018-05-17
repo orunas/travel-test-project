@@ -69,7 +69,7 @@
       "http://localhost:3030/Test2"                         ;"http://localhost:3030/Test2"
       precondition
       {"Content-Type" "application/sparql-query" "Accept" "application/sparql-results+json; charset=utf-8"})
-    :key-fn keyword))
+:key-fn keyword))
 
 (defn add-precondition-query-results-to-context
   "get current variable binding and adds fresh variables received from precondition query
