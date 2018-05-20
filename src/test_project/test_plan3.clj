@@ -30,6 +30,8 @@
    :rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#"
    :t "http://travelplanning.ex/"
    :s "http://schema.org/"
+   :treq "http://travelplanning.ex/Request/"
+   :tresp "http://travelplanning.ex/Response/"
    :xsd "http://www.w3.org/2001/XMLSchema#"
    :tc "http://travelplanning.ex/Campaign/"
    :ta "http://travelplanning.ex/Airline/"

@@ -32,8 +32,7 @@
         (apply
           (resolve f)
           context
-          (map #(insert-context-to-inner-expression-and-apply context %) (rest items))
-          )
+          (map #(insert-context-to-inner-expression-and-apply context %) (rest items)))
         items))                                             ;
     items))
 
@@ -147,6 +146,25 @@
 (defn var-val [context var]
   (if-let [var-c (context var)]
     (var-c :value)))
+
+
+(defn var-short-val-out [var-ctx]
+  (case (var-ctx :type)
+    :uri (var-ctx :value)
+    :date (.format (var-ctx :value) (java.time.format.DateTimeFormatter/ISO_DATE))
+    :dateTime (.format (var-ctx :value) (java.time.format.DateTimeFormatter/ISO_INSTANT))
+    :literal (case (var-ctx :datatype)
+               "http://www.w3.org/2001/XMLSchema#dateTime" (.format (var-ctx :value) (java.time.format.DateTimeFormatter/ISO_INSTANT))
+               "http://www.w3.org/2001/XMLSchema#date" (.format (var-ctx :value) (java.time.format.DateTimeFormatter/ISO_DATE))
+               (var-ctx :value))
+    (var-ctx :value)))
+
+(defn var-full-val-out [var-ctx]
+  (if (= (var-ctx :type) :uri)
+    (str (var-ctx :prefix-ns) (var-ctx :value))
+    (var-short-val-out var-ctx)
+    )
+  )
 
 (defn var-out
   "we expected var as keyword like :?campaign"

@@ -6,9 +6,18 @@
   (print v)
   v)
 
+
+(defn eta-keyword [k]
+  (keyword (str "@" k)))
+
+(def idk (eta-keyword "id"))
+(def contextk (eta-keyword "context"))
+
 (defn println-and-last-out [& params]
   (apply print params)
   (last params))
+
+
 
 (defn pprintln-and-out
   ([text f data]
