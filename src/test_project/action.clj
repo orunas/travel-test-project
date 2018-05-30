@@ -48,20 +48,23 @@
     ))
 
 (defn context-vars-map-to-json-ld
-  "maps context to json-ld ready map"
-  [m ns]
-  (->
-    ; if it
-    (assoc m :query-params (reduce-kv #(assoc %1 %2 (s/var-full-val-out %3)) {} (m :query-params)))
-    ;root element should have :id key
-    (assoc u/idk (s/var-full-val-out (m :id)))
-    (dissoc :id)
-    (assoc u/contextk (assoc {} u/vocabk (-> m :id :prefix-ns) ))
-    (json/write-str)
-  ; we need extract @context (json-ld)
-  ; from variable definition whe can infer @type (json-ld)
-  ; we need to get URI for keywords. URI is parents prefix + keywordvalue, but can add to context main
-    ))
+  "maps context to json-ld ready map
+  m - map
+  ks - keys list"
+  ([m] (context-vars-map-to-json-ld m (keys m)))
+  ([m ks]
+   (->
+     ; if it
+     (assoc m :query-params (reduce-kv #(assoc %1 %2 (s/var-full-val-out %3)) {} (m :query-params)))
+     ;root element should have :id key
+     (assoc u/idk (s/var-full-val-out (m :id)))
+     (dissoc :id)
+     (assoc u/contextk (assoc {} u/vocabk (-> m :id :prefix-ns)))
+     (json/write-str)
+     ; we need extract @context (json-ld)
+     ; from variable definition whe can infer @type (json-ld)
+     ; we need to get URI for keywords. URI is parents prefix + keywordvalue, but can add to context main
+     )))
 
 
 
