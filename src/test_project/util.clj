@@ -1,5 +1,6 @@
 (ns test-project.util
-  (:use [clojure.pprint]))
+  (:use [clojure.pprint])
+  (:require [clojure.string :as string]))
 
 (defn print-and-out
   [v]
@@ -7,11 +8,17 @@
   v)
 
 
+(defn capitalize-first [s]
+  (str (string/upper-case (first s)) (subs s 1)))
+
 (defn eta-keyword [k]
   (keyword (str "@" k)))
 
 (def idk (eta-keyword "id"))
 (def contextk (eta-keyword "context"))
+(def vocabk (eta-keyword "vocab"))
+(def valuek (eta-keyword "value"))
+(def typek (eta-keyword "type"))
 
 (defn println-and-last-out [& params]
   (apply print params)

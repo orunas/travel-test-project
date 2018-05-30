@@ -75,12 +75,11 @@
       "("
       (clojure.string/join " && \n " (list ~@items)            ;(insert-context-to-inner-expression ~context ~items)
                            )
-      ")"))
-  )
+      ")")))
+
 (defmacro m-and
   [context & items]
-  `(f-and ~context ~@items)
- )
+  `(f-and ~context ~@items))
 
 
 (defn f<
@@ -163,8 +162,9 @@
   (if (= (var-ctx :type) :uri)
     (str (var-ctx :prefix-ns) (var-ctx :value))
     (var-short-val-out var-ctx)
-    )
-  )
+    ))
+
+
 
 (defn var-out
   "we expected var as keyword like :?campaign"

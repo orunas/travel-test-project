@@ -157,28 +157,28 @@
 ; ************* some code part for manual tests
 
 (def req {
-          :id {:type :uri :value (r/dateTime-to-id (r/now)) :prefix-ns "http://travelplanning.ex/Request/"}
-          :url "http://localhost:62386/api/FlightOffering/"
-          :method :get
-          :headers 'headers
-          :body 'body
+          :id           {:type :uri :value (r/dateTime-to-id (r/now)) :prefix-ns "http://travelplanning.ex/Request/"}
+          :url          {:type :string, :value "http://localhost:62386/api/FlightOffering/"}
+          :method       :get
+          :headers      nil
+          :body         nil
           :query-params {
-                         :fromAirport     {:type :uri, :value "KUN", :prefix-ns "http://travelplanning.ex/Airport/"},
-                         :toAirport       {:type :uri, :value "LTN", :prefix-ns "http://travelplanning.ex/Airport/"},
-                         :airline         {:type :uri, :value "W6", :prefix-ns "http://travelplanning.ex/Airline/"},
-                         :rangeStart      {:type     :literal,
-                                           :datatype "http://www.w3.org/2001/XMLSchema#dateTime",
-                                           :value    (java.time.ZonedDateTime/parse "2017-10-16T00:00:01.390Z")},
-                         :rangeEnd        {:type     :dateTime,
-                                           :value    (java.time.ZonedDateTime/parse "2017-10-16T00:00:01.390Z")}
-                         :originGtmOff    {:type     :literal,
-                                           :datatype "http://www.w3.org/2001/XMLSchema#double",
-                                           :value    2}
-                         :destinationGtmOff {:type     :double,
+                         :fromAirport       {:type :uri, :value "KUN", :prefix-ns "http://travelplanning.ex/Airport/"},
+                         :toAirport         {:type :uri, :value "LTN", :prefix-ns "http://travelplanning.ex/Airport/"},
+                         :airline           {:type :uri, :value "W6", :prefix-ns "http://travelplanning.ex/Airline/"},
+                         :rangeStart        {:type     :literal,
+                                             :datatype "http://www.w3.org/2001/XMLSchema#dateTime",
+                                             :value    (java.time.ZonedDateTime/parse "2018-07-01T00:00:01.390Z")},
+                         :rangeEnd          {:type  :dateTime,
+                                             :value (java.time.ZonedDateTime/parse "2018-07-07T00:00:01.390Z")}
+                         :originGtmOff      {:type     :literal,
+                                             :datatype "http://www.w3.org/2001/XMLSchema#double",
                                              :value    2}
-                         :timeOutms {:type     :literal,
-                                     :datatype "http://www.w3.org/2001/XMLSchema#int",
-                                     :value    0}
+                         :destinationGtmOff {:type  :double,
+                                             :value 2}
+                         :timeOutms         {:type     :literal,
+                                             :datatype "http://www.w3.org/2001/XMLSchema#int",
+                                             :value    0}
                          }})
 
 (comment "cmd1"                                                    ;"code to run in REPL"
