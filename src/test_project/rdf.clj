@@ -138,10 +138,7 @@
     (= (type v) java.lang.String) (literal v :type "<http://www.w3.org/2001/XMLSchema#string>")
     :else v ))
 
-(defn dateTime-to-id
-  [v]
-  (.format v (java.time.format.DateTimeFormatter/ofPattern "yyyyMMddHHmmss"))
-  )
+
 
 
 (defn process-statement

@@ -2,14 +2,16 @@
   (:require
     ;[clojure.test :refer :all]
     ;[test-project.core :as c]
-            [test-project.sparql :as s ]
+    [test-project.sparql :as s]
     ; [test-project.test-plan :as t :refer :all]
-            [test-project.rdf :as r]
-            [test-project.ea :as e]
-            [test-project.airport :as air]
-            [test-project.ws :as ws]
-            [test-project.action :as a]
-            ))
+    [test-project.rdf :as r]
+    [test-project.ea :as e]
+    [test-project.airport :as air]
+    [test-project.ws :as ws]
+    [test-project.action :as a]
+    [test-project.json-ld :as jl]
+    [test-project.util :as u]
+    [test-project.context :as ctx]))
 
 ; it is simplified version. No conditionals inside methods
 
@@ -41,17 +43,18 @@
 
 (def actions
   {
-   :call-action-generic #(test-project.action/call-action %1 %2)
-   :call-action-ws-get-generic (fn [url] (a/exec-get-action url namespaces-prefixes {}))
+   :call-action-generic         #(test-project.action/call-action %1 %2)
+   :call-action-ws-get-generic  (fn [url] (a/exec-get-action url namespaces-prefixes {}))
+   :call-action-generic2        #(test-project.action/exec-generic-action2 %)
    ;:call-action-generic #(println "Executing action. uri:" %1 " data:" %2)
-                        :call-action-test (fn [var1] (print "doing something"))
+   :call-action-test            (fn [var1] (print "doing something"))
    }
   )
 
 (def loc-methods-lib (atom {}) )
 
 (defn add-airport-data [vars]
-  (if-let [airport-data (air/get-airport-timezone (s/var-val vars :?airport))]
+  (if-let [airport-data (air/get-airport-timezone (ctx/var-val vars :?airport))]
     (ws/CallWS
       "http://localhost:8087/data"
       (r/rdf namespaces-prefixes
@@ -60,7 +63,7 @@
               :t:AirportLocationLongtitude (airport-data :lng)
               :t:AirportTimezoneUTCOffset (airport-data :gmtOffset)])
       {"Content-Type" "text/turtle; charset=utf-8" })
-    (println "error. No data for " (s/var-val vars :?airport))))
+    (println "error. No data for " (ctx/var-val vars :?airport))))
 
 (e/def-method
   update-data-on-campaign
@@ -109,7 +112,13 @@
                                               t:CreatedDateTime ?createdTime)
                   (?connection t:ConnectionAirline ?airline)
                   (:filter (s/f> ?createdTime (r/add-days (r/now) -7))))
-  :body [(fn [_] (test-project.action/action :call-action-ws-get-generic "http://localhost:8080/flightService/webapi/W6/Connections/"))])
+  :body [(fn [_] (test-project.action/action :call-action-generic2
+                                             {:id {:type :uri :value (u/dateTime-to-id (r/now)) :prefix-ns "http://travelplanning.ex/Request/"} ,
+                                              :url "http://localhost:8080/flightService/webapi/W6/Connections/" ,
+                                              :method       (jl/http-methods :get)
+                                              :query-params {}
+                                              }
+                                             ))])
 
 (e/def-method
   update-flights-method [?airline ?dateFrom ?dateTo ?oldestOfferDate]
@@ -129,7 +138,7 @@
                    (:filter (s/f-and (s/f< ?operationStartDate ?dateTo) (s/f-in ?departureAirport ["<http://travelplanning.ex/Airport/VNO>" "<http://travelplanning.ex/Airport/KUN>" ]))))
   :body [#(test-project.task/add-task
             :update-data-task (% :?airline) (% :?connection) (% :?departureAirport) (% :?arrivalAirport) (% :?dateFrom) (e/apply-val-f r/add-days (% :?dateFrom) 7) (% :?dateTo))
-         #(println "update-flights-method middle for:" (s/var-val % :?airline) " " (s/var-val % :?dateFrom) " " (s/var-val % :?dateTo))
+         #(println "update-flights-method middle for:" (ctx/var-val % :?airline) " " (ctx/var-val % :?dateFrom) " " (ctx/var-val % :?dateTo))
          #(test-project.task/add-task
             :update-airline-flights (% :?airline) (% :?dateFrom) (% :?dateTo) (% :?oldestOfferDate))])
 
@@ -160,16 +169,23 @@
    :precondition ([?fromAirport t:AirportTimezoneUTCOffset ?fromOff]
                    [?toAirport t:AirportTimezoneUTCOffset ?toOff]
                    (:filter (s/f< ?iterEndDate ?finalEndDate)))
-   :body [#(test-project.action/action :call-action-generic
-             "http://localhost:8080/flightService/webapi/W6/Flights"
-             (r/rdf namespaces-prefixes
-                    [(r/gen-id "http://travelplanning.ex/" "ConnectionUpdate" (s/var-val % :?airline) (s/var-val % :?fromAirport) (s/var-val % :?toAirport) (r/dateTime-to-id (r/now)))
-                     :t:ConnectionUpdateConnection (s/var-out % :?connection)
-                     :t:RangeStart (s/var-out (s/datetime-type-to-date % :?startDate))
-                     :t:RangeEnd (s/var-out (s/datetime-type-to-date % :?iterEndDate))
-                     :t:RequestStartedDate (r/to-rdftype (r/now))
-                     :t:FromAirportTimezoneUTCOffset (s/var-out % :?fromOff)
-                     :t:ToAirportTimezoneUTCOffset (s/var-out % :?toOff)]))
+   :body [#(test-project.action/action :call-action-generic2
+             {
+              :id {:type :uri :value (u/dateTime-to-id (r/now)) :prefix-ns "http://travelplanning.ex/Request/"}
+              :url          "http://localhost:8080/flightService/webapi/W6/Flights"
+              :method       (jl/http-methods :get)
+              :query-params {
+                             :id (str "http://travelplanning.ex/ConnectionUpdate/" (ctx/var-val % :?airline) (ctx/var-val % :?fromAirport) (ctx/var-val % :?toAirport) (u/dateTime-to-id (r/now)))
+                             :fromAirport (% :?fromAirport)
+                             :toAirport (% :?toAirport)
+                             :airline (% :?airline)
+                             :rangeStart (% :?startDate)
+                             :rangeEnd (% :?iterEndDate)
+                             :requestStartedDate (r/now)
+                             :originGtmOff (% :?fromOff)
+                             :destinationGtmOff (% :?toOff)
+                             }
+              })
           #(test-project.task/add-task
              :update-data-task (% :?airline) (% :?connection) (% :?fromAirport) (% :?toAirport) (% :?iterEndDate) (e/apply-val-f r/add-days (% :?iterEndDate) 7) (% :?finalEndDate))])
 
@@ -185,7 +201,7 @@
   :body [#(test-project.action/action :call-action-generic
             "http://localhost:8080/flightService/webapi/W6/Flights"
             (r/rdf namespaces-prefixes
-                   [(r/gen-id "http://travelplanning.ex/" "ConnectionUpdate" (s/var-val % :?airline) (s/var-val % :?fromAirport) (s/var-val % :?toAirport) (r/dateTime-to-id (r/now)))
+                   [(r/gen-id "http://travelplanning.ex/" "ConnectionUpdate" (ctx/var-val % :?airline) (ctx/var-val % :?fromAirport) (ctx/var-val % :?toAirport) (u/dateTime-to-id (r/now)))
                     :t:ConnectionUpdateConnection (s/var-out % :?connection)
                     :t:RangeStart (s/var-out (s/datetime-type-to-date % :?startDate))
                     :t:RangeEnd (s/var-out (s/datetime-type-to-date % :?finalEndDate))
@@ -195,8 +211,8 @@
 ;params
 (comment
   {
-   :origin (s/var-val % :?fromAirport)
-   :destination (s/var-val % :?toAirport)
+   :origin (ctx/var-val % :?fromAirport)
+   :destination (ctx/var-val % :?toAirport)
    :originGtmOff (s/var-out % :?fromOff)
    :destinationGtmOff (s/var-out % :?toOff)
    :departureDate (s/var-out (s/datetime-type-to-date % :?startDate))

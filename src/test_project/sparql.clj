@@ -1,7 +1,7 @@
 (ns test-project.sparql
   (:require
     ;[test-project.core :as c]
-    ;[test-project.match :as m]
+    [test-project.context :as ctx]
             [test-project.rdf :as r] :reload))
 
 ;here we make an assumption that we will have list of parameters
@@ -54,7 +54,7 @@
        (list (replace-var-to-varskeymap-lookup-rec params vars-name (first item)))
        (replace-var-to-varskeymap-lookup-rec params vars-name (rest item)))
      (and (r/variable? item) (contains? params item))
-     (list `var-val vars-name (keyword item))
+     (list `ctx/var-val vars-name (keyword item))
      :else
      item)))
 
@@ -142,9 +142,7 @@
 ; end new gen *********************
 
 ; these  */*/*/* are used however not sure whether it good location for them
-(defn var-val [context var]
-  (if-let [var-c (context var)]
-    (var-c :value)))
+
 
 
 (defn var-short-val-out [var-ctx]

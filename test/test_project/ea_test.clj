@@ -1,7 +1,7 @@
 (ns test-project.ea-test
   (:require [clojure.test :refer :all]
             [test-project.ea :as e]
-            [test-project.util :as util]
+            [test-project.util :as u]
             [test-project.rdf :as r]
             [test-project.sparql :as s]
     ;[test-project.test-plan2 :as t2]
@@ -9,7 +9,9 @@
             [clojure.core.logic :as l]
             [test-project.action]
             [test-project.action]
-            [test-project.json-ld :as jl]))
+            [test-project.json-ld :as jl]
+            [test-project.context :as ctx]
+            ))
 
 ;********************* setup
 (def actions
@@ -63,7 +65,7 @@
   :body
   [true
    [(fn [vars]
-      (test-project.task/add-task :update-data-task (vars :?airline) (vars :?endDate) (r/add-days (s/var-val vars :?endDate) 7) (vars :?salesStart) (vars :?salesEnd)))]])
+      (test-project.task/add-task :update-data-task (vars :?airline) (vars :?endDate) (r/add-days (ctx/var-val vars :?endDate) 7) (vars :?salesStart) (vars :?salesEnd)))]])
 
 
 (e/def-method
@@ -111,8 +113,8 @@
                   (test-project.action/action :call-action-generic
                     "http://localhost:8080/flightService/webapi/W6"
                     (r/rdf namespaces-prefixes
-                           [(r/gen-id "http://travelplanning.ex/" "ConnectionUpdate" (s/var-val vars :?airline) (s/var-val vars :?fromAirport) (s/var-val vars :?toAirport) (r/dateTime-to-id (r/now)))
-                            :t:ConnectionUpdateConnection (str "t:Connection/" (s/var-val vars :?connection))
+                           [(r/gen-id "http://travelplanning.ex/" "ConnectionUpdate" (ctx/var-val vars :?airline) (ctx/var-val vars :?fromAirport) (ctx/var-val vars :?toAirport) (u/dateTime-to-id (r/now)))
+                            :t:ConnectionUpdateConnection (str "t:Connection/" (ctx/var-val vars :?connection))
                             ;  :t:RangeStart (s/var-out (s/datetime-type-to-date vars :?beginDate))
                             ; :t:RangeEnd (s/var-out (s/datetime-type-to-date vars :?endDate))
                             :t:RequestStartedDate (r/to-rdftype (r/now))])))
@@ -158,13 +160,13 @@
 ; ************* some code part for manual tests
 
 (def req {
-          :id           {:type :uri :value (r/dateTime-to-id (r/now)) :prefix-ns "http://travelplanning.ex/Request/"}
+          :id           {:type :uri :value (u/dateTime-to-id (r/now)) :prefix-ns "http://travelplanning.ex/Request/"}
           :url          {:type :string, :value "http://localhost:62386/api/FlightOffering/"}
           :method       (jl/http-methods :get)                                    ; {:type :uri, :value "GET" :prefix-ns= "http://www.w3.org/2011/http-methods#"}
           ; :headers      nil
           ;:body         nil
           :query-params {
-                         :id                {:type :uri :value (r/dateTime-to-id (r/now)) :prefix-ns "http://travelplanning.ex/Request/query-params/"}
+                         :id                {:type :uri :value (u/dateTime-to-id (r/now)) :prefix-ns "http://travelplanning.ex/Request/query-params/"}
                          :fromAirport       {:type :uri, :value "KUN", :prefix-ns "http://travelplanning.ex/Airport/"},
                          :toAirport         {:type :uri, :value "LTN", :prefix-ns "http://travelplanning.ex/Airport/"},
                          :airline           {:type :uri, :value "W6", :prefix-ns "http://travelplanning.ex/Airline/"},
@@ -176,6 +178,7 @@
                          :originGtmOff      {:type     :literal,
                                              :datatype "http://www.w3.org/2001/XMLSchema#double",
                                              :value    2}
+                         :requestStartedDate (r/now)
                          :destinationGtmOff {:type  :double,
                                              :value 2}
                          :timeOutms         {:type     :literal,
@@ -402,7 +405,7 @@ SELECT
 (deftest test-build-precondintion-with-minus-negation
   (is
     (=
-      (util/filter-out-whitespaces "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX t: <http://travelplanning.ex/>\nPREFIX xsd: <http://www.w3.org/2001/XMLSchema#>\nPREFIX tc: <http://travelplanning.ex/Campaign/>\nPREFIX ta: <http://travelplanning.ex/Airline/>\nPREFIX tcn: <http://travelplanning.ex/Connection/>\nPREFIX tcu: <http://travelplanning.ex/ConnectionUpdate/>\nPREFIX tcd: <http://travelplanning.ex/ConnectionData/>
+      (u/filter-out-whitespaces "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX t: <http://travelplanning.ex/>\nPREFIX xsd: <http://www.w3.org/2001/XMLSchema#>\nPREFIX tc: <http://travelplanning.ex/Campaign/>\nPREFIX ta: <http://travelplanning.ex/Airline/>\nPREFIX tcn: <http://travelplanning.ex/Connection/>\nPREFIX tcu: <http://travelplanning.ex/ConnectionUpdate/>\nPREFIX tcd: <http://travelplanning.ex/ConnectionData/>
   SELECT
  ?operationStartDate ?departureAirport ?arrivalAirport ?connection
   WHERE {
@@ -419,7 +422,7 @@ SELECT
   FILTER (?offerDate < \"\"\"2017-10-10T00:00:01.390Z\"\"\"^^<http://www.w3.org/2001/XMLSchema#dateTime>) }
  FILTER (?operationStartDate < \"\"\"2017-11-10T00:00:01.390Z\"\"\"^^<http://www.w3.org/2001/XMLSchema#dateTime> )}
  LIMIT 1")
-      (util/filter-out-whitespaces ((:query (s/build-precondition namespaces-prefixes #{?airline ?olderThanDate ?dateTo} ([?connection t:ConnectionAirline ?airline t:ConnectionFromAirport ?departureAirport
+      (u/filter-out-whitespaces ((:query (s/build-precondition namespaces-prefixes #{?airline ?olderThanDate ?dateTo} ([?connection t:ConnectionAirline ?airline t:ConnectionFromAirport ?departureAirport
                                                                                        t:ConnectionToAirport ?arrivalAirport t:OperationStartDate ?operationStartDate]
                                                                                        (:minus [?offer t:OfferFlight ?flight t:date ?offerDate]
                                                                                          [?flight s:arrivalAirport ?arrivalAirport s:departureAirport ?departureAirport

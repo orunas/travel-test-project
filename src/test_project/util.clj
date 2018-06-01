@@ -50,3 +50,8 @@
 (defn filter-out-whitespaces [s]
   (clojure.string/replace s #"\s+" ""))
 
+(defn dateTime-to-id
+  [v]
+  (.format v (java.time.format.DateTimeFormatter/ofPattern "yyyyMMddHHmmss"))
+  )
+

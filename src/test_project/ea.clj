@@ -276,6 +276,15 @@
         (print (format "Ended: %s Completed:%s sec" (java.time.LocalDateTime/now) (u/date-diff-in-seconds started (java.time.LocalDateTime/now))))))))
 
 
+(defn reset-active [a]
+  (let [v (first (a :active-step-keys))]
+    (->
+      a
+      (update-in [:active-step-keys] rest)
+      (update-in [:normal-step-keys] conj v)
+      )))
+
+
 
 
 
