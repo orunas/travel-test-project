@@ -161,8 +161,7 @@
 (defn var-full-val-out [var-ctx]
   (if (= (var-ctx :type) :uri)
     (str (var-ctx :prefix-ns) (var-ctx :value))
-    (var-short-val-out var-ctx)
-    ))
+    (var-short-val-out var-ctx)))
 
 
 

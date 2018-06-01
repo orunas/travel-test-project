@@ -8,7 +8,8 @@
             [test-project.receive :as rc]
             [clojure.core.logic :as l]
             [test-project.action]
-            [test-project.action]))
+            [test-project.action]
+            [test-project.json-ld :as jl]))
 
 ;********************* setup
 (def actions
@@ -159,10 +160,11 @@
 (def req {
           :id           {:type :uri :value (r/dateTime-to-id (r/now)) :prefix-ns "http://travelplanning.ex/Request/"}
           :url          {:type :string, :value "http://localhost:62386/api/FlightOffering/"}
-          :method       :get
-          :headers      nil
-          :body         nil
+          :method       (jl/http-methods :get)                                    ; {:type :uri, :value "GET" :prefix-ns= "http://www.w3.org/2011/http-methods#"}
+          ; :headers      nil
+          ;:body         nil
           :query-params {
+                         :id                {:type :uri :value (r/dateTime-to-id (r/now)) :prefix-ns "http://travelplanning.ex/Request/query-params/"}
                          :fromAirport       {:type :uri, :value "KUN", :prefix-ns "http://travelplanning.ex/Airport/"},
                          :toAirport         {:type :uri, :value "LTN", :prefix-ns "http://travelplanning.ex/Airport/"},
                          :airline           {:type :uri, :value "W6", :prefix-ns "http://travelplanning.ex/Airline/"},

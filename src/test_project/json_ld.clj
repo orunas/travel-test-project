@@ -7,11 +7,23 @@
 (def valuek (u/eta-keyword "value"))
 (def typek (u/eta-keyword "type"))
 
+(def http-methods {:get {:type :uri, :value "GET" :prefix-ns "http://www.w3.org/2011/http-methods#"}})
+
+(defn id
+  "get id for map
+  m - map
+  p - parent key"
+  [m p]
+  (if-let [v (m :id)]
+    v
+
+    ))
+
 (defn val-out
   "return value ready to converting to json-ld"
   [var-ctx]
   (case (var-ctx :type)
-    :uri (str (var-ctx :prefix-ns) (var-ctx :value))
+    :uri { idk (str (var-ctx :prefix-ns) (var-ctx :value))}
     :date {valuek (.format (var-ctx :value) (java.time.format.DateTimeFormatter/ISO_DATE)),
            typek "http://www.w3.org/2001/XMLSchema#date"}
     :dateTime {valuek  (.format (var-ctx :value) (java.time.format.DateTimeFormatter/ISO_INSTANT)),
