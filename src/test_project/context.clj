@@ -18,3 +18,8 @@
    (var-val (context var))))
 
 
+(defn datetime-var [val]
+  {:type :dateTime
+   :value val})
+
+

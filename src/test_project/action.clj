@@ -43,34 +43,39 @@
         (#(ws/CallWS "http://localhost:3030/Test2" % {"Content-Type" "text/turtle; charset=utf-8"})))
       request-id )))
 
-(defn exec-action-base [req f]
+(defn exec-action-base [req af]
   (let [rj (-> req jl/context-vars-map-to-json-ld (json/write-str))]
-    (println rj)
-    (println (ws/CallWS "http://localhost:3030/Test2" rj {"Content-Type" "application/ld+json; charset=utf-8"}))
+    ;    (println rj)
+    (-> (ws/CallWS "http://localhost:3030/Test2" rj {"Content-Type" "application/ld+json; charset=utf-8"})
+        ;(println)
+        )
     (let [query-params-simplified {:query-params (reduce-kv #(assoc %1 %2 (s/var-short-val-out %3)) {} (req :query-params))}
           ]
       (println query-params-simplified)
-      (let [result-string f
-            result-map (json/read-str result-string :key-fn keyword)]
+      ; execute main function
+      ; ideally we should transform result to clojure map, but currently use just string representation
+      (let [result-string (af)
+            ; result-map (json/read-str result-string :key-fn keyword)
+            ]
         (-> (ws/CallWS "http://localhost:3030/Test2" result-string {"Content-Type" "application/ld+json; charset=utf-8"})
             (println ))
-        result-map)
+        result-string)
       ;id
       )))
+
 
 (defn exec-generic-ws-action [req]
   (exec-action-base req (fn [] (ws/GetWS
                            (ctx/var-val req :url)
                            {:query-params (reduce-kv #(assoc %1 %2 (s/var-short-val-out %3)) {} (req :query-params))}))))
 
+(defn exec-action-fn
+  [f ar]
+  (let [req {:id   (ctx/time-id "http://travelplanning.ex/Request/")
+             :fn   (str f)
+             :args (assoc ar :id (ctx/time-id "http://travelplanning.ex/Request/Args") ) }]
+    (exec-action-base req #(f ar))))
 
-
-(comment defn exec-action-get-airport-data [a]
-  (let [req {:id (ctx/time-id "http://travelplanning.ex/Request/")
-             :url "local://exec-action-get-airport-data"
-             :query-params {:airport a}}]
-    (exec-action-base req #(add-airport-data)))
-  )
 
 (defn exec-get-action
   [url namespaces-prefixes params-map]

@@ -11,7 +11,8 @@
     [test-project.action :as a]
     [test-project.json-ld :as jl]
     [test-project.util :as u]
-    [test-project.context :as ctx]))
+    [test-project.context :as ctx]
+    [clojure.data.json :as json]))
 
 ; it is simplified version. No conditionals inside methods
 
@@ -47,6 +48,7 @@
    :call-action-generic         #(test-project.action/call-action %1 %2)
    :call-action-ws-get-generic  (fn [url] (a/exec-get-action url namespaces-prefixes {}))
    :call-action-ws-generic        #(test-project.action/exec-generic-ws-action %)
+   :exec-action-fn            #(test-project.action/exec-action-fn %1 %2)
    ;:call-action-generic #(println "Executing action. uri:" %1 " data:" %2)
    :call-action-test            (fn [var1] (print "doing something"))
    }
@@ -66,15 +68,14 @@
        {"Content-Type" "text/turtle; charset=utf-8"}))
     (println "error. No data for " (ctx/var-val vars :?airport))))
 
-(defn airport-data-json-ld
-  "av - airport to get data for. variable with namespace prefix" [av]
-  (if-let [airport-data (air/get-airport-timezone (av :value))]
-    {
-     :id                 av,
-     :LocationLatitude   (airport-data :lat),
-     :LocationLongtitude (airport-data :lng),
-     :TimezoneUTCOffset  (airport-data :gmtOffset)}
-    (println "error. No data for " av)))
+(defn airport-data-jl
+  "av - airport to get data for. variable with namespace prefix" [{:keys [airport]}]
+  (if-let [airport-data (air/get-airport-timezone (airport :value))]
+    (json/write-str (jl/context-vars-map-to-json-ld {:id                 airport,
+                                                     :LocationLatitude   (airport-data :lat),
+                                                     :LocationLongtitude (airport-data :lng),
+                                                     :TimezoneUTCOffset  (airport-data :gmtOffset)}))
+    (println "error. No data for " airport)))
 
 (e/def-method
   update-data-on-campaign
@@ -123,7 +124,7 @@
                                               t:CreatedDateTime ?createdTime)
                   (?connection t:ConnectionAirline ?airline)
                   (:filter (s/f> ?createdTime (r/add-days (r/now) -7))))
-  :body [(fn [_] (test-project.action/action :call-action-generic2
+  :body [(fn [_] (test-project.action/action :call-action-ws-generic
                                              {:id {:type :uri :value (u/dateTime-to-id (r/now)) :prefix-ns "http://travelplanning.ex/Request/"} ,
                                               :url "http://localhost:62386/api/Connection/" ,
                                               :method       (jl/http-methods :get)
@@ -175,8 +176,8 @@
 
    :task  (:update-data-task ?airline ?connection ?fromAirport ?toAirport ?startDate ?iterEndDate ?finalEndDate )
    :namespaces namespaces-prefixes :actions actions :methods loc-methods-lib       ;don't want to make global var actions
-   :precondition ([?fromAirport t:AirportTimezoneUTCOffset ?fromOff]
-                   [?toAirport t:AirportTimezoneUTCOffset ?toOff]
+   :precondition ([?fromAirport tap:TimezoneUTCOffset ?fromOff]
+                   [?toAirport tap:TimezoneUTCOffset ?toOff]
                    (:filter (s/f< ?iterEndDate ?finalEndDate)))
    :body [#(test-project.action/action :call-action-ws-get-generic
              {
@@ -241,7 +242,7 @@
                   (:minus [?airport tap:TimezoneUTCOffset ?offset
                            tap:LocationLongtitude ?long
                            tap:LocationLatitude ?lat]))
-  :body [#(add-airport-data %)
+  :body [(fn [vars] (test-project.action/action :exec-action-fn test-project.test-plan3/airport-data-jl {:airport (vars :?airport)}))
          (fn [_] (test-project.task/add-task :task-airport-data))])
 
 (e/def-method

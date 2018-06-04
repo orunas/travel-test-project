@@ -190,10 +190,7 @@
   (if-let [var-ctx (context a-var)]
     (assoc var-ctx :datatype "http://www.w3.org/2001/XMLSchema#date")))
 
-(defn datetime-var [val]
-      {:type :literal
-       :datatype "http://www.w3.org/2001/XMLSchema#dateTime"
-       :value val})
+
 ; end */*/*/*
 
 
