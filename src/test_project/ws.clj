@@ -2,6 +2,8 @@
   (:require [org.httpkit.client :as http]))
 
 (defn GetWS [url params-map]
+  (println "url:" url)
+  (println "params-map:" params-map)
   (let [{:keys [status headers body error] :as resp} @(http/get url params-map)]
     (if (= status 200)
       body

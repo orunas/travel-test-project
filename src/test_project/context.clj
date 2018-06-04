@@ -1,6 +1,20 @@
-(ns test-project.context)
+(ns test-project.context
+  (:require [test-project.util :as u]
+            [test-project.rdf :as r]))
 ;namespace for managing context variables
 
-(defn var-val [context var]
-  (if-let [var-c (context var)]
-    (var-c :value)))
+
+(defn time-id [ns]
+  {:type :uri :value (u/dateTime-to-id (r/now)) :prefix-ns ns}
+  )
+
+;(def-multi var-val)
+(defn var-val
+  ([v]
+   (if (map? v)
+     (v :value)
+     v))
+  ([context var]
+   (var-val (context var))))
+
+

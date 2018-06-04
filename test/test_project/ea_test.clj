@@ -160,7 +160,7 @@
 ; ************* some code part for manual tests
 
 (def req {
-          :id           {:type :uri :value (u/dateTime-to-id (r/now)) :prefix-ns "http://travelplanning.ex/Request/"}
+          :id           (ctx/time-id "http://travelplanning.ex/Request/")
           :url          {:type :string, :value "http://localhost:62386/api/FlightOffering/"}
           :method       (jl/http-methods :get)                                    ; {:type :uri, :value "GET" :prefix-ns= "http://www.w3.org/2011/http-methods#"}
           ; :headers      nil

@@ -33,7 +33,9 @@
        (v :value))
     (cond
       (= (type v) java.lang.String) (val-out {:value v, :type :string})
-      (= (type v) java.time.ZonedDateTime) (val-out {:value v, :type :dateTime}))))
+      (= (type v) java.time.ZonedDateTime) (val-out {:value v, :type :dateTime})
+      (= (type v) java.lang.Double) (val-out {:value v, :type :double})
+      (= (type v) java.lang.Long) (val-out {:value v, :type :long}))))
 
 
 (defn cr-var-out

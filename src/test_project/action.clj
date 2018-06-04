@@ -2,6 +2,7 @@
   (:require [test-project.ws :as ws]
             [test-project.rdf :as r]
             [test-project.sparql :as s]
+            [test-project.context :as ctx]
             [test-project.jena :as j]
             [test-project.util :as u]
             [clojure.data.json :as json]
@@ -42,30 +43,34 @@
         (#(ws/CallWS "http://localhost:3030/Test2" % {"Content-Type" "text/turtle; charset=utf-8"})))
       request-id )))
 
-
-(defn exec-generic-action2
-  [req ]
+(defn exec-action-base [req f]
   (let [rj (-> req jl/context-vars-map-to-json-ld (json/write-str))]
     (println rj)
     (println (ws/CallWS "http://localhost:3030/Test2" rj {"Content-Type" "application/ld+json; charset=utf-8"}))
     (let [query-params-simplified {:query-params (reduce-kv #(assoc %1 %2 (s/var-short-val-out %3)) {} (req :query-params))}
           ]
       (println query-params-simplified)
-      (let [result-string (ws/GetWS (-> req :url :value) query-params-simplified)
-            result-map (json/read-str result-string :key-fn keyword)
-            ;result-map (assoc (context-vars-map-to-json-ld {:id (req :id)}) :responseBody (json/read-str result-string :key-fn keyword))
-
-
-            ;{u/idk  id, (keyword "@context") {:ResponseBody "http://tvavelplanning.ex/Response/Body"}  :ResponseBody  (json/read-str result-string :key-fn keyword)}
-            ]
-        (println (ws/CallWS "http://localhost:3030/Test2" result-string {"Content-Type" "application/ld+json; charset=utf-8"}))
-        (comment -> (json/write-str result-map) (j/read-and-output-model "JSON-LD" "TTL")
-                 ;(#(ws/CallWS "http://localhost:3030/Test2" % {"Content-Type" "text/turtle; charset=utf-8"}))
-                 )
+      (let [result-string f
+            result-map (json/read-str result-string :key-fn keyword)]
+        (-> (ws/CallWS "http://localhost:3030/Test2" result-string {"Content-Type" "application/ld+json; charset=utf-8"})
+            (println ))
         result-map)
       ;id
       )))
 
+(defn exec-generic-ws-action [req]
+  (exec-action-base req (fn [] (ws/GetWS
+                           (ctx/var-val req :url)
+                           {:query-params (reduce-kv #(assoc %1 %2 (s/var-short-val-out %3)) {} (req :query-params))}))))
+
+
+
+(comment defn exec-action-get-airport-data [a]
+  (let [req {:id (ctx/time-id "http://travelplanning.ex/Request/")
+             :url "local://exec-action-get-airport-data"
+             :query-params {:airport a}}]
+    (exec-action-base req #(add-airport-data)))
+  )
 
 (defn exec-get-action
   [url namespaces-prefixes params-map]

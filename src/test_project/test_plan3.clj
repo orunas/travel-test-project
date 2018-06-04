@@ -37,6 +37,7 @@
    :xsd "http://www.w3.org/2001/XMLSchema#"
    :tc "http://travelplanning.ex/Campaign/"
    :ta "http://travelplanning.ex/Airline/"
+   :tap "http://travelplanning.ex/Airport/"
    :tcn "http://travelplanning.ex/Connection/"
    :tcu "http://travelplanning.ex/ConnectionUpdate/"
    :tcd "http://travelplanning.ex/ConnectionData/"})
@@ -45,7 +46,7 @@
   {
    :call-action-generic         #(test-project.action/call-action %1 %2)
    :call-action-ws-get-generic  (fn [url] (a/exec-get-action url namespaces-prefixes {}))
-   :call-action-generic2        #(test-project.action/exec-generic-action2 %)
+   :call-action-ws-generic        #(test-project.action/exec-generic-ws-action %)
    ;:call-action-generic #(println "Executing action. uri:" %1 " data:" %2)
    :call-action-test            (fn [var1] (print "doing something"))
    }
@@ -55,15 +56,25 @@
 
 (defn add-airport-data [vars]
   (if-let [airport-data (air/get-airport-timezone (ctx/var-val vars :?airport))]
-    (ws/CallWS
-      "http://localhost:8087/data"
-      (r/rdf namespaces-prefixes
-             [(s/var-out vars :?airport)
-              :t:AirportLocationLatitude (airport-data :lat)
-              :t:AirportLocationLongtitude (airport-data :lng)
-              :t:AirportTimezoneUTCOffset (airport-data :gmtOffset)])
-      {"Content-Type" "text/turtle; charset=utf-8" })
+    (println (ws/CallWS
+       "http://localhost:8087/data"
+       (r/rdf namespaces-prefixes
+              [(s/var-out vars :?airport)
+               :tap:LocationLatitude (airport-data :lat)
+               :tap:LocationLongtitude (airport-data :lng)
+               :tap:TimezoneUTCOffset (airport-data :gmtOffset)])
+       {"Content-Type" "text/turtle; charset=utf-8"}))
     (println "error. No data for " (ctx/var-val vars :?airport))))
+
+(defn airport-data-json-ld
+  "av - airport to get data for. variable with namespace prefix" [av]
+  (if-let [airport-data (air/get-airport-timezone (av :value))]
+    {
+     :id                 av,
+     :LocationLatitude   (airport-data :lat),
+     :LocationLongtitude (airport-data :lng),
+     :TimezoneUTCOffset  (airport-data :gmtOffset)}
+    (println "error. No data for " av)))
 
 (e/def-method
   update-data-on-campaign
@@ -114,11 +125,9 @@
                   (:filter (s/f> ?createdTime (r/add-days (r/now) -7))))
   :body [(fn [_] (test-project.action/action :call-action-generic2
                                              {:id {:type :uri :value (u/dateTime-to-id (r/now)) :prefix-ns "http://travelplanning.ex/Request/"} ,
-                                              :url "http://localhost:8080/flightService/webapi/W6/Connections/" ,
+                                              :url "http://localhost:62386/api/Connection/" ,
                                               :method       (jl/http-methods :get)
-                                              :query-params {}
-                                              }
-                                             ))])
+                                              :query-params {}}))])
 
 (e/def-method
   update-flights-method [?airline ?dateFrom ?dateTo ?oldestOfferDate]
@@ -169,7 +178,7 @@
    :precondition ([?fromAirport t:AirportTimezoneUTCOffset ?fromOff]
                    [?toAirport t:AirportTimezoneUTCOffset ?toOff]
                    (:filter (s/f< ?iterEndDate ?finalEndDate)))
-   :body [#(test-project.action/action :call-action-generic2
+   :body [#(test-project.action/action :call-action-ws-get-generic
              {
               :id {:type :uri :value (u/dateTime-to-id (r/now)) :prefix-ns "http://travelplanning.ex/Request/"}
               :url          "http://localhost:8080/flightService/webapi/W6/Flights"
@@ -229,9 +238,9 @@
   :task (:task-airport-data)
   :namespaces namespaces-prefixes :actions actions :methods loc-methods-lib
   :precondition ([?connection t:ConnectionFromAirport ?airport]
-                  (:minus [?airport t:AirportTimezoneUTCOffset ?offset
-                           t:AirportLocationLongtitude ?long
-                           t:AirportLocationLatitude ?lat]))
+                  (:minus [?airport tap:TimezoneUTCOffset ?offset
+                           tap:LocationLongtitude ?long
+                           tap:LocationLatitude ?lat]))
   :body [#(add-airport-data %)
          (fn [_] (test-project.task/add-task :task-airport-data))])
 
@@ -241,9 +250,9 @@
   :task (:task-airport-data)
   :namespaces namespaces-prefixes :actions actions :methods loc-methods-lib
   :precondition (:not-exists [?connection t:ConnectionFromAirport ?airport]
-                  (:minus [?airport t:AirportTimezoneUTCOffset ?offset
-                           t:AirportLocationLongtitude ?long
-                           t:AirportLocationLatitude ?lat]))
+                  (:minus [?airport tap:TimezoneUTCOffset ?offset
+                           tap:LocationLongtitude ?long
+                           tap:LocationLatitude ?lat]))
   :body [(fn [_] (println "task :task-airport-data completed"))])
 
 (def datetime1 (java.time.ZonedDateTime/parse "2017-10-16T00:00:01.390Z") )
