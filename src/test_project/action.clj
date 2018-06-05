@@ -51,14 +51,15 @@
         )
     (let [query-params-simplified {:query-params (reduce-kv #(assoc %1 %2 (s/var-short-val-out %3)) {} (req :query-params))}
           ]
-      (println query-params-simplified)
+      ;(println query-params-simplified)
       ; execute main function
       ; ideally we should transform result to clojure map, but currently use just string representation
       (let [result-string (af)
             ; result-map (json/read-str result-string :key-fn keyword)
             ]
         (-> (ws/CallWS "http://localhost:3030/Test2" result-string {"Content-Type" "application/ld+json; charset=utf-8"})
-            (println ))
+            ;(println )
+            )
         result-string)
       ;id
       )))

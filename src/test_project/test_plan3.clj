@@ -153,6 +153,7 @@
             :update-airline-flights (% :?airline) (% :?dateFrom) (% :?dateTo) (% :?oldestOfferDate))])
 
 (e/def-method
+  ; when connection update request (?reqEnd) bigger that the date when we started sync (?oldestOfferDate), means that data was synced.
   update-flights-method-done [?airline ?dateFrom ?dateTo ?oldestOfferDate]
   :task (:update-airline-flights ?airline ?dateFrom ?dateTo ?oldestOfferDate)
   :namespaces namespaces-prefixes :actions actions :methods loc-methods-lib       ;don't want to make global var actions
@@ -242,8 +243,8 @@
                   (:minus [?airport tap:TimezoneUTCOffset ?offset
                            tap:LocationLongtitude ?long
                            tap:LocationLatitude ?lat]))
-  :body [(fn [vars] (test-project.action/action :exec-action-fn test-project.test-plan3/airport-data-jl {:airport (vars :?airport)}))
-         (fn [_] (test-project.task/add-task :task-airport-data))])
+  :body (vector (fn [vars] (test-project.action/action :exec-action-fn test-project.test-plan3/airport-data-jl {:airport (vars :?airport)}))
+          (fn [_] (test-project.task/add-task :task-airport-data))))
 
 (e/def-method
   achieve-all-airport-data-done

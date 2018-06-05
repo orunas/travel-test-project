@@ -149,38 +149,42 @@
 
 
 (defn remove-step
+  "tries to remove step. does recursively.
+  if method is not empty method is not removed but only steps are updated"
   ([agenda-map node-keyword ] (remove-step agenda-map node-keyword nil))
   ([{:keys [intention-graph normal-step-keys active-step-keys] :as agenda-map} node-keyword child-node-keyword]
     ;(println node-keyword child-node-keyword)
-   (let [node (intention-graph node-keyword)
-         parent-key (node :parent)]
-     ; when step is removed we need add steps that waited for completion
-     (case (node :type)
-       ; if we have method we check whether more steps exists
-       :method
-       (let [new-steps (remove #{child-node-keyword} (node :steps))]
-         (if (empty? new-steps)
-           ;   if not exists means we done with method. Remove it and check parent
-           (-> (update-in agenda-map [:intention-graph] #(dissoc % node-keyword))
-               (remove-step parent-key node-keyword)
-               )
-           (if (node :steps-ordered)
-             ; if exists and they are ordered we add next one to normal-step-keys add remove child from :steps
-             (assoc agenda-map
-               :intention-graph (update-in intention-graph [node-keyword] #(assoc % :steps new-steps))
-               :normal-step-keys (conj normal-step-keys (first new-steps)))
-             ; if exists and not ordered then just remove from steps
-             (update-in agenda-map [:intention-graph node-keyword ] #(assoc % :steps new-steps)))))
-       ; if we have step we remove it and recursively check parent
-       :step
-       (-> (assoc agenda-map :intention-graph (dissoc intention-graph node-keyword)
-                             :normal-step-keys (remove #{node-keyword} normal-step-keys)
-                             :active-step-keys (remove #{node-keyword} active-step-keys))
-           (remove-step parent-key node-keyword)
-           )
-       :root agenda-map
-       agenda-map
-       ))))
+   (if-let [node (intention-graph node-keyword)]
+     (let [parent-key (node :parent)]
+       ;(println "try-remove-step" node-keyword " with parent" parent-key)
+       ; when step is removed we need add steps that waited for completion
+       (case (node :type)
+         ; if we have method we check whether more steps exists
+         :method
+         (let [new-steps (remove #{child-node-keyword} (node :steps))]
+           (if (empty? new-steps)
+             ;   if not exists means we done with method. Remove it and check parent
+             (-> (update-in agenda-map [:intention-graph] #(dissoc % node-keyword))
+                 (remove-step parent-key node-keyword)
+                 )
+             (if (node :steps-ordered)
+               ; if exists and they are ordered we add next one to normal-step-keys add remove child from :steps
+               (assoc agenda-map
+                 :intention-graph (update-in intention-graph [node-keyword] #(assoc % :steps new-steps))
+                 :normal-step-keys (conj normal-step-keys (first new-steps)))
+               ; if exists and not ordered then just remove from steps
+               (update-in agenda-map [:intention-graph node-keyword] #(assoc % :steps new-steps)))))
+         ; if we have step we remove it and recursively check parent
+         :step
+         (-> (assoc agenda-map :intention-graph (dissoc intention-graph node-keyword)
+                               :normal-step-keys (remove #{node-keyword} normal-step-keys)
+                               :active-step-keys (remove #{node-keyword} active-step-keys))
+             (remove-step parent-key node-keyword)
+             )
+         :root agenda-map
+         agenda-map
+         ))
+     (println "no-node" node-keyword))))
 
 ; should just evaluate function
 (defn process-step-node
@@ -201,18 +205,19 @@
           [(add-expanded-method-instance-to-agenda a-methods agenda-atom candidate (:id step-node)) nil]
           (u/println-and-last-out "Error: not candidates for task found" [nil :error-no-candidates-for-task]))
       (and (coll? res) (= (first res) :action))
-        [(let [c (chan)]
-           (go
-             (swap! agenda-atom set-step-active-on-map step-keyword)
-             (let [action-key (second res)
-                   params (nth res 2)]
-               (println "Executing action" res)
-               ;  (methods)
-               (>! c (apply (action-key actions) params))))
-           (go
-             (println "finished" (<! c))
-             (swap! agenda-atom remove-step step-keyword)))
-         nil]
+      ; we try to set first synchronously step as active
+        (do (swap! agenda-atom set-step-active-on-map step-keyword)
+            [(let [c (chan)]
+               (go
+                 (let [action-key (second res)
+                       params (nth res 2)]
+                   (println "Executing action" res)
+                   ;  (methods)
+                   (>! c (apply (action-key actions) params))))
+               (go
+                 (println "finished" (<! c))
+                 (swap! agenda-atom remove-step step-keyword)))
+             nil])
       (keyword? res)                                        ;keyword means we got an error
         [nil res]
       (nil? res)
@@ -228,7 +233,7 @@
 (defn events-to-agenda
   [a-method-lib candidate-select-fn agenda-atom]
   (let [events (rc/get-events)]
-    (println "received events:" events)
+    ; (println "received events:" events)
     (->>
       (rc/find-all-relevant-methods-for-all-events (vals a-method-lib) events)
       ;(u/println-and-last-out "found relevant methods:")
@@ -252,37 +257,46 @@
       (println "Empty methods library")
       (let [started (java.time.LocalDateTime/now)
             active-actions-limit 3
-            candidate-select-fn #(first %)
-            ]
+            candidate-select-fn #(first %)]
         (println "started" started)
-        (->> (loop [i 0   ]
+        (->> (loop [i 0 ]
                (if (< i max-limit)
                  (do
-                   (println "step" i)
+                   ;(println "step" i)
                    (let [agnd (events-to-agenda a-method-lib candidate-select-fn agenda-atom)]
-                     (if (and
-                           (not (empty? (:normal-step-keys @agenda-atom)))
-                           (<= (count (:active-step-keys @agenda-atom)) active-actions-limit))
-                       ; if there steps and max limit active not exceeded progress in agenda
-                       (let [[_ err] (process-step-node a-method-lib actions candidate-select-fn agenda-atom)]
-                         (if (nil? err)
-                              (recur (inc i))
-                              (println "stopped on error:" err)))
-                       (do
-                         (println "skipping. no normal steps or active limit exceeded")
-                         (recur (inc i))))))
+                     (cond
+                       ;(@agenda-atom :stop) (println "stopped")
+                       (empty? (:normal-step-keys @agenda-atom)) (do ;(println "skipping. no normal steps")
+                                                                     (recur i))
+                       (> (count (:active-step-keys @agenda-atom)) active-actions-limit) (do ;(println "skipping. active limit exceeded")
+                                                                                             (recur i))
+                       :else (let [[_ err] (process-step-node a-method-lib actions candidate-select-fn agenda-atom)]
+                               (println "step progressed" i " size intention-graph" (count (@agenda-atom :intention-graph)))
+                               (if (nil? err)
+                                 (recur (inc i))
+                                 (println "stopped on error:" err))))))
                  agenda-atom))
              (u/pprintln-and-out "Completed. Agenda:" simplify-agenda-for-print))
         (print (format "Ended: %s Completed:%s sec" (java.time.LocalDateTime/now) (u/date-diff-in-seconds started (java.time.LocalDateTime/now))))))))
 
+(defn send-stop [atm]
+  (swap! atm #(assoc % :stop 1)))
 
 (defn reset-active [a]
   (let [v (first (a :active-step-keys))]
     (->
       a
       (update-in [:active-step-keys] rest)
-      (update-in [:normal-step-keys] conj v)
-      )))
+      (update-in [:normal-step-keys] conj v))))
+
+(defn get-tree
+  "gets structure for agenda, where
+  ig - intension graph as map (not atom)
+  p - parent key"
+  [ig p]
+  [p
+     (->> (filter #(= (% :parent) p) (vals ig))
+          (map #(get-tree ig (% :id))))])
 
 
 
