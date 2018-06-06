@@ -103,7 +103,7 @@
   :body
   [#(test-project.task/add-task :check-connections (% :?airline))
    (fn [_] (test-project.task/add-task :task-airport-data))
-    #(test-project.task/add-task :update-airline-flights (% :?airline) (% :?travelStart) (% :?travelEnd) (% :?salesStart) (ctx/time-id (namespaces-prefixes :t)) )
+    #(test-project.task/add-task :update-airline-flights (% :?airline) (% :?travelStart) (% :?travelEnd) (% :?salesStart) (ctx/time-id (namespaces-prefixes :mn)) )
    ])
 
 
@@ -148,14 +148,12 @@
                             (:filter (s/f> ?offerDate ?oldestOfferDate)))
                    (:filter (s/f-and (s/f< ?operationStartDate ?dateTo) (s/f-in ?departureAirport ["<http://travelplanning.ex/Airport/VNO>" "<http://travelplanning.ex/Airport/KUN>" ]))))
   :body [(a/add-facts namespaces-prefixes
-                      #{?req-id ?cn-req-id ?airline ?dateTo ?oldestOfferDate ?connection}
-                      ([?req-id mn:RequestItem ?item-id]
-                        [?item-id mn:Connection ?connection mn:Status 0])
-
-                      ([?connection t:ConnectionAirline ?airline
+                      #{?req-id ?airline ?dateTo ?oldestOfferDate}
+                      ([?req-id mn:item ?cn]
+                        [?cn mn:status 0])
+                      ([?cn t:ConnectionAirline ?airline
                         t:ConnectionFromAirport ?departureAirport
                         t:ConnectionToAirport ?arrivalAirport
-                        ;t:ConnectionFlightDate ?flightDate ; >1 therefore will get specific date
                         t:OperationStartDate ?operationStartDate]
                         (:minus [?offer t:OfferFlight ?flight t:date ?offerDate]
                           [?flight s:arrivalAirport ?arrivalAirport

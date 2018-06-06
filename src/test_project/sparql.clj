@@ -411,8 +411,7 @@
      "DELETE DATA { \n"
      ; create insert triples. The same function that used for where part works well.
      ~@(process-query-where-statement data context-v params)
-     "\n}"
-     ) )
+     "\n}"  ))
 
 (defmacro build-precondition
   [namespaces params query-where]

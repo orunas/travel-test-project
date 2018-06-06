@@ -4,8 +4,8 @@
 ;namespace for managing context variables
 
 
-(defn time-id [ns]
-  {:type :uri :value (u/dateTime-to-id (r/now)) :prefix-ns ns}
+(defn time-id [ns & p]
+  {:type :uri :value (str (apply str p) (u/dateTime-to-id (r/now)) ) :prefix-ns ns}
   )
 
 ;(def-multi var-val)

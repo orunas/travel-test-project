@@ -109,5 +109,5 @@ w - where part"
   (let [context-v (gensym "vars-")]
     `(fn [~context-v]
        (list :action :mental-action
-             ~(s/build-delete p d context-v)) )))
+             ~(s/build-delete n p d context-v)) )))
 
