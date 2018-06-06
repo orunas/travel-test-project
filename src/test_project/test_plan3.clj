@@ -259,6 +259,28 @@
 
 (def datetime1 (java.time.ZonedDateTime/parse "2017-10-16T00:00:01.390Z") )
 
+;begin example calling rule
+
+; insert part
+(def i1 '(  [request-id ConnectionToUpdate connection-update-id]
+           [connection-update-id Connection ?connection Status 0]))
+
+; query part
+(def q1 '([?connection t:ConnectionAirline ?airline
+            t:ConnectionFromAirport ?departureAirport
+            t:ConnectionToAirport ?arrivalAirport
+            ;t:ConnectionFlightDate ?flightDate ; >1 therefore will get specific date
+            t:OperationStartDate ?operationStartDate]
+            (:minus [?offer t:OfferFlight ?flight t:date ?offerDate]
+              [?flight s:arrivalAirport ?arrivalAirport
+               s:departureAirport ?departureAirport
+               t:FlightAirline ?airline]
+              (:filter (s/f> ?offerDate ?oldestOfferDate)))
+            (:filter (s/f< ?operationStartDate ?dateTo))))
+
+;end example calling rule
+
+; example graph
 (def intention-graph
   {
    :0                                                       ; root element

@@ -195,7 +195,7 @@
 
 
 
-; old code ************************
+
 (defn process-triple-element-to-sparql-element
   "triple element to sparql string element"
   [context-v params element]
@@ -350,18 +350,6 @@
   (apply str (map #(str "PREFIX " (name %) ":" " <" (namspcs-prefxs-map %) "> \n") (keys namspcs-prefxs-map)))
   )
 
-
-(defn build-ask-notexists-query
-  [namespaces params query-where]
-  (let [context-v (gensym "vars-")]
-    `(fn [~context-v]
-       (str
-         (namespaces-prefixes-map-to-spaqrl ~namespaces)
-         "ASK \n"
-         "\n WHERE {\n"
-         ~@(process-query-where-statement query-where context-v params)
-         "}\n " ))))
-
 (defn parse-ordering-part [forms]
   (case (first forms)
     :asc (str " ASC (" (second forms) ") " (parse-ordering-part (nthnext forms 2)))
@@ -378,6 +366,17 @@
         (str "ORDERBY " (parse-ordering-part (second query-where)))
         (recur (rest query-where))))))
 
+(defn build-ask-notexists-query
+  [namespaces params query-where]
+  (let [context-v (gensym "vars-")]
+    `(fn [~context-v]
+       (str
+         (namespaces-prefixes-map-to-spaqrl ~namespaces)
+         "ASK \n"
+         "\n WHERE {\n"
+         ~@(process-query-where-statement query-where context-v params)
+         "}\n " ))))
+
 (defn build-pre-query
   [namespaces params query-where]
   (let [context-v (gensym "vars-")]
@@ -392,6 +391,21 @@
          ~@(buid-order-by-part query-where)
          "LIMIT 1"))) )
 
+(defn build-insert
+  [namespaces params insert-part query-where]
+  (let [context-v (gensym "vars-")]
+    `(fn [~context-v]
+       (str
+         (namespaces-prefixes-map-to-spaqrl ~namespaces)
+         "insert { \n"
+         ; create insert triples. The same function that used for where part works well.
+         (process-query-where-statement insert-part context-v params)
+         "\n} WHERE {\n"
+         ~@(process-query-where-statement query-where context-v params)
+         "}\n"
+         ))) )
+
+
 (defmacro build-precondition
   [namespaces params query-where ]
   (if query-where
@@ -399,6 +413,10 @@
      `{:not-exists ~(build-ask-notexists-query namespaces params (rest query-where))}
      `{:query ~(build-pre-query namespaces params query-where)}
      )))
+
+(defmacro build-precondition
+  [namespaces params insert-part query-part ]
+  `{:query ~(build-insert namespaces params insert-part query-part)})
 
 
 (defn context-var-to-simple-vector [bindng]
