@@ -32,6 +32,7 @@
   {
    :rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#"
    :t "http://travelplanning.ex/"
+   :mn "http://travelplanning.ex/MentalNote/"
    :s "http://schema.org/"
    :treq "http://travelplanning.ex/Request/"
    :tresp "http://travelplanning.ex/Response/"
@@ -51,6 +52,7 @@
    :exec-action-fn            #(test-project.action/exec-action-fn %1 %2)
    ;:call-action-generic #(println "Executing action. uri:" %1 " data:" %2)
    :call-action-test            (fn [var1] (print "doing something"))
+   :mental-action #(test-project.action/exec-mental %)
    }
   )
 
@@ -101,7 +103,7 @@
   :body
   [#(test-project.task/add-task :check-connections (% :?airline))
    (fn [_] (test-project.task/add-task :task-airport-data))
-    #(test-project.task/add-task :update-airline-flights (% :?airline) (% :?travelStart) (% :?travelEnd) (% :?salesStart))
+    #(test-project.task/add-task :update-airline-flights (% :?airline) (% :?travelStart) (% :?travelEnd) (% :?salesStart) (ctx/time-id (namespaces-prefixes :t)) )
    ])
 
 
@@ -131,14 +133,13 @@
                                               :query-params {}}))])
 
 (e/def-method
-  update-flights-method [?airline ?dateFrom ?dateTo ?oldestOfferDate]
+  update-flights-method [?airline ?dateFrom ?dateTo ?oldestOfferDate ?req-id]
   :task (:update-airline-flights ?airline ?dateFrom ?dateTo ?oldestOfferDate)
   :namespaces namespaces-prefixes :actions actions  :methods loc-methods-lib         ;don't want to make global var actions
   ; find flightdates for airline in provided range, that doesn't have offer information
   :precondition  ([?connection t:ConnectionAirline ?airline
                                 t:ConnectionFromAirport ?departureAirport
                                 t:ConnectionToAirport ?arrivalAirport
-                                ;t:ConnectionFlightDate ?flightDate ; >1 therefore will get specific date
                                 t:OperationStartDate ?operationStartDate]
                     (:minus [?offer t:OfferFlight ?flight t:date ?offerDate]
                             [?flight s:arrivalAirport ?arrivalAirport
@@ -146,7 +147,23 @@
                                       t:FlightAirline ?airline]
                             (:filter (s/f> ?offerDate ?oldestOfferDate)))
                    (:filter (s/f-and (s/f< ?operationStartDate ?dateTo) (s/f-in ?departureAirport ["<http://travelplanning.ex/Airport/VNO>" "<http://travelplanning.ex/Airport/KUN>" ]))))
-  :body [#(test-project.task/add-task
+  :body [(a/add-facts namespaces-prefixes
+                      #{?req-id ?cn-req-id ?airline ?dateTo ?oldestOfferDate ?connection}
+                      ([?req-id mn:RequestItem ?item-id]
+                        [?item-id mn:Connection ?connection mn:Status 0])
+
+                      ([?connection t:ConnectionAirline ?airline
+                        t:ConnectionFromAirport ?departureAirport
+                        t:ConnectionToAirport ?arrivalAirport
+                        ;t:ConnectionFlightDate ?flightDate ; >1 therefore will get specific date
+                        t:OperationStartDate ?operationStartDate]
+                        (:minus [?offer t:OfferFlight ?flight t:date ?offerDate]
+                          [?flight s:arrivalAirport ?arrivalAirport
+                           s:departureAirport ?departureAirport
+                           t:FlightAirline ?airline]
+                          (:filter (s/f> ?offerDate ?oldestOfferDate)))
+                        (:filter (s/f< ?operationStartDate ?dateTo))))
+         #(test-project.task/add-task
             :update-data-task (% :?airline) (% :?connection) (% :?departureAirport) (% :?arrivalAirport) (% :?dateFrom) (e/apply-val-f r/add-days (% :?dateFrom) 7) (% :?dateTo))
          #(println "update-flights-method middle for:" (ctx/var-val % :?airline) " " (ctx/var-val % :?dateFrom) " " (ctx/var-val % :?dateTo))
          #(test-project.task/add-task
@@ -154,7 +171,7 @@
 
 (e/def-method
   ; when connection update request (?reqEnd) bigger that the date when we started sync (?oldestOfferDate), means that data was synced.
-  update-flights-method-done [?airline ?dateFrom ?dateTo ?oldestOfferDate]
+  update-flights-method-done [?airline ?dateFrom ?dateTo ?oldestOfferDate ?req-id]
   :task (:update-airline-flights ?airline ?dateFrom ?dateTo ?oldestOfferDate)
   :namespaces namespaces-prefixes :actions actions :methods loc-methods-lib       ;don't want to make global var actions
   :precondition  (:not-exists [?connection t:ConnectionAirline ?airline
@@ -162,8 +179,6 @@
                                            t:ConnectionToAirport ?arrivalAirport
                                            t:OperationStartDate ?operationStartDate]
                              (:minus [?offer t:OfferFlight ?flight t:date ?offerDate]
-                                     [?connectionUpdate t:ConnectionUpdateConnection ?connection
-                                                         t:RequestEndedDate ?reqEnd]
                                      [?flight s:arrivalAirport ?arrivalAirport
                                               s:departureAirport ?departureAirport
                                               t:FlightAirline ?airline]

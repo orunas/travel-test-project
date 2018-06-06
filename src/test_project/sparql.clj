@@ -391,32 +391,36 @@
          ~@(buid-order-by-part query-where)
          "LIMIT 1"))) )
 
-(defn build-insert
-  [namespaces params insert-part query-where]
-  (let [context-v (gensym "vars-")]
-    `(fn [~context-v]
-       (str
-         (namespaces-prefixes-map-to-spaqrl ~namespaces)
-         "insert { \n"
-         ; create insert triples. The same function that used for where part works well.
-         (process-query-where-statement insert-part context-v params)
-         "\n} WHERE {\n"
-         ~@(process-query-where-statement query-where context-v params)
-         "}\n"
-         ))) )
 
+(defn build-insert
+  [namespaces params insert-part query-where context-v]
+  `(str
+    (namespaces-prefixes-map-to-spaqrl ~namespaces)
+    "insert { \n"
+    ; create insert triples. The same function that used for where part works well.
+    ~@(process-query-where-statement insert-part context-v params)
+    "\n} WHERE {\n"
+    ~@(process-query-where-statement query-where context-v params)
+    "}\n"
+    ) )
+
+(defn build-delete
+  [namespaces params data context-v]
+  `(str
+     (namespaces-prefixes-map-to-spaqrl ~namespaces)
+     "DELETE DATA { \n"
+     ; create insert triples. The same function that used for where part works well.
+     ~@(process-query-where-statement data context-v params)
+     "\n}"
+     ) )
 
 (defmacro build-precondition
-  [namespaces params query-where ]
+  [namespaces params query-where]
   (if query-where
     (if (= (first query-where) :not-exists)
      `{:not-exists ~(build-ask-notexists-query namespaces params (rest query-where))}
-     `{:query ~(build-pre-query namespaces params query-where)}
-     )))
+     `{:query ~(build-pre-query namespaces params query-where)})))
 
-(defmacro build-precondition
-  [namespaces params insert-part query-part ]
-  `{:query ~(build-insert namespaces params insert-part query-part)})
 
 
 (defn context-var-to-simple-vector [bindng]
@@ -425,8 +429,7 @@
      :uri (vector (bindng :prefix-ns) (bindng :value))
      :literal (.toString (bindng :value))
      bindng)
-    bindng
-    ))
+    bindng  ))
 
 (defn simplify-context-for-print [context-map]
   (reduce #(assoc %1 %2 (context-var-to-simple-vector (context-map %2))) {} (keys context-map)))

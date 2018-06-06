@@ -279,6 +279,9 @@
              (u/pprintln-and-out "Completed. Agenda:" simplify-agenda-for-print))
         (print (format "Ended: %s Completed:%s sec" (java.time.LocalDateTime/now) (u/date-diff-in-seconds started (java.time.LocalDateTime/now))))))))
 
+
+
+
 (defn send-stop [atm]
   (swap! atm #(assoc % :stop 1)))
 

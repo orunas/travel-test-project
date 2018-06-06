@@ -70,6 +70,13 @@
                            (ctx/var-val req :url)
                            {:query-params (reduce-kv #(assoc %1 %2 (s/var-short-val-out %3)) {} (req :query-params))}))))
 
+(defn exec-mental
+  "executed mental action which is <insert from select> type data manipulation
+  r - is sparql update string. Difference with other actions that request doesn't have to be captured"
+  [r]
+  (println "exec mental" r)
+  (ws/CallWS "http://localhost:3030/Test2/update" r {"Content-Type" "application/sparql-update; charset=utf-8"}))
+
 (defn exec-action-fn
   [f ar]
   (let [req {:id   (ctx/time-id "http://travelplanning.ex/Request/")
@@ -81,4 +88,26 @@
 (defn exec-get-action
   [url namespaces-prefixes params-map]
   (exec-generic-action url namespaces-prefixes #(ws/GetWS url params-map)))
+
+(defmacro add-facts
+  "n - namespaces
+  p - params
+  i - insert triples
+  w - where part"
+  [n p i w ]
+  (let [context-v (gensym "vars-")]
+    `(fn [~context-v]
+       (list :action :mental-action
+         ~(s/build-insert n p i w context-v)) )))
+
+(defmacro retact-facts
+  "n - namespaces
+p - params
+d - data, triples to delete
+w - where part"
+  [n p d]
+  (let [context-v (gensym "vars-")]
+    `(fn [~context-v]
+       (list :action :mental-action
+             ~(s/build-delete p d context-v)) )))
 

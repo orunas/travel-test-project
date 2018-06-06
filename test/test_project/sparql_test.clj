@@ -218,3 +218,23 @@
       {:?campaign {:type :uri :prefix-ns "http://travelplanning.ex/Campaign/" :value "1234"}
        :?dateEnd  {:type :literal :value (r/now)}})))
 
+(comment (a/add-facts t3/namespaces-prefixes
+              #{?req-id ?cn-req-id ?airline ?dateTo ?oldestOfferDate ?connection}
+              ([?req-id mn:RequestItem ?item-id]
+                [?item-id mn:Connection ?connection mn:Status 0])
+
+              ([?connection t:ConnectionAirline ?airline
+                t:ConnectionFromAirport ?departureAirport
+                t:ConnectionToAirport ?arrivalAirport
+                ;t:ConnectionFlightDate ?flightDate ; >1 therefore will get specific date
+                t:OperationStartDate ?operationStartDate]
+                (:minus [?offer t:OfferFlight ?flight t:date ?offerDate]
+                  [?flight s:arrivalAirport ?arrivalAirport
+                   s:departureAirport ?departureAirport
+                   t:FlightAirline ?airline]
+                  (:filter (s/f> ?offerDate ?oldestOfferDate)))
+                (:filter (s/f< ?operationStartDate ?dateTo))))
+  {:?req-id {:type :uri :prefix-ns "gg" :value "111"}
+   :?cn-req-id {:type :uri :prefix-ns "dd" :value "222"}
+   }
+  )
