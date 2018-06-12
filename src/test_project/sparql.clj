@@ -33,7 +33,7 @@
         (apply
           (resolve f)
           context
-          (map #(insert-context-to-inner-expression-and-apply context %) (rest items)))
+          (mapv #(insert-context-to-inner-expression-and-apply context %) (rest items)))
         items))                                             ;
     items))
 
@@ -131,8 +131,8 @@
   [context items]
   ;(print items)
   (if (not (empty? items))
-    `(" FILTER "
-       ~(insert-context-to-inner-expression-and-apply context items))))
+    `[" FILTER "
+        ~(insert-context-to-inner-expression-and-apply context items)]))
 
 (defmacro buildfilterfn
   [context items]
@@ -214,19 +214,20 @@
   r - rest pairs p o
   output - vector"
   [context-v params [p o & r] output]
-  (if r
+  (if p
     (property-list-to-sparql
       context-v
       params
       r
       (conj output
             (process-triple-element-to-sparql-element context-v params p)
-            (process-triple-element-to-sparql-element context-v params o)))
+            (process-triple-element-to-sparql-element context-v params o)
+            (if r ";")))
     output))
 
 (defn object-list-to-sparql
   [context-v params element]
-  (if (seq? element)
+  (if (coll? element)
     ["[" (property-list-to-sparql context-v params element []) "]"]
     (process-triple-element-to-sparql-element context-v params element)))
 
@@ -249,7 +250,7 @@
            ; " "
            (process-triple-element-to-sparql-element context-v params pred)
            ;" "
-           (process-triple-element-to-sparql-element context-v params obj)
+           (object-list-to-sparql context-v params obj)
            ".\n"))))))
 
 (defn process-query-where-statement
@@ -262,8 +263,8 @@
        (let [first-item (first item)]
          (if (keyword? first-item)
            (case (name first-item)
-             "filter" (recur (rest query-where) context-v params (concat output (buildfilter context-map (second item))))
-             "minus" (recur (rest query-where) context-v params (concat output " MINUS { " (process-query-where-statement
+             "filter" (recur (rest query-where) context-v params (conj output (buildfilter context-map (second item))))
+             "minus" (recur (rest query-where) context-v params (conj output " MINUS { " (process-query-where-statement
                                                                                              (rest item)
                                                                                              context-v
                                                                                              params) " } \n"))
@@ -272,7 +273,7 @@
            (recur (rest query-where)
                   context-v
                   params
-                  (concat output (process-where-subgrph-pattern2 context-v params item)))))
+                  (conj output (process-where-subgrph-pattern2 context-v params item)))))
        ;else - not list
        output))))
 
@@ -397,31 +398,30 @@
   (let [context-v (gensym "vars-")]
     `(fn [~context-v]
        (u/join-r " "
-         (namespaces-prefixes-map-to-spaqrl ~namespaces)
-         "ASK \n"
-         "\n WHERE {\n"
-         ~@(process-query-where-statement query-where context-v params)
-         "}\n " ))))
+                 [(namespaces-prefixes-map-to-spaqrl ~namespaces)
+                  "ASK \n"
+                  "\n WHERE {\n"
+                  ~@(process-query-where-statement query-where context-v params)
+                  "}\n "]))))
 
 (defn build-pre-query
   [namespaces params query-where]
   (let [context-v (gensym "vars-")]
     `(fn [~context-v]
        (u/join-r " "
-         (namespaces-prefixes-map-to-spaqrl ~namespaces)
-         "SELECT \n"
-         ~(clojure.string/join " " (extract-fresh-vars query-where params))
-         "\n WHERE {\n"
-         ~@(process-query-where-statement query-where context-v params)
-         "}\n"
-         ~@(buid-order-by-part query-where)
-         "LIMIT 1"))) )
+                 [(namespaces-prefixes-map-to-spaqrl ~namespaces)
+                  "SELECT \n"
+                  ~(clojure.string/join " " (extract-fresh-vars query-where params))
+                  "\n WHERE {\n"
+                  ~@(process-query-where-statement query-where context-v params)
+                  "}\n"
+                  ~@(buid-order-by-part query-where)
+                  "LIMIT 1"]))) )
 
 
 (defn build-insert
-  [namespaces params insert-part query-where context-v]
+  [params insert-part query-where context-v]
   [
-   (namespaces-prefixes-map-to-spaqrl ~namespaces)
     "insert { \n"
     ; create insert triples. The same function that used for where part works well.
     (process-query-where-statement insert-part context-v params)
@@ -432,11 +432,12 @@
 (defn build-delete
   [namespaces params data context-v]
   `(u/join-r " "
-     (namespaces-prefixes-map-to-spaqrl ~namespaces)
-     "DELETE DATA { \n"
-     ; create insert triples. The same function that used for where part works well.
-     ~@(process-query-where-statement data context-v params)
-     "\n}"  ))
+             [
+              (namespaces-prefixes-map-to-spaqrl ~namespaces)
+              "DELETE DATA { \n"
+              ; create insert triples. The same function that used for where part works well.
+              ~@(process-query-where-statement data context-v params)
+              "\n}"]))
 
 (defmacro build-precondition
   [namespaces params query-where]

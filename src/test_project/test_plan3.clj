@@ -33,6 +33,8 @@
    :rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#"
    :t "http://travelplanning.ex/"
    :mn "http://travelplanning.ex/MentalNote/"
+   :mnr "http://travelplanning.ex/MentalNote/Request/"
+   :mnri "http://travelplanning.ex/MentalNote/RequestItem/"
    :s "http://schema.org/"
    :treq "http://travelplanning.ex/Request/"
    :tresp "http://travelplanning.ex/Response/"
@@ -165,6 +167,25 @@
          #(println "update-flights-method middle for:" (ctx/var-val % :?airline) " " (ctx/var-val % :?dateFrom) " " (ctx/var-val % :?dateTo))
          #(test-project.task/add-task
             :update-airline-flights (% :?airline) (% :?dateFrom) (% :?dateTo) (% :?oldestOfferDate))])
+
+
+(comment "teisingas"
+         (a/add-facts namespaces-prefixes
+                      #{?req-id ?airline ?dateTo ?oldestOfferDate}
+                      ([?req-id mn:item ?cn]
+                        [?cn mn:status 0])
+                      ([?cn t:ConnectionAirline ?airline
+                        t:ConnectionFromAirport ?departureAirport
+                        t:ConnectionToAirport ?arrivalAirport
+                        t:OperationStartDate ?operationStartDate]
+                        (:minus [?offer t:OfferFlight ?flight t:date ?offerDate]
+                          [?flight s:arrivalAirport ?arrivalAirport
+                           s:departureAirport ?departureAirport
+                           t:FlightAirline ?airline]
+                          (:filter (s/f> ?offerDate ?oldestOfferDate)))
+                        (:filter (:exists
+                                   [?cn t:OperationStartDate ?operationStartDate]
+                                   (:filter (s/f< ?operationStartDate ?dateTo)))))))
 
 (e/def-method
   ; when connection update request (?reqEnd) bigger that the date when we started sync (?oldestOfferDate), means that data was synced.

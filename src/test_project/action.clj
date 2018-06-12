@@ -99,11 +99,14 @@
     `(fn [~context-v]
        (list :action
              :mental-action
-             (u/join-r " "
-                       ~(s/build-insert n p i w context-v))))))
+             (str
+               (s/namespaces-prefixes-map-to-spaqrl ~n)
+               " "
+               (u/join-r " "
+                         ~(s/build-insert p i w context-v)))))))
 
 (defmacro retact-facts
-  "n - namespaces
+"n - namespaces
 p - params
 d - data, triples to delete
 w - where part"
@@ -111,5 +114,5 @@ w - where part"
   (let [context-v (gensym "vars-")]
     `(fn [~context-v]
        (list :action :mental-action
-             ~(s/build-delete n p d context-v)) )))
+             ~(s/build-delete n p d context-v)))))
 
