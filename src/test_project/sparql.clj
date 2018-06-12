@@ -2,7 +2,8 @@
   (:require
     ;[test-project.core :as c]
     [test-project.context :as ctx]
-            [test-project.rdf :as r] :reload))
+    [test-project.util :as u]
+    [test-project.rdf :as r] :reload))
 
 ;here we make an assumption that we will have list of parameters
 ; like '(?campaign ?dateEnd). It can be different structure - like map
@@ -193,7 +194,9 @@
 
 ; end */*/*/*
 
+;(defmulti triple-element-to-sparql-element class)
 
+;(defmethod triple-element-to-sparql-element symbol)
 
 
 (defn process-triple-element-to-sparql-element
@@ -203,13 +206,37 @@
     `(var-out ~context-v ~(keyword element))
     (str element)))
 
+(defn property-list-to-sparql
+  "context-v - name of variable
+  params - list params - to distiguish from inner sparql variables
+  p - predicate (rdf)
+  o - object (rdf)
+  r - rest pairs p o
+  output - vector"
+  [context-v params [p o & r] output]
+  (if r
+    (property-list-to-sparql
+      context-v
+      params
+      r
+      (conj output
+            (process-triple-element-to-sparql-element context-v params p)
+            (process-triple-element-to-sparql-element context-v params o)))
+    output))
+
+(defn object-list-to-sparql
+  [context-v params element]
+  (if (seq? element)
+    ["[" (property-list-to-sparql context-v params element []) "]"]
+    (process-triple-element-to-sparql-element context-v params element)))
+
 (defn process-where-subgrph-pattern2
   "here we go recursively through all items in Triples block"
   ([context-v params [subject & remaining]] (process-where-subgrph-pattern2 context-v params subject remaining []))
   ([context-v params subject remaining output]
     ;(println "process-where-subgrph-pattern2 remaining" remaining)
    (if (empty? remaining)
-     output                                                ;is last we finished
+     output                                                 ;is last we finished
      (let [pred (first remaining) obj (second remaining)]
        (recur
          context-v
@@ -219,12 +246,11 @@
          (conj
            output
            (process-triple-element-to-sparql-element context-v params subject)
-           " "
+           ; " "
            (process-triple-element-to-sparql-element context-v params pred)
-           " "
+           ;" "
            (process-triple-element-to-sparql-element context-v params obj)
-           ".\n"
-           ))))))
+           ".\n"))))))
 
 (defn process-query-where-statement
   "takes where structure and build list for str. params is set"
@@ -237,17 +263,17 @@
          (if (keyword? first-item)
            (case (name first-item)
              "filter" (recur (rest query-where) context-v params (concat output (buildfilter context-map (second item))))
-             "minus" (recur (rest query-where ) context-v params (concat output " MINUS { " (process-query-where-statement
-                                                                                                        (rest item)
-                                                                                                        context-v
-                                                                                                        params) " } \n"))
+             "minus" (recur (rest query-where) context-v params (concat output " MINUS { " (process-query-where-statement
+                                                                                             (rest item)
+                                                                                             context-v
+                                                                                             params) " } \n"))
              output)
            ; else - not keyword
            (recur (rest query-where)
                   context-v
                   params
                   (concat output (process-where-subgrph-pattern2 context-v params item)))))
-         ;else - not list
+       ;else - not list
        output))))
 
 (defn extract-fresh-vars
@@ -370,7 +396,7 @@
   [namespaces params query-where]
   (let [context-v (gensym "vars-")]
     `(fn [~context-v]
-       (str
+       (u/join-r " "
          (namespaces-prefixes-map-to-spaqrl ~namespaces)
          "ASK \n"
          "\n WHERE {\n"
@@ -381,7 +407,7 @@
   [namespaces params query-where]
   (let [context-v (gensym "vars-")]
     `(fn [~context-v]
-       (str
+       (u/join-r " "
          (namespaces-prefixes-map-to-spaqrl ~namespaces)
          "SELECT \n"
          ~(clojure.string/join " " (extract-fresh-vars query-where params))
@@ -394,19 +420,18 @@
 
 (defn build-insert
   [namespaces params insert-part query-where context-v]
-  `(str
-    (namespaces-prefixes-map-to-spaqrl ~namespaces)
+  [
+   (namespaces-prefixes-map-to-spaqrl ~namespaces)
     "insert { \n"
     ; create insert triples. The same function that used for where part works well.
-    ~@(process-query-where-statement insert-part context-v params)
+    (process-query-where-statement insert-part context-v params)
     "\n} WHERE {\n"
-    ~@(process-query-where-statement query-where context-v params)
-    "}\n"
-    ) )
+    (process-query-where-statement query-where context-v params)
+    "}\n" ] )
 
 (defn build-delete
   [namespaces params data context-v]
-  `(str
+  `(u/join-r " "
      (namespaces-prefixes-map-to-spaqrl ~namespaces)
      "DELETE DATA { \n"
      ; create insert triples. The same function that used for where part works well.

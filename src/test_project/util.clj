@@ -25,6 +25,12 @@
   (last params))
 
 
+(defn join-r
+  "recursively joins collection elements"
+  [sep c]
+  (if (coll? c)
+    (clojure.string/join sep (map #(join-r sep %) c))
+    c))
 
 (defn pprintln-and-out
   ([text f data]

@@ -98,8 +98,7 @@
                     ; todo change r/now. Sales should be started
                     (s/f-and (s/f< ?salesStart (r/now))
                              (s/f> ?salesEnd (r/now))
-                             (s/f< ?salesStart ?salesEnd)
-                             )))
+                             (s/f< ?salesStart ?salesEnd))))
   :body
   [#(test-project.task/add-task :check-connections (% :?airline))
    (fn [_] (test-project.task/add-task :task-airport-data))
@@ -399,5 +398,5 @@
    :suspended #{:6 :14}
    })
 
-
+(def v '([?req-id mn:item [mnri:source ?connection mnri:status 0]]))
 

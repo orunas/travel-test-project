@@ -97,8 +97,10 @@
   [n p i w ]
   (let [context-v (gensym "vars-")]
     `(fn [~context-v]
-       (list :action :mental-action
-         ~(s/build-insert n p i w context-v)) )))
+       (list :action
+             :mental-action
+             (u/join-r " "
+                       ~(s/build-insert n p i w context-v))))))
 
 (defmacro retact-facts
   "n - namespaces
