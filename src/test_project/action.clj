@@ -17,9 +17,14 @@
               {"Content-Type" "text/turtle"})))
 
 
-(defn action
+(defn add-action
   [action-key & params]
   (list :action action-key params))
+
+(defmacro action [key & params]
+  (let [context-v (gensym "vars-")]
+    `(fn [~context-v]
+       (add-action ~key ~@(ctx/replace-2var-lookup context-v params)))))
 
 
 (defn exec-generic-action

@@ -2,7 +2,9 @@
   (:require [test-project.match :as u]
             [test-project.util :as util]
             [test-project.receive :as rc]
-            [test-project.sparql :as s]))
+            [test-project.sparql :as s]
+            [test-project.context :as ctx])
+  )
 
 
 (defn find-and-unify-method-instances
@@ -31,4 +33,9 @@
 (defn add-task
   [key & parameters]
   (concat (list 'task key ) parameters))
+
+(defmacro task [key & parameters]
+  (let [context-v (gensym "vars-")]
+    `(fn [~context-v]
+       (add-task ~key ~@(ctx/replace-2var-lookup context-v parameters)))))
 
