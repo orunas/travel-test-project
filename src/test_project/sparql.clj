@@ -64,11 +64,9 @@
 ;ConditionalAndExpression
 (defn f-and
   ([context & items]
-   `(str
-      "("
-      (clojure.string/join " && \n " (list ~@items)            ;(insert-context-to-inner-expression ~context ~items)
-                           )
-      ")")))
+   ["("
+    (into [] (interpose "&&" items))
+      ")"]))
 
 (defmacro m-and
   [context & items]
@@ -420,15 +418,20 @@
     (group-graph-pattern query-where context-v params)
     "}\n" ] )
 
-(defn build-delete
-  [namespaces params data context-v]
-  `(u/join-r " "
-             [
-              (namespaces-prefixes-map-to-spaqrl ~namespaces)
-              "DELETE DATA { \n"
-              ; create insert triples. The same function that used for where part works well.
-              ~@(group-graph-pattern data context-v params)
-              "\n}"]))
+(defn build-update
+  [params {:keys [insert delete where]} context-v]
+  [
+   "DELETE { \n"
+   ; create insert triples. The same function that used for where part works well.
+   (group-graph-pattern delete context-v params)
+   "\n}"
+    "INSERT { \n"
+    (group-graph-pattern insert context-v params)
+    "}\n"
+    "WHERE {\n"
+    (group-graph-pattern where context-v params)
+    "}\n"
+    ])
 
 (defmacro build-precondition
   [namespaces params query-where]

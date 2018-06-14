@@ -27,47 +27,26 @@
        (add-action ~key ~@(ctx/replace-2var-lookup context-v params)))))
 
 
-(defn exec-generic-action
-  [url namespaces-prefixes f]
-  (let [request-id (str "http://travelplanning.ex/Request/" (u/dateTime-to-id (r/now)))
-        req (r/rdf namespaces-prefixes
-                   [(r/iri request-id)
-                    :t:URL (r/iri url)
-                    :t:Method (r/iri "http://get")])]
-    (ws/CallWS
-      "http://localhost:3030/Test2" req
-      {"Content-Type" "text/turtle; charset=utf-8"})
-    (let [result-string (f)
-          result-map {
-                      (keyword "@id")      request-id
-                      (keyword "@context") {:ResponseBody "http://tvavelplanning.ex/Response/Body"}
-                      :ResponseBody        (json/read-str result-string :key-fn keyword)}]
-      (->
-        (json/write-str result-map)
-        (j/read-and-output-model "JSON-LD" "TTL")
-        (#(ws/CallWS "http://localhost:3030/Test2" % {"Content-Type" "text/turtle; charset=utf-8"})))
-      request-id )))
+
 
 (defn exec-action-base [req af]
   (let [rj (-> req jl/context-vars-map-to-json-ld (json/write-str))]
-    ;    (println rj)
-    (-> (ws/CallWS "http://localhost:3030/Test2" rj {"Content-Type" "application/ld+json; charset=utf-8"})
-        ;(println)
-        )
-    (let [query-params-simplified {:query-params (reduce-kv #(assoc %1 %2 (s/var-short-val-out %3)) {} (req :query-params))}
+        (println "exec-action-base:\n" rj)
+        (-> (ws/CallWS "http://localhost:3030/Test2" rj {"Content-Type" "application/ld+json; charset=utf-8"}))
+        (let [query-params-simplified {:query-params (reduce-kv #(assoc %1 %2 (s/var-short-val-out %3)) {} (req :query-params))}
           ]
       ;(println query-params-simplified)
       ; execute main function
       ; ideally we should transform result to clojure map, but currently use just string representation
-      (let [result-string (af)
-            ; result-map (json/read-str result-string :key-fn keyword)
-            ]
-        (-> (ws/CallWS "http://localhost:3030/Test2" result-string {"Content-Type" "application/ld+json; charset=utf-8"})
-            ;(println )
-            )
-        result-string)
-      ;id
-      )))
+        (let [result-string (af)
+              ; result-map (json/read-str result-string :key-fn keyword)
+              ]
+          (-> (ws/CallWS "http://localhost:3030/Test2" result-string {"Content-Type" "application/ld+json; charset=utf-8"})
+              ;(println )
+              )
+          result-string)
+        ;id
+        )))
 
 
 (defn exec-generic-ws-action [req]
@@ -76,23 +55,20 @@
                            {:query-params (reduce-kv #(assoc %1 %2 (s/var-short-val-out %3)) {} (req :query-params))}))))
 
 (defn exec-mental
-  "executed mental action which is <insert from select> type data manipulation
+  "executed mental action which is <detele insert from select> type data manipulation
   r - is sparql update string. Difference with other actions that request doesn't have to be captured"
   [r]
   (println "exec mental" r)
   (ws/CallWS "http://localhost:3030/Test2/update" r {"Content-Type" "application/sparql-update; charset=utf-8"}))
 
 (defn exec-action-fn
+  "executed actions based on some clojure function not ws call"
   [f ar]
   (let [req {:id   (ctx/time-id "http://travelplanning.ex/Request/")
              :fn   (str f)
              :args (assoc ar :id (ctx/time-id "http://travelplanning.ex/Request/Args") ) }]
     (exec-action-base req #(f ar))))
 
-
-(defn exec-get-action
-  [url namespaces-prefixes params-map]
-  (exec-generic-action url namespaces-prefixes #(ws/GetWS url params-map)))
 
 (defmacro add-facts
   "n - namespaces
@@ -104,20 +80,22 @@
     `(fn [~context-v]
        (list :action
              :mental-action
-             (str
-               (s/namespaces-prefixes-map-to-spaqrl ~n)
-               " "
-               (u/join-r " "
-                         ~(s/build-insert p i w context-v)))))))
+             (list (str
+                (s/namespaces-prefixes-map-to-spaqrl ~n)
+                " "
+                (u/join-r " "
+                          ~(s/build-insert p i w context-v))))))))
 
-(defmacro retact-facts
+(defmacro update-facts
 "n - namespaces
 p - params
-d - data, triples to delete
-w - where part"
-  [n p d]
+form - data which contains :insert (insert-form) :delete (delete-form) :where {where-form}"
+  [n p form]
   (let [context-v (gensym "vars-")]
     `(fn [~context-v]
-       (list :action :mental-action
-             ~(s/build-delete n p d context-v)))))
+       (list :action
+             :mental-action
+             (list (u/join-r " "
+                        [(s/namespaces-prefixes-map-to-spaqrl ~n)
+                         ~@(s/build-update p form context-v)]))))))
 

@@ -12,6 +12,11 @@
   {:type :uri :value (str (apply str p) (u/dateTime-to-id (r/now)) ) :prefix-ns ns}
   )
 
+
+(defn uri-n [ns v]
+  {:type :uri :value v :prefix-ns ns}
+  )
+
 ;(def-multi var-val)
 (defn var-val
   ([v]

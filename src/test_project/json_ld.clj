@@ -14,7 +14,7 @@
 (defn val-out
   "return value ready to converting to json-ld"
   [v]
-  (println (and (map? v) (:type v) (:value v)))
+  ;(println (and (map? v) (:type v) (:value v)))
   (if (and (map? v) (:type v) (:value v))
     ; complex type to output
     (case (v :type)
@@ -69,6 +69,7 @@
       ;(assoc m :query-params (reduce-kv #(assoc %1 %2 (s/var-full-val-out %3)) {} (m :query-params))
       (reduce #(assoc %1 %2 (cr-var-out %1 %2 context-vars-map-to-json-ld)) m ks)
       ;root element should have :id key
+      (u/print-and-out)
       (assoc u/idk (s/var-full-val-out (m :id)))
       (dissoc :id)
       (assoc u/contextk (assoc {} u/vocabk (-> m :id :prefix-ns)))

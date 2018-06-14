@@ -247,35 +247,48 @@
 
 
 (defn main
-  ([namspcs-prefxs a-method-lib actions max-limit] (main namspcs-prefxs
-                                                         a-method-lib
-                                                         actions
-                                                         max-limit
-                                                         (atom {:intention-graph {:r0 {:type :root :id :r0}} :normal-step-keys () :active-step-keys ()})))
-  ([namspcs-prefxs a-method-lib actions max-limit agenda-atom]
+  "main function. Executed main BDI processing cycle
+  params:
+  namspcs-prefxs - namespaces prefix map
+  a-method-lib - method library. map
+  actions - actions map
+  iamax - maximum  acting/refinement iteration
+  ismax - maximum suspended iteration, when refinement or acting is skipped (no events or busy)
+  "
+  ([namspcs-prefxs a-method-lib actions a-max s-max] (main namspcs-prefxs
+                                                           a-method-lib
+                                                           actions
+                                                           a-max
+                                                           s-max
+                                                           (atom {:intention-graph {:r0 {:type :root :id :r0}} :normal-step-keys () :active-step-keys ()})))
+  ([namspcs-prefxs a-method-lib actions a-max s-max agenda-atom]
    (if (empty? a-method-lib)
       (println "Empty methods library")
       (let [started (java.time.LocalDateTime/now)
             active-actions-limit 3
-            candidate-select-fn #(first %)]
+            candidate-select-fn #(first %)
+            ; print var
+            pv 100 ]
         (println "started" started)
-        (->> (loop [i 0 ]
-               (if (< i max-limit)
+        (->> (loop [i 0 si 0]
+               (if (and (< i a-max) (< si s-max))
                  (do
                    ;(println "step" i)
                    (let [agnd (events-to-agenda a-method-lib candidate-select-fn agenda-atom)]
                      (cond
                        ;(@agenda-atom :stop) (println "stopped")
-                       (empty? (:normal-step-keys @agenda-atom)) (do ;(println "skipping. no normal steps")
-                                                                     (recur i))
-                       (> (count (:active-step-keys @agenda-atom)) active-actions-limit) (do ;(println "skipping. active limit exceeded")
-                                                                                             (recur i))
+                       (empty? (:normal-step-keys @agenda-atom)) (do (if (= (mod si pv) 0) (println "skipping. no normal steps" si ))
+                                                                     (recur i (inc si)))
+                       (> (count (:active-step-keys @agenda-atom)) active-actions-limit) (do (if (= (mod si pv) 0) (println "skipping. active limit exceeded" si ))
+                                                                                             (recur i (inc si)))
                        :else (let [[_ err] (process-step-node a-method-lib actions candidate-select-fn agenda-atom)]
                                (println "step progressed" i " size intention-graph" (count (@agenda-atom :intention-graph)))
                                (if (nil? err)
-                                 (recur (inc i))
+                                 (recur (inc i) 0)
                                  (println "stopped on error:" err))))))
-                 agenda-atom))
+                 (do
+                   (println "stopped. active iteration index:" i " skipped iteration index:" si)
+                   agenda-atom)))
              (u/pprintln-and-out "Completed. Agenda:" simplify-agenda-for-print))
         (print (format "Ended: %s Completed:%s sec" (java.time.LocalDateTime/now) (u/date-diff-in-seconds started (java.time.LocalDateTime/now))))))))
 

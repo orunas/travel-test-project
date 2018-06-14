@@ -15,7 +15,7 @@
 (defn Post2WS
   [url params-map]
   (let [{:keys [status headers body error] :as resp} @(http/post url params-map)]
-    (if (= status 200)
+    (if (or (= status 200) (= status 204))
       body
       (do
         (println "url" url " status:" status " error:" error " body:" body " params:" params-map)
