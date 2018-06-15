@@ -26,7 +26,7 @@
   (->>
     (find-and-unify-method-instances a-methods a-task)
     (rc/filter-applicable-methods-on-preconditions-for-event a-methods)
-    (util/println-and-last-out "Found for task:" (map s/context-var-to-simple-vector a-task) " After filter instances:")
+    ;(util/println-and-last-out "Found for task:" (map s/context-var-to-simple-vector a-task) " After filter instances:")
     (candidate-select-fn)))
 
 

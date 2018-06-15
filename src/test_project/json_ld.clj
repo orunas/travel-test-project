@@ -19,6 +19,7 @@
     ; complex type to output
     (case (v :type)
        :uri {idk (str (v :prefix-ns) (v :value))}
+       :long {valuek (v :value)}
        :date {valuek (.format (v :value) (java.time.format.DateTimeFormatter/ISO_DATE)),
               typek  "http://www.w3.org/2001/XMLSchema#date"}
        :dateTime {valuek (.format (v :value) (java.time.format.DateTimeFormatter/ISO_INSTANT)),
@@ -69,10 +70,10 @@
       ;(assoc m :query-params (reduce-kv #(assoc %1 %2 (s/var-full-val-out %3)) {} (m :query-params))
       (reduce #(assoc %1 %2 (cr-var-out %1 %2 context-vars-map-to-json-ld)) m ks)
       ;root element should have :id key
-      (u/print-and-out)
       (assoc u/idk (s/var-full-val-out (m :id)))
       (dissoc :id)
       (assoc u/contextk (assoc {} u/vocabk (-> m :id :prefix-ns)))
+      ;(u/print-and-out)
       ; we need extract @context (json-ld)
       ; from variable definition whe can infer @type (json-ld)
       ; we need to get URI for keywords. URI is parents prefix + keywordvalue, but can add to context main

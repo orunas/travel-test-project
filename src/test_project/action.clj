@@ -31,7 +31,7 @@
 
 (defn exec-action-base [req af]
   (let [rj (-> req jl/context-vars-map-to-json-ld (json/write-str))]
-        (println "exec-action-base:\n" rj)
+    ;(println "exec-action-base:\n" rj)
         (-> (ws/CallWS "http://localhost:3030/Test2" rj {"Content-Type" "application/ld+json; charset=utf-8"}))
         (let [query-params-simplified {:query-params (reduce-kv #(assoc %1 %2 (s/var-short-val-out %3)) {} (req :query-params))}
           ]
@@ -41,10 +41,12 @@
         (let [result-string (af)
               ; result-map (json/read-str result-string :key-fn keyword)
               ]
-          (-> (ws/CallWS "http://localhost:3030/Test2" result-string {"Content-Type" "application/ld+json; charset=utf-8"})
-              ;(println )
-              )
-          result-string)
+          (if (not= result-string :error-action)
+            (-> (ws/CallWS "http://localhost:3030/Test2" result-string {"Content-Type" "application/ld+json; charset=utf-8"})
+                ;(println )
+                ))
+          result-string
+          )
         ;id
         )))
 
@@ -98,4 +100,6 @@ form - data which contains :insert (insert-form) :delete (delete-form) :where {w
              (list (u/join-r " "
                         [(s/namespaces-prefixes-map-to-spaqrl ~n)
                          ~@(s/build-update p form context-v)]))))))
+
+
 

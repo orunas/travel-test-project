@@ -220,7 +220,7 @@
    :body [(test-project.action/action :call-action-ws-generic
                                       {
                                        :id           {:type :uri :value (u/dateTime-to-id (r/now)) :prefix-ns "http://travelplanning.ex/Request/"}
-                                       :url          "http://localhost:62386/"
+                                       :url          "http://localhost:62386/api/FlightOffering/"
                                        :method       (jl/http-methods :get)
                                        :query-params {
                                                       :id                 {:type :uri
@@ -232,11 +232,12 @@
                                                       :airline            ?airline
                                                       :rangeStart         ?startDate
                                                       :rangeEnd           ?iterEndDate
-                                                      :requestStartedDate {:type :date:dateTime :value (r/now)}
+                                                      :requestStartedDate {:type :dateTime :value (r/now)}
                                                       :originGtmOff       ?fromOff
-                                                      :destinationGtmOff  ?toOff}})
+                                                      :destinationGtmOff  ?toOff
+                                                      :timeOutms          {:type :long :value 0}}})
           (test-project.task/task
-             :update-data-task ?airline ?fromAirport ?toAirport ?iterEndDate (e/apply-val-f r/add-days ?iterEndDate 7) ?finalEndDate)])
+            :update-cn-flight-data-task ?airline ?fromAirport ?toAirport ?iterEndDate (e/apply-val-f r/add-days ?iterEndDate 7) ?finalEndDate)])
 
 (e/def-method
   update-data-by-7-days-method-last
@@ -250,7 +251,7 @@
   :body [(test-project.action/action :call-action-ws-generic
                                      {
                                       :id           {:type :uri :value (u/dateTime-to-id (r/now)) :prefix-ns "http://travelplanning.ex/Request/"}
-                                      :url          "http://localhost:62386/"
+                                      :url          "http://localhost:62386/api/FlightOffering/"
                                       :method       (jl/http-methods :get)
                                       :query-params {
                                                      :id                 {:type      :uri
@@ -262,9 +263,10 @@
                                                      :airline            ?airline
                                                      :rangeStart         ?startDate
                                                      :rangeEnd           ?finalEndDate ;different
-                                                     :requestStartedDate {:type :date:dateTime :value (r/now)}
+                                                     :requestStartedDate {:type :dateTime :value (r/now)}
                                                      :originGtmOff       ?fromOff
-                                                     :destinationGtmOff  ?toOff}})])
+                                                     :destinationGtmOff  ?toOff
+                                                     :timeOutms          {:type :long :value 0}}})])
 
 ;end :update-cn-flight-data-task
 
@@ -273,7 +275,7 @@
 (e/def-method
   achieve-all-airport-data
   []
-  :task (:update-cn-flight-data-task)
+  :task (:task-airport-data)
   :namespaces namespaces-prefixes :actions actions :methods loc-methods-lib
   :precondition ([?connection t:ConnectionFromAirport ?airport]
                   (:minus [?airport tap:TimezoneUTCOffset ?offset
@@ -436,6 +438,8 @@
             :?oldestOfferDate (ctx/datetime-var (r/now)),
             :?req-id (ctx/time-id (namespaces-prefixes :mnri))})
 
+(def data3 (assoc data1 :id (ctx/uri-n "http://travelplanning.ex/Request/" "124536")))
+
 (comment (print (nth (f1 t3/data1) 2)))
 
 ;params
@@ -453,9 +457,11 @@
    }
   )
 
-(comment
+(comment "pagrindiniai paleidimai"
   (require '[test-project.ea :as e] '[test-project.test-plan3 :as t3] '[test-project.action :as a] '[test-project.sparql :as s] '[test-project.ea-test :as et] '[test-project.rdf :as r]
-           '[test-project.context :as ctx] '[test-project.util :as u] '[test-project.json-ld :as jl])
+           '[test-project.context :as ctx] '[test-project.util :as u] '[test-project.json-ld :as jl] '[test-project.ws :as ws])
+  (def a1 (atom et/agenda-0))
+  (e/main t3/namespaces-prefixes @t3/loc-methods-lib t3/actions 20 2000 a1)
   )
 
 (comment

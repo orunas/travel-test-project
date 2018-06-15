@@ -211,12 +211,13 @@
                (go
                  (let [action-key (second res)
                        params (nth res 2)]
-                   (println "Executing action" res)
+                   (println "Executing action" action-key)
                    ;  (methods)
                    (>! c (apply (action-key actions) params))))
                (go
-                 (println "finished" (<! c))
-                 (swap! agenda-atom remove-step step-keyword)))
+                 (let [r (<! c)]
+                   ;(println "finished" )
+                   (swap! agenda-atom remove-step step-keyword))))
              nil])
       (keyword? res)                                        ;keyword means we got an error
         [nil res]
@@ -253,7 +254,7 @@
   a-method-lib - method library. map
   actions - actions map
   iamax - maximum  acting/refinement iteration
-  ismax - maximum suspended iteration, when refinement or acting is skipped (no events or busy)
+  s-max - maximum idle iteration
   "
   ([namspcs-prefxs a-method-lib actions a-max s-max] (main namspcs-prefxs
                                                            a-method-lib
@@ -268,7 +269,7 @@
             active-actions-limit 3
             candidate-select-fn #(first %)
             ; print var
-            pv 100 ]
+            pv 1000 ]
         (println "started" started)
         (->> (loop [i 0 si 0]
                (if (and (< i a-max) (< si s-max))
@@ -315,7 +316,17 @@
           (map #(get-tree ig (% :id))))])
 
 
-
+(defn test-action-call
+  "a - action function, form
+  m - map of actions
+  c - context  "
+  [a m c]
+  (let [res (eval-form-with-context a c)
+        action-key (second res)
+        params (nth res 2)]
+    (println "Executing action" res)
+    ;  (methods)
+    (apply (action-key m) params)))
 
 
 
