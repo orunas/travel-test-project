@@ -457,11 +457,19 @@
    }
   )
 
-(comment "pagrindiniai paleidimai"
+(comment
+  "pagrindiniai paleidimai"
   (require '[test-project.ea :as e] '[test-project.test-plan3 :as t3] '[test-project.action :as a] '[test-project.sparql :as s] '[test-project.ea-test :as et] '[test-project.rdf :as r]
            '[test-project.context :as ctx] '[test-project.util :as u] '[test-project.json-ld :as jl] '[test-project.ws :as ws])
   (def a1 (atom et/agenda-0))
   (e/main t3/namespaces-prefixes @t3/loc-methods-lib t3/actions 20 2000 a1)
+
+  (print (ws/GetWS "http://localhost:62386/api/FlightOffering/"
+                   {:query-params {:id                 "W6LUZEIN20180615070403", :fromAirport "KUT", :toAirport "WAW", :airline "W6",
+                                   :rangeStart         "2018-07-03T00:00:01.390Z", :rangeEnd "2018-07-08T00:00:01.390Z",
+                                   :requestStartedDate "2018-06-15T00:00:01.390Z"
+                                   :originGtmOff       4, :destinationGtmOff 1,
+                                   :timeOutms          0}}))
   )
 
 (comment
