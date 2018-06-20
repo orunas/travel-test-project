@@ -24,7 +24,7 @@
 (defn CallWS
   ([url body headers]
    (def options {:headers headers :body body})
-    ;(println "sending data:\n" body " to url:\n" url "\n")
+    (println "sending data:\n" body " to url:\n" url "\n")
    (Post2WS url options)))
 
 
