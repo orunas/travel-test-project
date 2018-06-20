@@ -12,29 +12,21 @@
 
 
 
-(defn insert-context-to-inner-expression
-  "recursive check all expressions and add context if need"
-  [context items]
-  (if (coll? items)
-    (let [f (first items)]
-      (if (contains? '#{s/and s/> s/< s/in s/f-and s/f> s/f< s/f-in} f)
-        (concat (list f context) (map #(insert-context-to-inner-expression context %) (rest items)))
-        items))                                             ;
-    items))
 
-(defn insert-context-to-inner-expression-and-apply
+(defn filter-constraint
   "recursive check all expressions and add context if need"
   [context items]
   ; (println items)
   (if (coll? items)
     (let [f (first items)]
       ;  (println f context)
-      (if (contains? '#{s/f-and s/f> s/f< s/f-in} f)
-        (apply
-          (resolve f)
-          context
-          (map #(insert-context-to-inner-expression-and-apply context %) (rest items)))
-        items))                                             ;
+      (cond
+        (contains? '#{s/f-and s/f> s/f< s/f-in} f) (apply
+                                                     (resolve f)
+                                                     context
+                                                     (mapv #(filter-constraint context %) (rest items)))
+        (= f :exists) [ "exists" "{" (apply (resolve `group-graph-pattern) (list (rest items) (context :vars-name) (context :params))) "}" ]
+        :else items))
     items))
 
 ;if simple var (not list) then we need just check where it is among paremeters
@@ -72,11 +64,9 @@
 ;ConditionalAndExpression
 (defn f-and
   ([context & items]
-   `(str
-      "("
-      (clojure.string/join " && \n " (list ~@items)            ;(insert-context-to-inner-expression ~context ~items)
-                           )
-      ")")))
+   ["("
+    (into [] (interpose "&&" items))
+      ")"]))
 
 (defmacro m-and
   [context & items]
@@ -86,12 +76,11 @@
 (defn f<
   [context item1 item2]
   ;(println "f<" item1)
-  `(str
-     "("
-     ~(wrap-with-rdf-output-and-replace-vars context item1)
-     " < "
-     ~(wrap-with-rdf-output-and-replace-vars context item2)
-     ")"))
+  ["("
+   (wrap-with-rdf-output-and-replace-vars context item1)
+   "<"
+   (wrap-with-rdf-output-and-replace-vars context item2)
+   ")"])
 
 ; one of relational expressions. consist of 2 numeric expressions. lets say is consist only of primary expressions
 (defmacro m<
@@ -131,14 +120,14 @@
   [context items]
   ;(print items)
   (if (not (empty? items))
-    `(" FILTER "
-       ~(insert-context-to-inner-expression-and-apply context items))))
+    ["FILTER"
+        (filter-constraint context items)]))
 
 (defmacro buildfilterfn
   [context items]
   ;(print items)
   `(fn [~(context :vars-name)]
-    ~(insert-context-to-inner-expression-and-apply context items)))
+    ~(filter-constraint context items)))
 
 ; end new gen *********************
 
@@ -214,25 +203,26 @@
   r - rest pairs p o
   output - vector"
   [context-v params [p o & r] output]
-  (if r
+  (if p
     (property-list-to-sparql
       context-v
       params
       r
       (conj output
             (process-triple-element-to-sparql-element context-v params p)
-            (process-triple-element-to-sparql-element context-v params o)))
+            (process-triple-element-to-sparql-element context-v params o)
+            (if r ";")))
     output))
 
 (defn object-list-to-sparql
   [context-v params element]
-  (if (seq? element)
+  (if (coll? element)
     ["[" (property-list-to-sparql context-v params element []) "]"]
     (process-triple-element-to-sparql-element context-v params element)))
 
-(defn process-where-subgrph-pattern2
+(defn triples-block
   "here we go recursively through all items in Triples block"
-  ([context-v params [subject & remaining]] (process-where-subgrph-pattern2 context-v params subject remaining []))
+  ([context-v params [subject & remaining]] (triples-block context-v params subject remaining []))
   ([context-v params subject remaining output]
     ;(println "process-where-subgrph-pattern2 remaining" remaining)
    (if (empty? remaining)
@@ -249,21 +239,21 @@
            ; " "
            (process-triple-element-to-sparql-element context-v params pred)
            ;" "
-           (process-triple-element-to-sparql-element context-v params obj)
+           (object-list-to-sparql context-v params obj)
            ".\n"))))))
 
-(defn process-query-where-statement
+(defn group-graph-pattern
   "takes where structure and build list for str. params is set"
-  ([query-where context-v params] (process-query-where-statement query-where context-v params []))
+  ([query-where context-v params] (group-graph-pattern query-where context-v params []))
   ([query-where context-v params output]
    (let [item (first query-where)
          context-map {:params params :vars-name context-v}]
-     (if (or (list? item) (vector? item))
+     (if (coll? item)
        (let [first-item (first item)]
          (if (keyword? first-item)
            (case (name first-item)
-             "filter" (recur (rest query-where) context-v params (concat output (buildfilter context-map (second item))))
-             "minus" (recur (rest query-where) context-v params (concat output " MINUS { " (process-query-where-statement
+             "filter" (recur (rest query-where) context-v params (conj output (buildfilter context-map (second item))))
+             "minus" (recur (rest query-where) context-v params (conj output " MINUS { " (group-graph-pattern
                                                                                              (rest item)
                                                                                              context-v
                                                                                              params) " } \n"))
@@ -272,7 +262,7 @@
            (recur (rest query-where)
                   context-v
                   params
-                  (concat output (process-where-subgrph-pattern2 context-v params item)))))
+                  (conj output (triples-block context-v params item)))))
        ;else - not list
        output))))
 
@@ -397,46 +387,51 @@
   (let [context-v (gensym "vars-")]
     `(fn [~context-v]
        (u/join-r " "
-         (namespaces-prefixes-map-to-spaqrl ~namespaces)
-         "ASK \n"
-         "\n WHERE {\n"
-         ~@(process-query-where-statement query-where context-v params)
-         "}\n " ))))
+                 [(namespaces-prefixes-map-to-spaqrl ~namespaces)
+                  "ASK \n"
+                  "\n WHERE {\n"
+                  ~@(group-graph-pattern query-where context-v params)
+                  "}\n "]))))
 
 (defn build-pre-query
   [namespaces params query-where]
   (let [context-v (gensym "vars-")]
     `(fn [~context-v]
        (u/join-r " "
-         (namespaces-prefixes-map-to-spaqrl ~namespaces)
-         "SELECT \n"
-         ~(clojure.string/join " " (extract-fresh-vars query-where params))
-         "\n WHERE {\n"
-         ~@(process-query-where-statement query-where context-v params)
-         "}\n"
-         ~@(buid-order-by-part query-where)
-         "LIMIT 1"))) )
+                 [(namespaces-prefixes-map-to-spaqrl ~namespaces)
+                  "SELECT \n"
+                  ~(clojure.string/join " " (extract-fresh-vars query-where params))
+                  "\n WHERE {\n"
+                  ~@(group-graph-pattern query-where context-v params)
+                  "}\n"
+                  ~@(buid-order-by-part query-where)
+                  "LIMIT 1"]))) )
 
 
 (defn build-insert
-  [namespaces params insert-part query-where context-v]
+  [params insert-part query-where context-v]
   [
-   (namespaces-prefixes-map-to-spaqrl ~namespaces)
     "insert { \n"
     ; create insert triples. The same function that used for where part works well.
-    (process-query-where-statement insert-part context-v params)
+    (group-graph-pattern insert-part context-v params)
     "\n} WHERE {\n"
-    (process-query-where-statement query-where context-v params)
+    (group-graph-pattern query-where context-v params)
     "}\n" ] )
 
-(defn build-delete
-  [namespaces params data context-v]
-  `(u/join-r " "
-     (namespaces-prefixes-map-to-spaqrl ~namespaces)
-     "DELETE DATA { \n"
-     ; create insert triples. The same function that used for where part works well.
-     ~@(process-query-where-statement data context-v params)
-     "\n}"  ))
+(defn build-update
+  [params {:keys [insert delete where]} context-v]
+  [
+   "DELETE { \n"
+   ; create insert triples. The same function that used for where part works well.
+   (group-graph-pattern delete context-v params)
+   "\n}"
+    "INSERT { \n"
+    (group-graph-pattern insert context-v params)
+    "}\n"
+    "WHERE {\n"
+    (group-graph-pattern where context-v params)
+    "}\n"
+    ])
 
 (defmacro build-precondition
   [namespaces params query-where]

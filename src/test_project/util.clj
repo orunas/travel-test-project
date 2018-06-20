@@ -58,6 +58,5 @@
 
 (defn dateTime-to-id
   [v]
-  (.format v (java.time.format.DateTimeFormatter/ofPattern "yyyyMMddHHmmss"))
-  )
+  (.format v (java.time.format.DateTimeFormatter/ofPattern "yyyyMMddHHmmss")))
 

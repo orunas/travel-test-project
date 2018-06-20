@@ -4,12 +4,17 @@
     <bookmark url="file://$PROJECT_DIR$/src/test_project/context.clj" line="12" mnemonic="8" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6ee8fef7-a94b-4b92-96ee-e58ce53bb662" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="6ee8fef7-a94b-4b92-96ee-e58ce53bb662" name="Default" comment="Merge branch 'master' of https://github.com/orunas/travel-test-project&#10;&#10;# Conflicts:&#10;#&#9;src/test_project/action.clj">
       <change beforePath="$PROJECT_DIR$/src/test_project/action.clj" beforeDir="false" afterPath="$PROJECT_DIR$/src/test_project/action.clj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test_project/context.clj" beforeDir="false" afterPath="$PROJECT_DIR$/src/test_project/context.clj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test_project/ea.clj" beforeDir="false" afterPath="$PROJECT_DIR$/src/test_project/ea.clj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test_project/json_ld.clj" beforeDir="false" afterPath="$PROJECT_DIR$/src/test_project/json_ld.clj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test_project/sparql.clj" beforeDir="false" afterPath="$PROJECT_DIR$/src/test_project/sparql.clj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test_project/task.clj" beforeDir="false" afterPath="$PROJECT_DIR$/src/test_project/task.clj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test_project/test_plan3.clj" beforeDir="false" afterPath="$PROJECT_DIR$/src/test_project/test_plan3.clj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test_project/util.clj" beforeDir="false" afterPath="$PROJECT_DIR$/src/test_project/util.clj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test_project/ws.clj" beforeDir="false" afterPath="$PROJECT_DIR$/src/test_project/ws.clj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/test_project/ea_test.clj" beforeDir="false" afterPath="$PROJECT_DIR$/test/test_project/ea_test.clj" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -23,7 +28,7 @@
       <file leaf-file-name="ea.clj" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/test_project/ea.clj">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="236">
+            <state relative-caret-position="2193">
               <caret line="129" selection-start-line="129" selection-end-line="129" />
             </state>
           </provider>
@@ -41,7 +46,7 @@
       <file leaf-file-name="test_plan3.clj" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/test_project/test_plan3.clj">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
+            <state relative-caret-position="2516">
               <caret line="148" column="23" selection-start-line="148" selection-start-column="23" selection-end-line="148" selection-end-column="23" />
             </state>
           </provider>
@@ -59,8 +64,8 @@
       <file leaf-file-name="sparql.clj" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/test_project/sparql.clj">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="300">
-              <caret line="429" column="13" lean-forward="true" selection-start-line="429" selection-start-column="13" selection-end-line="429" selection-end-column="13" />
+            <state relative-caret-position="7293">
+              <caret line="429" column="9" selection-start-line="429" selection-start-column="9" selection-end-line="429" selection-end-column="9" />
             </state>
           </provider>
         </entry>
@@ -68,8 +73,8 @@
       <file leaf-file-name="sparql_test.clj" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test/test_project/sparql_test.clj">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-16">
-              <caret line="174" lean-forward="true" selection-start-line="174" selection-end-line="174" />
+            <state relative-caret-position="2958">
+              <caret line="174" selection-start-line="174" selection-end-line="174" />
             </state>
           </provider>
         </entry>
@@ -86,8 +91,8 @@
       <file leaf-file-name="action.clj" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/test_project/action.clj">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="315">
-              <caret line="102" column="63" selection-start-line="102" selection-start-column="63" selection-end-line="102" selection-end-column="63" />
+            <state relative-caret-position="312">
+              <caret line="42" column="12" lean-forward="true" selection-start-line="42" selection-start-column="12" selection-end-line="42" selection-end-column="12" />
             </state>
           </provider>
         </entry>
@@ -177,44 +182,7 @@
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
-    <panes>
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="travel-test-project" type="b2602c69:ProjectViewProjectNode" />
-              <item name="travel-test-project" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="travel-test-project" type="b2602c69:ProjectViewProjectNode" />
-              <item name="travel-test-project" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="travel-test-project" type="b2602c69:ProjectViewProjectNode" />
-              <item name="travel-test-project" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="test_project" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="travel-test-project" type="b2602c69:ProjectViewProjectNode" />
-              <item name="travel-test-project" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="travel-test-project" type="b2602c69:ProjectViewProjectNode" />
-              <item name="travel-test-project" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-              <item name="test_project" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
-      <pane id="AndroidView" />
-    </panes>
+    <panes />
   </component>
   <component name="PropertiesComponent">
     <property name="cursive.last.file.extension.C\:/git/travel-test-project/src" value="clj" />
@@ -382,7 +350,6 @@
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="3" />
       <window_info content_ui="combo" id="Project" order="0" weight="0.1375" />
-      <window_info anchor="bottom" id="Find" order="1" visible="true" weight="0.12992126" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info id="UI Designer" order="4" />
@@ -395,20 +362,21 @@
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Find" order="1" visible="true" weight="0.12992126" />
     </layout>
     <layout-to-restore>
       <window_info anchor="right" id="Palette" order="9" />
-      <window_info active="true" anchor="right" x="1040" y="394" width="190" height="79" id="REPL" order="7" side_tool="true" visible="true" weight="0.34875" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="Capture Analysis" order="3" />
-      <window_info anchor="bottom" id="Version Control" order="9" weight="0.328084" />
+      <window_info anchor="bottom" id="Run" order="2" />
       <window_info anchor="right" id="Theme Preview" order="4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.11125" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info active="true" anchor="right" x="1040" y="394" width="190" height="79" id="REPL" order="7" side_tool="true" visible="true" weight="0.34875" />
       <window_info id="Image Layers" order="6" />
       <window_info id="Designer" order="3" />
       <window_info anchor="right" id="Leiningen" order="8" />
@@ -419,7 +387,7 @@
       <window_info anchor="bottom" id="Terminal" order="7" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" weight="0.32939634" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Version Control" order="9" weight="0.328084" />
       <window_info id="Capture Tool" order="2" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Messages" order="8" />
@@ -475,7 +443,8 @@
     <MESSAGE value="5dienis. beveik uzbaigtas json-ld naudojimas. taciau liko klaidu leidziant test3 scenariju (dar nepraeina)" />
     <MESSAGE value="1dienis. Tieto. Tvarkom airport info pildyma. bet nebaigem" />
     <MESSAGE value="3dienis tieto. facts add, retract metodai, nebaigti" />
-    <option name="LAST_COMMIT_MESSAGE" value="3dienis tieto. facts add, retract metodai, nebaigti" />
+    <MESSAGE value="Merge branch 'master' of https://github.com/orunas/travel-test-project&#10;&#10;# Conflicts:&#10;#&#9;src/test_project/action.clj" />
+    <option name="LAST_COMMIT_MESSAGE" value="Merge branch 'master' of https://github.com/orunas/travel-test-project&#10;&#10;# Conflicts:&#10;#&#9;src/test_project/action.clj" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -807,36 +776,36 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test_project/ea.clj">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="236">
+        <state relative-caret-position="2193">
           <caret line="129" selection-start-line="129" selection-end-line="129" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/test/test_project/sparql_test.clj">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-16">
-          <caret line="174" lean-forward="true" selection-start-line="174" selection-end-line="174" />
+        <state relative-caret-position="2958">
+          <caret line="174" selection-start-line="174" selection-end-line="174" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test_project/sparql.clj">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="429" column="13" lean-forward="true" selection-start-line="429" selection-start-column="13" selection-end-line="429" selection-end-column="13" />
+        <state relative-caret-position="7293">
+          <caret line="429" column="9" selection-start-line="429" selection-start-column="9" selection-end-line="429" selection-end-column="9" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test_project/test_plan3.clj">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
+        <state relative-caret-position="2516">
           <caret line="148" column="23" selection-start-line="148" selection-start-column="23" selection-end-line="148" selection-end-column="23" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test_project/action.clj">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="102" column="63" selection-start-line="102" selection-start-column="63" selection-end-line="102" selection-end-column="63" />
+        <state relative-caret-position="312">
+          <caret line="42" column="12" lean-forward="true" selection-start-line="42" selection-start-column="12" selection-end-line="42" selection-end-column="12" />
         </state>
       </provider>
     </entry>

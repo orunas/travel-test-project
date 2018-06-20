@@ -14,11 +14,12 @@
 (defn val-out
   "return value ready to converting to json-ld"
   [v]
-  (println (and (map? v) (:type v) (:value v)))
+  ;(println (and (map? v) (:type v) (:value v)))
   (if (and (map? v) (:type v) (:value v))
     ; complex type to output
     (case (v :type)
        :uri {idk (str (v :prefix-ns) (v :value))}
+       :long {valuek (v :value)}
        :date {valuek (.format (v :value) (java.time.format.DateTimeFormatter/ISO_DATE)),
               typek  "http://www.w3.org/2001/XMLSchema#date"}
        :dateTime {valuek (.format (v :value) (java.time.format.DateTimeFormatter/ISO_INSTANT)),
@@ -72,6 +73,7 @@
       (assoc u/idk (s/var-full-val-out (m :id)))
       (dissoc :id)
       (assoc u/contextk (assoc {} u/vocabk (-> m :id :prefix-ns)))
+      ;(u/print-and-out)
       ; we need extract @context (json-ld)
       ; from variable definition whe can infer @type (json-ld)
       ; we need to get URI for keywords. URI is parents prefix + keywordvalue, but can add to context main

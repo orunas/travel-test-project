@@ -110,9 +110,9 @@
          :body
          [true
           (list (fn [vars]
-                  (test-project.action/action :call-action-generic
-                    "http://localhost:8080/flightService/webapi/W6"
-                    (r/rdf namespaces-prefixes
+                  (test-project.action/add-action :call-action-generic
+                                                  "http://localhost:8080/flightService/webapi/W6"
+                                                  (r/rdf namespaces-prefixes
                            [(r/gen-id "http://travelplanning.ex/" "ConnectionUpdate" (ctx/var-val vars :?airline) (ctx/var-val vars :?fromAirport) (ctx/var-val vars :?toAirport) (u/dateTime-to-id (r/now)))
                             :t:ConnectionUpdateConnection (str "t:Connection/" (ctx/var-val vars :?connection))
                             ;  :t:RangeStart (s/var-out (s/datetime-type-to-date vars :?beginDate))
@@ -139,8 +139,8 @@
   :task (:task2)
   :namespaces namespaces-prefixes :actions actions :methods loc-methods-lib
   :precondition nil
-  :body [(fn [_] (test-project.action/action :some-action))
-         (fn [_] (test-project.action/action :some-action2)) ])
+  :body [(fn [_] (test-project.action/add-action :some-action))
+         (fn [_] (test-project.action/add-action :some-action2)) ])
 
 (e/def-method
   test-method-1
