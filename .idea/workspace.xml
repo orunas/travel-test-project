@@ -4,12 +4,7 @@
     <bookmark url="file://$PROJECT_DIR$/src/test_project/context.clj" line="12" mnemonic="8" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6ee8fef7-a94b-4b92-96ee-e58ce53bb662" name="Default" comment="Merge branch 'master' of https://github.com/orunas/travel-test-project&#10;&#10;# Conflicts:&#10;#&#9;src/test_project/action.clj">
-      <change afterPath="$PROJECT_DIR$/src/test_project/test_plan_ev1.clj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project.clj" beforeDir="false" afterPath="$PROJECT_DIR$/project.clj" afterDir="false" />
-    </list>
+    <list default="true" id="6ee8fef7-a94b-4b92-96ee-e58ce53bb662" name="Default" comment="Merge branch 'master' of https://github.com/orunas/travel-test-project&#10;&#10;# Conflicts:&#10;#&#9;src/test_project/action.clj" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -194,7 +189,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1602102494544" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1602102606295" />
     <property name="cursive.last.file.extension.C\:/git/travel-test-project/src" value="clj" />
     <property name="cursive.last.file.extension.C\:/git/travel-test-project/test" value="clj" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
@@ -345,7 +340,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.12260128" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
