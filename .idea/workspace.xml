@@ -5,19 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6ee8fef7-a94b-4b92-96ee-e58ce53bb662" name="Default" comment="Merge branch 'master' of https://github.com/orunas/travel-test-project&#10;&#10;# Conflicts:&#10;#&#9;src/test_project/action.clj">
-      <change beforePath="$PROJECT_DIR$/src/test_project/action.clj" beforeDir="false" afterPath="$PROJECT_DIR$/src/test_project/action.clj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test_project/context.clj" beforeDir="false" afterPath="$PROJECT_DIR$/src/test_project/context.clj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test_project/ea.clj" beforeDir="false" afterPath="$PROJECT_DIR$/src/test_project/ea.clj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test_project/json_ld.clj" beforeDir="false" afterPath="$PROJECT_DIR$/src/test_project/json_ld.clj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test_project/sparql.clj" beforeDir="false" afterPath="$PROJECT_DIR$/src/test_project/sparql.clj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test_project/task.clj" beforeDir="false" afterPath="$PROJECT_DIR$/src/test_project/task.clj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test_project/test_plan3.clj" beforeDir="false" afterPath="$PROJECT_DIR$/src/test_project/test_plan3.clj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test_project/util.clj" beforeDir="false" afterPath="$PROJECT_DIR$/src/test_project/util.clj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test_project/ws.clj" beforeDir="false" afterPath="$PROJECT_DIR$/src/test_project/ws.clj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/test_project/ea_test.clj" beforeDir="false" afterPath="$PROJECT_DIR$/test/test_project/ea_test.clj" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test_project/test_plan_ev1.clj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project.clj" beforeDir="false" afterPath="$PROJECT_DIR$/project.clj" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
-    <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -25,92 +18,76 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="ea.clj" pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/test_project/ea.clj">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2193">
-              <caret line="129" selection-start-line="129" selection-end-line="129" />
+            <state relative-caret-position="-731">
+              <caret line="50" column="17" selection-start-line="50" selection-start-column="5" selection-end-line="50" selection-end-column="17" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="util.clj" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/test_project/util.clj">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/test_project/test_plan_ev1.clj">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="527">
-              <caret line="31" column="46" selection-start-line="31" selection-start-column="46" selection-end-line="31" selection-end-column="46" />
+            <state relative-caret-position="561">
+              <caret line="33" column="47" selection-start-line="33" selection-start-column="32" selection-end-line="33" selection-end-column="47" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="test_plan3.clj" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/test_project/test_plan3.clj">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2516">
-              <caret line="148" column="23" selection-start-line="148" selection-start-column="23" selection-end-line="148" selection-end-column="23" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="json_ld.clj" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/test_project/json_ld.clj">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="13" selection-start-line="13" selection-end-line="13" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="sparql.clj" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/test_project/sparql.clj">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="7293">
-              <caret line="429" column="9" selection-start-line="429" selection-start-column="9" selection-end-line="429" selection-end-column="9" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="sparql_test.clj" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test/test_project/sparql_test.clj">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2958">
-              <caret line="174" selection-start-line="174" selection-end-line="174" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="rdf.clj" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/test_project/rdf.clj">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="901">
-              <caret line="53" column="6" selection-start-line="53" selection-start-column="6" selection-end-line="53" selection-end-column="6" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="action.clj" pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/test_project/action.clj">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="312">
-              <caret line="42" column="12" lean-forward="true" selection-start-line="42" selection-start-column="12" selection-end-line="42" selection-end-column="12" />
+            <state relative-caret-position="251">
+              <caret line="70" column="6" selection-start-line="70" selection-start-column="6" selection-end-line="70" selection-end-column="6" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="context.clj" pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/test_project/match.clj">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/test_project/receive.clj">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="2176">
+              <caret line="128" column="30" selection-start-line="128" selection-start-column="30" selection-end-line="128" selection-end-column="30" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/test_project/test.clj">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/test_project/test_plan3.clj">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="115">
+              <caret line="38" selection-start-line="38" selection-end-line="39" selection-end-column="46" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/test_project/cond_test.clj">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/test_project/res.clj">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/test_project/context.clj">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="425">
               <caret line="25" selection-start-line="25" selection-end-line="25" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ea_test.clj" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test/test_project/ea_test.clj">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2992">
-              <caret line="176" column="57" selection-start-line="176" selection-start-column="56" selection-end-line="176" selection-end-column="57" />
             </state>
           </provider>
         </entry>
@@ -142,6 +119,10 @@
       <find>java.lang.String</find>
       <find>achieve-all-airport-data</find>
       <find>add-f</find>
+      <find>wizzair</find>
+      <find>java.time.LocalDateTime</find>
+      <find>http/pos</find>
+      <find>test-project.action</find>
     </findStrings>
     <replaceStrings>
       <replace>ctx/var-val</replace>
@@ -169,28 +150,57 @@
         <option value="$PROJECT_DIR$/src/test_project/test_plan3.clj" />
         <option value="$PROJECT_DIR$/src/test_project/sparql.clj" />
         <option value="$PROJECT_DIR$/src/test_project/action.clj" />
+        <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/project.clj" />
+        <option value="$PROJECT_DIR$/src/test_project/test_plan_ev1.clj" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-8" />
     <option name="y" value="-8" />
-    <option name="width" value="1696" />
-    <option name="height" value="1026" />
+    <option name="width" value="1936" />
+    <option name="height" value="1056" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
-    <panes />
+    <panes>
+      <pane id="Scope" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="travel-test-project" type="b2602c69:ProjectViewProjectNode" />
+              <item name="travel-test-project" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="travel-test-project" type="b2602c69:ProjectViewProjectNode" />
+              <item name="travel-test-project" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="travel-test-project" type="b2602c69:ProjectViewProjectNode" />
+              <item name="travel-test-project" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test_project" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="PackagesPane" />
+    </panes>
   </component>
   <component name="PropertiesComponent">
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1602102494544" />
     <property name="cursive.last.file.extension.C\:/git/travel-test-project/src" value="clj" />
     <property name="cursive.last.file.extension.C\:/git/travel-test-project/test" value="clj" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../clojure/kb-service" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="preferences.keymap" />
   </component>
-  <component name="ReplState" timestamp="1528813539207">{:repl-history {:ide [], :local [{:command &quot;(r/gen-id \&quot;http://travelplanning.ex/\&quot; \&quot;ConnectionUpdate\&quot; \&quot;W6\&quot; \&quot;STN\&quot; \&quot;S\&quot; (u/dateTime-to-id (r/now)))&quot;, :offset 99, :ns &quot;user&quot;} {:command &quot;(require '[test-project.ea :as e] '[test-project.ea-test :as et])&quot;, :offset 65, :ns &quot;user&quot;} {:command &quot;(empty? {})&quot;, :offset 11, :ns &quot;user&quot;} {:command &quot;(reduce-kv #(assoc %1 %2 (s/var-short-val-out %3)) {} {})&quot;, :offset 57, :ns &quot;user&quot;} {:command &quot;(def a1 (atom {:intention-graph {:r0 {:type :root :id :r0}} :normal-step-keys () :active-step-keys ()}))&quot;, :offset 104, :ns &quot;user&quot;} {:command &quot;(assoc @a1 :normal-step-keys (list :s15251))&quot;, :offset 44, :ns &quot;user&quot;} {:command &quot;(rest ())&quot;, :offset 9, :ns &quot;user&quot;} {:command &quot;conj&quot;, :offset 4} {:command &quot;(e/reset-active @a1)&quot;, :offset 20, :ns &quot;user&quot;} {:command &quot;(type \&quot;ss\&quot;)&quot;, :offset 11, :ns &quot;user&quot;} {:command &quot;(= java.lang.String (type \&quot;ss\&quot;))&quot;, :offset 32, :ns &quot;user&quot;} {:command &quot;java.time.LocalDateTime&quot;, :offset 23, :ns &quot;user&quot;} {:command &quot;(java.time.LocalDateTime)&quot;, :offset 25, :ns &quot;user&quot;} {:command &quot;(jl/val-out (r/now))&quot;, :offset 20, :ns &quot;user&quot;} {:command &quot;(jl/val-out \&quot;ss\&quot;)&quot;, :offset 17, :ns &quot;user&quot;} {:command &quot;a1&quot;, :offset 2, :ns &quot;user&quot;} {:command &quot;(keys {})&quot;, :offset 9, :ns &quot;user&quot;} {:command &quot;(jl/context-vars-map-to-json-ld {:id {:type :uri :value (u/dateTime-to-id (r/now)) :prefix-ns \&quot;http://travelplanning.ex/Request/\&quot;} ,\n                                 :url \&quot;http://localhost:8080/flightService/webapi/W6/Connections/\&quot; ,\n                                 :method       (jl/http-methods :get)\n                                 :query-params {}\n                                 })&quot;, :offset 389, :ns &quot;user&quot;} {:command &quot;(e/main t3/namespaces-prefixes @t3/loc-methods-lib t3/actions 1 a1)&quot;, :offset 67, :ns &quot;user&quot;} {:command &quot;(require '[test-project.test-plan3 :as t3] '[test-project.ea :as e])&quot;, :offset 68, :ns &quot;user&quot;} {:command &quot;(require '[test-project.ea-test :as et])&quot;, :offset 40, :ns &quot;user&quot;} {:command &quot;@a1\\&quot;, :offset 4, :ns &quot;user&quot;} {:command &quot;(swap! @a1 e/reset-active)&quot;, :offset 26, :ns &quot;user&quot;} {:command &quot;@t3/loc-methods-lib&quot;, :offset 19, :ns &quot;user&quot;} {:command &quot;(swap! a1 e/reset-active)&quot;, :offset 25, :ns &quot;user&quot;} {:command &quot;(def a1 et/agenda-0)&quot;, :offset 20, :ns &quot;user&quot;} {:command &quot;(def a1 (atom et/agenda-0))&quot;, :offset 27, :ns &quot;user&quot;} {:command &quot;(e/main t3/namespaces-prefixes @t3/loc-methods-lib t3/actions 2 a1) &quot;, :offset 67, :ns &quot;user&quot;} {:command &quot;@a1 &quot;, :offset 3, :ns &quot;user&quot;} {:command &quot;(ws/GetWS \&quot;http://api.geonames.org/timezoneJSON\&quot; {:query-params {:username orunas, :lat 41.4147, :lng 19.7206}})&quot;, :offset 112, :ns &quot;user&quot;} {:command &quot;(ws/GetWS \&quot;http://api.geonames.org/timezoneJSON\&quot; {:query-params {:username \&quot;orunas\&quot;, :lat 41.4147, :lng 19.7206}})&quot;, :offset 114, :ns &quot;user&quot;} {:command &quot;(jl/context-vars-map-to-json-ld  (t3/airport-data-json-ld {:type :uri :value \&quot;VNO\&quot; :prefix-ns \&quot;http://travelplanning.ex/Airport/\&quot;}))&quot;, :offset 132, :ns &quot;user&quot;} {:command &quot;(t3/airport-data-json-ld {:type :uri :value \&quot;VNO\&quot; :prefix-ns \&quot;http://travelplanning.ex/Airport/\&quot;})&quot;, :offset 98, :ns &quot;user&quot;} {:command &quot;(type (tr1 :LocationLatitude\n           ))&quot;, :offset 42, :ns &quot;user&quot;} {:command &quot;(type (tr1 :TimezoneUTCOffset      ))&quot;, :offset 37, :ns &quot;user&quot;} {:command &quot;(def tr1 (t3/airport-data-json-ld {:type :uri :value \&quot;VNO\&quot; :prefix-ns \&quot;http://travelplanning.ex/Airport/\&quot;}))&quot;, :offset 108, :ns &quot;user&quot;} {:command &quot;tr1&quot;, :offset 3, :ns &quot;user&quot;} {:command &quot;(jl/context-vars-map-to-json-ld tr1)&quot;, :offset 36, :ns &quot;user&quot;} {:command &quot;@a1&quot;, :offset 3, :ns &quot;user&quot;} {:command &quot;(e/main t3/namespaces-prefixes @t3/loc-methods-lib t3/actions 1 a1) &quot;, :offset 67, :ns &quot;user&quot;} {:command &quot;(e/main t3/namespaces-prefixes @t3/loc-methods-lib t3/actions 10 a1) &quot;, :offset 68, :ns &quot;user&quot;} {:command &quot;(e/main t3/namespaces-prefixes @t3/loc-methods-lib t3/actions 100 a1) &quot;, :offset 69, :ns &quot;user&quot;} {:command &quot;(require '[test-project.ea :as e] '[test-project.test-plan3 :as t3] '[test-project.ea-test :as et])&quot;, :offset 99, :ns &quot;user&quot;} {:command &quot;(require '[test-project.ea :as e] '[test-project.test-plan3 :as t3] '[test-project.ea-test :as et] '[test-project.sparql :as s])&quot;, :offset 128, :ns &quot;user&quot;} {:command &quot;(s/build-i t3/namespaces-prefixes {} (  [request-id ConnectionToUpdate connection-update-id]\n                                       [connection-update-id Connection ?connection Status 0])\n           ([?connection t:ConnectionAirline ?airline\n             t:ConnectionFromAirport ?departureAirport\n             t:ConnectionToAirport ?arrivalAirport\n             ;t:ConnectionFlightDate ?flightDate ; &gt;1 therefore will get specific date\n             t:OperationStartDate ?operationStartDate]\n             (:minus [?offer t:OfferFlight ?flight t:date ?offerDate]\n               [?flight s:arrivalAirport ?arrivalAirport\n                s:departureAirport ?departureAirport\n                t:FlightAirline ?airline]\n               (:filter (s/f&gt; ?offerDate ?oldestOfferDate)))\n             (:filter (s/f&lt; ?operationStartDate ?dateTo)))\n           )&quot;, :offset 844, :ns &quot;user&quot;} {:command &quot;(s/build-i t3/namespaces-prefixes {} (  [request-id ConnectionToUpdate connection-update-id]\n                                       [connection-update-id Connection ?connection Status 0])\n           ([?connection t:ConnectionAirline ?airline\n             t:ConnectionFromAirport ?departureAirport\n             t:ConnectionToAirport ?arrivalAirport\n             ;t:ConnectionFlightDate ?flightDate ; &gt;1 therefore will get specific date\n             t:OperationStartDate ?operationStartDate]\n             (:minus [?offer t:OfferFlight ?flight t:date ?offerDate]\n               [?flight s:arrivalAirport ?arrivalAirport\n                s:departureAirport ?departureAirport\n                t:FlightAirline ?airline]\n               (:filter (s/f&gt; ?offerDate ?oldestOfferDate)))\n             (:filter (s/f&lt; ?operationStartDate ?dateTo)))\n           \n           )&quot;, :offset 856, :ns &quot;user&quot;} {:command &quot;(s/build-i t3/namespaces-prefixes {} (  [request-id ConnectionToUpdate connection-update-id]\n                                       [connection-update-id Connection ?connection Status 0])\n           ([?connection t:ConnectionAirline ?airline\n             t:ConnectionFromAirport ?departureAirport\n             t:ConnectionToAirport ?arrivalAirport\n             ;t:ConnectionFlightDate ?flightDate ; &gt;1 therefore will get specific date\n             t:OperationStartDate ?operationStartDate]\n             (:minus [?offer t:OfferFlight ?flight t:date ?offerDate]\n               [?flight s:arrivalAirport ?arrivalAirport\n                s:departureAirport ?departureAirport\n                t:FlightAirline ?airline]\n               (:filter (s/f&gt; ?offerDate ?oldestOfferDate)))\n             (:filter (s/f&lt; ?operationStartDate ?dateTo))))&quot;, :offset 832, :ns &quot;user&quot;} {:command &quot;(def vw (s/build-i t3/namespaces-prefixes {} ([request-id ConnectionToUpdate connection-update-id]\n                                        [connection-update-id Connection ?connection Status 0])\n            ([?connection t:ConnectionAirline ?airline\n              t:ConnectionFromAirport ?departureAirport\n              t:ConnectionToAirport ?arrivalAirport\n              ;t:ConnectionFlightDate ?flightDate ; &gt;1 therefore will get specific date\n              t:OperationStartDate ?operationStartDate]\n              (:minus [?offer t:OfferFlight ?flight t:date ?offerDate]\n                [?flight s:arrivalAirport ?arrivalAirport\n                 s:departureAirport ?departureAirport\n                 t:FlightAirline ?airline]\n                (:filter (s/f&gt; ?offerDate ?oldestOfferDate)))\n              (:filter (s/f&lt; ?operationStartDate ?dateTo)))))&quot;, :offset 851, :ns &quot;user&quot;} {:command &quot;(vw {})&quot;, :offset 7, :ns &quot;user&quot;} {:command &quot;(def vw (s/build-i t3/namespaces-prefixes #{?airline} ([request-id ConnectionToUpdate connection-update-id]\n                                        [connection-update-id Connection ?connection Status 0])\n            ([?connection t:ConnectionAirline ?airline\n              t:ConnectionFromAirport ?departureAirport\n              t:ConnectionToAirport ?arrivalAirport\n              ;t:ConnectionFlightDate ?flightDate ; &gt;1 therefore will get specific date\n              t:OperationStartDate ?operationStartDate]\n              (:minus [?offer t:OfferFlight ?flight t:date ?offerDate]\n                [?flight s:arrivalAirport ?arrivalAirport\n                 s:departureAirport ?departureAirport\n                 t:FlightAirline ?airline]\n                (:filter (s/f&gt; ?offerDate ?oldestOfferDate)))\n              (:filter (s/f&lt; ?operationStartDate ?dateTo)))))&quot;, :offset 860, :ns &quot;user&quot;} {:command &quot;(vw {:?campaign {:type :uri :prefix-ns \&quot;http://travelplanning.ex/Campaign/\&quot; :value \&quot;1234\&quot;}})&quot;, :offset 92, :ns &quot;user&quot;} {:command &quot;(vw {:?airline {:type :uri :prefix-ns \&quot;http://travelplanning.ex/Airline/\&quot; :value \&quot;W6\&quot;}})&quot;, :offset 88, :ns &quot;user&quot;} {:command &quot;(a/add-facts namespaces-prefixes\n             #{?req-id ?cn-req-id ?airline ?dateTo ?oldestOfferDate ?connection}\n             ([?req-id mn:RequestItem ?item-id]\n               [?item-id mn:Connection ?connection mn:Status 0])\n\n             ([?connection t:ConnectionAirline ?airline\n               t:ConnectionFromAirport ?departureAirport\n               t:ConnectionToAirport ?arrivalAirport\n               ;t:ConnectionFlightDate ?flightDate ; &gt;1 therefore will get specific date\n               t:OperationStartDate ?operationStartDate]\n               (:minus [?offer t:OfferFlight ?flight t:date ?offerDate]\n                 [?flight s:arrivalAirport ?arrivalAirport\n                  s:departureAirport ?departureAirport\n                  t:FlightAirline ?airline]\n                 (:filter (s/f&gt; ?offerDate ?oldestOfferDate)))\n               (:filter (s/f&lt; ?operationStartDate ?dateTo))))&quot;, :offset 894, :ns &quot;user&quot;} {:command &quot;(require '[test-project.test-plan3 :as t3])&quot;, :offset 43, :ns &quot;user&quot;} {:command &quot;(a/add-facts t3/namespaces-prefixes\n             #{?req-id ?cn-req-id ?airline ?dateTo ?oldestOfferDate ?connection}\n             ([?req-id mn:RequestItem ?item-id]\n               [?item-id mn:Connection ?connection mn:Status 0])\n\n             ([?connection t:ConnectionAirline ?airline\n               t:ConnectionFromAirport ?departureAirport\n               t:ConnectionToAirport ?arrivalAirport\n               ;t:ConnectionFlightDate ?flightDate ; &gt;1 therefore will get specific date\n               t:OperationStartDate ?operationStartDate]\n               (:minus [?offer t:OfferFlight ?flight t:date ?offerDate]\n                 [?flight s:arrivalAirport ?arrivalAirport\n                  s:departureAirport ?departureAirport\n                  t:FlightAirline ?airline]\n                 (:filter (s/f&gt; ?offerDate ?oldestOfferDate)))\n               (:filter (s/f&lt; ?operationStartDate ?dateTo))))&quot;, :offset 897, :ns &quot;user&quot;} {:command &quot;((a/add-facts t3/namespaces-prefixes\n              #{?req-id ?cn-req-id ?airline ?dateTo ?oldestOfferDate ?connection}\n              ([?req-id mn:RequestItem ?item-id]\n                [?item-id mn:Connection ?connection mn:Status 0])\n\n              ([?connection t:ConnectionAirline ?airline\n                t:ConnectionFromAirport ?departureAirport\n                t:ConnectionToAirport ?arrivalAirport\n                ;t:ConnectionFlightDate ?flightDate ; &gt;1 therefore will get specific date\n                t:OperationStartDate ?operationStartDate]\n                (:minus [?offer t:OfferFlight ?flight t:date ?offerDate]\n                  [?flight s:arrivalAirport ?arrivalAirport\n                   s:departureAirport ?departureAirport\n                   t:FlightAirline ?airline]\n                  (:filter (s/f&gt; ?offerDate ?oldestOfferDate)))\n                (:filter (s/f&lt; ?operationStartDate ?dateTo))))\n  {:?req-id {:type :uri :prefix-ns \&quot;gg\&quot; :value \&quot;111\&quot;}\n   :?cn-req-id {:type :uri :prefix-ns \&quot;dd\&quot; :value \&quot;222\&quot;}\n   }\n  )&quot;, :offset 1032, :ns &quot;user&quot;} {:command &quot;(require '[test-project.action :as a])&quot;, :offset 38, :ns &quot;user&quot;} {:command &quot;(require '[test-project.ea :as e] '[test-project.test-plan3 :as t3])&quot;, :offset 68, :ns &quot;user&quot;} {:command &quot;(require '[test-project.sparql :as s])\\&quot;, :offset 39, :ns &quot;user&quot;} {:command &quot;(require '[test-project.sparql :as s])&quot;, :offset 38, :ns &quot;user&quot;} {:command &quot;(a/add-facts t3/namespaces-prefixes \n             #{?req-id ?airline ?dateTo ?oldestOfferDate}\n             ([?req-id mn:item ?cn]\n               [?cn mn:status 0])\n             ([?cn t:ConnectionAirline ?airline\n               t:ConnectionFromAirport ?departureAirport\n               t:ConnectionToAirport ?arrivalAirport\n               t:OperationStartDate ?operationStartDate]\n               (:minus [?offer t:OfferFlight ?flight t:date ?offerDate]\n                 [?flight s:arrivalAirport ?arrivalAirport\n                  s:departureAirport ?departureAirport\n                  t:FlightAirline ?airline]\n                 (:filter (s/f&gt; ?offerDate ?oldestOfferDate)))\n               (:filter (s/f&lt; ?operationStartDate ?dateTo))))&quot;, :offset 734, :ns &quot;user&quot;} {:command &quot;(macroexpand '(a/add-facts t3/namespaces-prefixes\n              #{?req-id ?airline ?dateTo ?oldestOfferDate}\n              ([?req-id mn:item ?cn]\n                [?cn mn:status 0])\n              ([?cn t:ConnectionAirline ?airline\n                t:ConnectionFromAirport ?departureAirport\n                t:ConnectionToAirport ?arrivalAirport\n                t:OperationStartDate ?operationStartDate]\n                (:minus [?offer t:OfferFlight ?flight t:date ?offerDate]\n                  [?flight s:arrivalAirport ?arrivalAirport\n                   s:departureAirport ?departureAirport\n                   t:FlightAirline ?airline]\n                  (:filter (s/f&gt; ?offerDate ?oldestOfferDate)))\n                (:filter (s/f&lt; ?operationStartDate ?dateTo)))))&quot;, :offset 761, :ns &quot;user&quot;} {:command &quot;(def f1 (a/add-facts t3/namespaces-prefixes\n              #{?req-id ?airline ?dateTo ?oldestOfferDate}\n              ([?req-id mn:item ?cn]\n                [?cn mn:status 0])\n              ([?cn t:ConnectionAirline ?airline\n                t:ConnectionFromAirport ?departureAirport\n                t:ConnectionToAirport ?arrivalAirport\n                t:OperationStartDate ?operationStartDate]\n                (:minus [?offer t:OfferFlight ?flight t:date ?offerDate]\n                  [?flight s:arrivalAirport ?arrivalAirport\n                   s:departureAirport ?departureAirport\n                   t:FlightAirline ?airline]\n                  (:filter (s/f&gt; ?offerDate ?oldestOfferDate)))\n                (:filter (s/f&lt; ?operationStartDate ?dateTo)))))&quot;, :offset 755, :ns &quot;user&quot;} {:command &quot;(def data1 {\n            :?airline          {:type :uri, :value \&quot;W6\&quot;, :prefix-ns \&quot;http://travelplanning.ex/Airline/\&quot;},\n            :?departureAirport {:type :uri, :value \&quot;KUN\&quot;, :prefix-ns \&quot;http://travelplanning.ex/Airport/\&quot;},\n            :?arrivalAirport   {:type :uri, :value \&quot;LTN\&quot;, :prefix-ns \&quot;http://travelplanning.ex/Airport/\&quot;},\n            :?oldestOfferDate  (ctx/datetime-var),\n            :?dateTo (ctx/datetime-var)\n            } )&quot;, :offset 439, :ns &quot;user&quot;} {:command &quot;(def data1 {\n            :?airline          {:type :uri, :value \&quot;W6\&quot;, :prefix-ns \&quot;http://travelplanning.ex/Airline/\&quot;},\n            :?departureAirport {:type :uri, :value \&quot;KUN\&quot;, :prefix-ns \&quot;http://travelplanning.ex/Airport/\&quot;},\n            :?arrivalAirport   {:type :uri, :value \&quot;LTN\&quot;, :prefix-ns \&quot;http://travelplanning.ex/Airport/\&quot;},\n            :?oldestOfferDate  (ctx/datetime-var (r/now)),\n            :?dateTo           (ctx/datetime-var (r/now))\n            } )&quot;, :offset 465, :ns &quot;user&quot;} {:command &quot;data1&quot;, :offset 5, :ns &quot;user&quot;} {:command &quot;(def data1 {\n            :?req-id           (ctx/time-id \&quot;http://somerequest/\&quot;)\n            :?airline          {:type :uri, :value \&quot;W6\&quot;, :prefix-ns \&quot;http://travelplanning.ex/Airline/\&quot;},\n            :?departureAirport {:type :uri, :value \&quot;KUN\&quot;, :prefix-ns \&quot;http://travelplanning.ex/Airport/\&quot;},\n            :?arrivalAirport   {:type :uri, :value \&quot;LTN\&quot;, :prefix-ns \&quot;http://travelplanning.ex/Airport/\&quot;},\n            :?oldestOfferDate  (ctx/datetime-var (r/now)),\n            :?dateTo           (ctx/datetime-var (r/now))\n            } )&quot;, :offset 532, :ns &quot;user&quot;} {:command &quot;(f1 data1)&quot;, :offset 10, :ns &quot;user&quot;} {:command &quot;(type 'isn)&quot;, :offset 11, :ns &quot;user&quot;} {:command &quot;(isa? 'isn Symbol)&quot;, :offset 18, :ns &quot;user&quot;} {:command &quot;(isa? 'isn symbol)&quot;, :offset 18, :ns &quot;user&quot;} {:command &quot;(isa? 'isn clojure.lang.Symbol)&quot;, :offset 31, :ns &quot;user&quot;} {:command &quot;(isa? clojure.lang.Symbol 'x)&quot;, :offset 29, :ns &quot;user&quot;} {:command &quot;(class 'x)&quot;, :offset 10, :ns &quot;user&quot;} {:command &quot;clojure.lang.Symbol&quot;, :offset 19, :ns &quot;user&quot;} {:command &quot;(seq? '(1 2))&quot;, :offset 13, :ns &quot;user&quot;} {:command &quot;(class '(1 2))&quot;, :offset 14, :ns &quot;user&quot;} {:command &quot;(isa? '(1 2) seq )&quot;, :offset 18, :ns &quot;user&quot;} {:command &quot;(isa? '(1 2) (type seq))&quot;, :offset 24, :ns &quot;user&quot;} {:command &quot;(conj '(1 2) \&quot;[\&quot; \&quot;]\&quot;)&quot;, :offset 21, :ns &quot;user&quot;} {:command &quot;(defn tst1 [p1 [p o &amp; r] output] (println p o r ))&quot;, :offset 50, :ns &quot;user&quot;} {:command &quot;(tst1 1 [2 3 4 5] \&quot;\&quot;)&quot;, :offset 21, :ns &quot;user&quot;} {:command &quot;(tst1 1 [2 3] \&quot;\&quot;)&quot;, :offset 17, :ns &quot;user&quot;} {:command &quot;(s/object-list-to-sparql \n  'vars \n  #'{?campaign}\n  '[mnri:source ?connection mnri:status 0]\n  )&quot;, :offset 97, :ns &quot;user&quot;} {:command &quot;(pst)&quot;, :offset 5, :ns &quot;user&quot;} {:command &quot;(s/property-list-to-sparql 'v #{} '[mnri:source ?connection mnri:status 0])&quot;, :offset 75, :ns &quot;user&quot;} {:command &quot;(s/property-list-to-sparql 'v #{} '[mnri:source ?connection mnri:status 0] [])&quot;, :offset 78, :ns &quot;user&quot;} {:command &quot;(s/property-list-to-sparql 'v #{'?connection} '[mnri:source ?connection mnri:status 0] [])&quot;, :offset 90, :ns &quot;user&quot;} {:command &quot;[(s/property-list-to-sparql 'v #{'?connection} '[mnri:source ?connection mnri:status 0] [])]&quot;, :offset 92, :ns &quot;user&quot;} {:command &quot;[\&quot;[\&quot; (s/property-list-to-sparql 'v #{'?connection} '[mnri:source ?connection mnri:status 0] []) \&quot;]\&quot;]&quot;, :offset 100, :ns &quot;user&quot;} {:command &quot;(s/object-list-to-sparql \n  'vars \n  #'{?connection}\n  '[mnri:source ?connection mnri:status 0]\n  )&quot;, :offset 99, :ns &quot;user&quot;} {:command &quot;(require '[test-project.ea :as e] '[test-project.test-plan3 :as t3] )&quot;, :offset 69, :ns &quot;user&quot;} {:command &quot;(s/property-list-to-sparql  'vars  #'{?connection} '[mnri:source ?connection mnri:status 0] [])&quot;, :offset 95, :ns &quot;user&quot;} {:command &quot;(s/property-list-to-sparql  'vars  #{'?connection} '[mnri:source ?connection mnri:status 0] [])&quot;, :offset 95, :ns &quot;user&quot;} {:command &quot;(s/object-list-to-sparql  'vars  #'{?connection} '[mnri:source ?connection mnri:status 0])&quot;, :offset 90, :ns &quot;user&quot;} {:command &quot;(s/object-list-to-sparql  'vars  #{'?connection} '[mnri:source ?connection mnri:status 0])&quot;, :offset 90, :ns &quot;user&quot;} {:command &quot;(s/process-query-where-statement '([?cn t:ConnectionAirline ?airline\n                                   t:ConnectionFromAirport ?departureAirport\n                                   t:ConnectionToAirport ?arrivalAirport\n                                   t:OperationStartDate ?operationStartDate]\n                                   (:minus [?offer t:OfferFlight ?flight t:date ?offerDate]\n                                     [?flight s:arrivalAirport ?arrivalAirport\n                                      s:departureAirport ?departureAirport\n                                      t:FlightAirline ?airline]\n                                     (:filter (s/f&gt; ?offerDate ?oldestOfferDate)))\n                                   (:filter (s/f&lt; ?operationStartDate ?dateTo))) \n                                 'v\n                                 #{?airline ?cn ?oldestOfferDate ?dateTo})&quot;, :offset 881, :ns &quot;user&quot;} {:command &quot;(s/process-query-where-statement '([?cn t:ConnectionAirline ?airline\n                                   t:ConnectionFromAirport ?departureAirport\n                                   t:ConnectionToAirport ?arrivalAirport\n                                   t:OperationStartDate ?operationStartDate]\n                                   (:minus [?offer t:OfferFlight ?flight t:date ?offerDate]\n                                     [?flight s:arrivalAirport ?arrivalAirport\n                                      s:departureAirport ?departureAirport\n                                      t:FlightAirline ?airline]\n                                     (:filter (s/f&gt; ?offerDate ?oldestOfferDate)))\n                                   (:filter (s/f&lt; ?operationStartDate ?dateTo))) \n                                 'v\n                                 #{'?airline '?cn '?oldestOfferDate '?dateTo})&quot;, :offset 885, :ns &quot;user&quot;} {:command &quot;(u/join-r \&quot; \&quot; [\&quot;[\&quot; \&quot;s\&quot; \&quot;]\&quot;])&quot;, :offset 28, :ns &quot;user&quot;} {:command &quot;(u/join-r \&quot; \&quot; [\&quot;[\&quot; \&quot;s\&quot; [ \&quot;s\&quot; \&quot;s\&quot;] \&quot;]\&quot;])&quot;, :offset 39, :ns &quot;user&quot;} {:command &quot;(u/join-r \&quot; \&quot; [])&quot;, :offset 17, :ns &quot;user&quot;}], :remote []}}</component>
+  <component name="ReplState" timestamp="1599080657733">{:repl-history {:ide [], :local [{:command &quot;(java.time.LocalDateTime)&quot;, :offset 25, :ns &quot;user&quot;} {:command &quot;(jl/val-out (r/now))&quot;, :offset 20, :ns &quot;user&quot;} {:command &quot;(jl/val-out \&quot;ss\&quot;)&quot;, :offset 17, :ns &quot;user&quot;} {:command &quot;a1&quot;, :offset 2, :ns &quot;user&quot;} {:command &quot;(keys {})&quot;, :offset 9, :ns &quot;user&quot;} {:command &quot;(jl/context-vars-map-to-json-ld {:id {:type :uri :value (u/dateTime-to-id (r/now)) :prefix-ns \&quot;http://travelplanning.ex/Request/\&quot;} ,\n                                 :url \&quot;http://localhost:8080/flightService/webapi/W6/Connections/\&quot; ,\n                                 :method       (jl/http-methods :get)\n                                 :query-params {}\n                                 })&quot;, :offset 389, :ns &quot;user&quot;} {:command &quot;(e/main t3/namespaces-prefixes @t3/loc-methods-lib t3/actions 1 a1)&quot;, :offset 67, :ns &quot;user&quot;} {:command &quot;(require '[test-project.test-plan3 :as t3] '[test-project.ea :as e])&quot;, :offset 68, :ns &quot;user&quot;} {:command &quot;(require '[test-project.ea-test :as et])&quot;, :offset 40, :ns &quot;user&quot;} {:command &quot;@a1\\&quot;, :offset 4, :ns &quot;user&quot;} {:command &quot;(swap! @a1 e/reset-active)&quot;, :offset 26, :ns &quot;user&quot;} {:command &quot;@t3/loc-methods-lib&quot;, :offset 19, :ns &quot;user&quot;} {:command &quot;(swap! a1 e/reset-active)&quot;, :offset 25, :ns &quot;user&quot;} {:command &quot;(def a1 et/agenda-0)&quot;, :offset 20, :ns &quot;user&quot;} {:command &quot;(def a1 (atom et/agenda-0))&quot;, :offset 27, :ns &quot;user&quot;} {:command &quot;(e/main t3/namespaces-prefixes @t3/loc-methods-lib t3/actions 2 a1) &quot;, :offset 67, :ns &quot;user&quot;} {:command &quot;@a1 &quot;, :offset 3, :ns &quot;user&quot;} {:command &quot;(ws/GetWS \&quot;http://api.geonames.org/timezoneJSON\&quot; {:query-params {:username orunas, :lat 41.4147, :lng 19.7206}})&quot;, :offset 112, :ns &quot;user&quot;} {:command &quot;(ws/GetWS \&quot;http://api.geonames.org/timezoneJSON\&quot; {:query-params {:username \&quot;orunas\&quot;, :lat 41.4147, :lng 19.7206}})&quot;, :offset 114, :ns &quot;user&quot;} {:command &quot;(jl/context-vars-map-to-json-ld  (t3/airport-data-json-ld {:type :uri :value \&quot;VNO\&quot; :prefix-ns \&quot;http://travelplanning.ex/Airport/\&quot;}))&quot;, :offset 132, :ns &quot;user&quot;} {:command &quot;(t3/airport-data-json-ld {:type :uri :value \&quot;VNO\&quot; :prefix-ns \&quot;http://travelplanning.ex/Airport/\&quot;})&quot;, :offset 98, :ns &quot;user&quot;} {:command &quot;(type (tr1 :LocationLatitude\n           ))&quot;, :offset 42, :ns &quot;user&quot;} {:command &quot;(type (tr1 :TimezoneUTCOffset      ))&quot;, :offset 37, :ns &quot;user&quot;} {:command &quot;(def tr1 (t3/airport-data-json-ld {:type :uri :value \&quot;VNO\&quot; :prefix-ns \&quot;http://travelplanning.ex/Airport/\&quot;}))&quot;, :offset 108, :ns &quot;user&quot;} {:command &quot;tr1&quot;, :offset 3, :ns &quot;user&quot;} {:command &quot;(jl/context-vars-map-to-json-ld tr1)&quot;, :offset 36, :ns &quot;user&quot;} {:command &quot;@a1&quot;, :offset 3, :ns &quot;user&quot;} {:command &quot;(e/main t3/namespaces-prefixes @t3/loc-methods-lib t3/actions 1 a1) &quot;, :offset 67, :ns &quot;user&quot;} {:command &quot;(e/main t3/namespaces-prefixes @t3/loc-methods-lib t3/actions 10 a1) &quot;, :offset 68, :ns &quot;user&quot;} {:command &quot;(e/main t3/namespaces-prefixes @t3/loc-methods-lib t3/actions 100 a1) &quot;, :offset 69, :ns &quot;user&quot;} {:command &quot;(require '[test-project.ea :as e] '[test-project.test-plan3 :as t3] '[test-project.ea-test :as et])&quot;, :offset 99, :ns &quot;user&quot;} {:command &quot;(require '[test-project.ea :as e] '[test-project.test-plan3 :as t3] '[test-project.ea-test :as et] '[test-project.sparql :as s])&quot;, :offset 128, :ns &quot;user&quot;} {:command &quot;(s/build-i t3/namespaces-prefixes {} (  [request-id ConnectionToUpdate connection-update-id]\n                                       [connection-update-id Connection ?connection Status 0])\n           ([?connection t:ConnectionAirline ?airline\n             t:ConnectionFromAirport ?departureAirport\n             t:ConnectionToAirport ?arrivalAirport\n             ;t:ConnectionFlightDate ?flightDate ; &gt;1 therefore will get specific date\n             t:OperationStartDate ?operationStartDate]\n             (:minus [?offer t:OfferFlight ?flight t:date ?offerDate]\n               [?flight s:arrivalAirport ?arrivalAirport\n                s:departureAirport ?departureAirport\n                t:FlightAirline ?airline]\n               (:filter (s/f&gt; ?offerDate ?oldestOfferDate)))\n             (:filter (s/f&lt; ?operationStartDate ?dateTo)))\n           )&quot;, :offset 844, :ns &quot;user&quot;} {:command &quot;(s/build-i t3/namespaces-prefixes {} (  [request-id ConnectionToUpdate connection-update-id]\n                                       [connection-update-id Connection ?connection Status 0])\n           ([?connection t:ConnectionAirline ?airline\n             t:ConnectionFromAirport ?departureAirport\n             t:ConnectionToAirport ?arrivalAirport\n             ;t:ConnectionFlightDate ?flightDate ; &gt;1 therefore will get specific date\n             t:OperationStartDate ?operationStartDate]\n             (:minus [?offer t:OfferFlight ?flight t:date ?offerDate]\n               [?flight s:arrivalAirport ?arrivalAirport\n                s:departureAirport ?departureAirport\n                t:FlightAirline ?airline]\n               (:filter (s/f&gt; ?offerDate ?oldestOfferDate)))\n             (:filter (s/f&lt; ?operationStartDate ?dateTo)))\n           \n           )&quot;, :offset 856, :ns &quot;user&quot;} {:command &quot;(s/build-i t3/namespaces-prefixes {} (  [request-id ConnectionToUpdate connection-update-id]\n                                       [connection-update-id Connection ?connection Status 0])\n           ([?connection t:ConnectionAirline ?airline\n             t:ConnectionFromAirport ?departureAirport\n             t:ConnectionToAirport ?arrivalAirport\n             ;t:ConnectionFlightDate ?flightDate ; &gt;1 therefore will get specific date\n             t:OperationStartDate ?operationStartDate]\n             (:minus [?offer t:OfferFlight ?flight t:date ?offerDate]\n               [?flight s:arrivalAirport ?arrivalAirport\n                s:departureAirport ?departureAirport\n                t:FlightAirline ?airline]\n               (:filter (s/f&gt; ?offerDate ?oldestOfferDate)))\n             (:filter (s/f&lt; ?operationStartDate ?dateTo))))&quot;, :offset 832, :ns &quot;user&quot;} {:command &quot;(def vw (s/build-i t3/namespaces-prefixes {} ([request-id ConnectionToUpdate connection-update-id]\n                                        [connection-update-id Connection ?connection Status 0])\n            ([?connection t:ConnectionAirline ?airline\n              t:ConnectionFromAirport ?departureAirport\n              t:ConnectionToAirport ?arrivalAirport\n              ;t:ConnectionFlightDate ?flightDate ; &gt;1 therefore will get specific date\n              t:OperationStartDate ?operationStartDate]\n              (:minus [?offer t:OfferFlight ?flight t:date ?offerDate]\n                [?flight s:arrivalAirport ?arrivalAirport\n                 s:departureAirport ?departureAirport\n                 t:FlightAirline ?airline]\n                (:filter (s/f&gt; ?offerDate ?oldestOfferDate)))\n              (:filter (s/f&lt; ?operationStartDate ?dateTo)))))&quot;, :offset 851, :ns &quot;user&quot;} {:command &quot;(vw {})&quot;, :offset 7, :ns &quot;user&quot;} {:command &quot;(def vw (s/build-i t3/namespaces-prefixes #{?airline} ([request-id ConnectionToUpdate connection-update-id]\n                                        [connection-update-id Connection ?connection Status 0])\n            ([?connection t:ConnectionAirline ?airline\n              t:ConnectionFromAirport ?departureAirport\n              t:ConnectionToAirport ?arrivalAirport\n              ;t:ConnectionFlightDate ?flightDate ; &gt;1 therefore will get specific date\n              t:OperationStartDate ?operationStartDate]\n              (:minus [?offer t:OfferFlight ?flight t:date ?offerDate]\n                [?flight s:arrivalAirport ?arrivalAirport\n                 s:departureAirport ?departureAirport\n                 t:FlightAirline ?airline]\n                (:filter (s/f&gt; ?offerDate ?oldestOfferDate)))\n              (:filter (s/f&lt; ?operationStartDate ?dateTo)))))&quot;, :offset 860, :ns &quot;user&quot;} {:command &quot;(vw {:?campaign {:type :uri :prefix-ns \&quot;http://travelplanning.ex/Campaign/\&quot; :value \&quot;1234\&quot;}})&quot;, :offset 92, :ns &quot;user&quot;} {:command &quot;(vw {:?airline {:type :uri :prefix-ns \&quot;http://travelplanning.ex/Airline/\&quot; :value \&quot;W6\&quot;}})&quot;, :offset 88, :ns &quot;user&quot;} {:command &quot;(a/add-facts namespaces-prefixes\n             #{?req-id ?cn-req-id ?airline ?dateTo ?oldestOfferDate ?connection}\n             ([?req-id mn:RequestItem ?item-id]\n               [?item-id mn:Connection ?connection mn:Status 0])\n\n             ([?connection t:ConnectionAirline ?airline\n               t:ConnectionFromAirport ?departureAirport\n               t:ConnectionToAirport ?arrivalAirport\n               ;t:ConnectionFlightDate ?flightDate ; &gt;1 therefore will get specific date\n               t:OperationStartDate ?operationStartDate]\n               (:minus [?offer t:OfferFlight ?flight t:date ?offerDate]\n                 [?flight s:arrivalAirport ?arrivalAirport\n                  s:departureAirport ?departureAirport\n                  t:FlightAirline ?airline]\n                 (:filter (s/f&gt; ?offerDate ?oldestOfferDate)))\n               (:filter (s/f&lt; ?operationStartDate ?dateTo))))&quot;, :offset 894, :ns &quot;user&quot;} {:command &quot;(require '[test-project.test-plan3 :as t3])&quot;, :offset 43, :ns &quot;user&quot;} {:command &quot;(a/add-facts t3/namespaces-prefixes\n             #{?req-id ?cn-req-id ?airline ?dateTo ?oldestOfferDate ?connection}\n             ([?req-id mn:RequestItem ?item-id]\n               [?item-id mn:Connection ?connection mn:Status 0])\n\n             ([?connection t:ConnectionAirline ?airline\n               t:ConnectionFromAirport ?departureAirport\n               t:ConnectionToAirport ?arrivalAirport\n               ;t:ConnectionFlightDate ?flightDate ; &gt;1 therefore will get specific date\n               t:OperationStartDate ?operationStartDate]\n               (:minus [?offer t:OfferFlight ?flight t:date ?offerDate]\n                 [?flight s:arrivalAirport ?arrivalAirport\n                  s:departureAirport ?departureAirport\n                  t:FlightAirline ?airline]\n                 (:filter (s/f&gt; ?offerDate ?oldestOfferDate)))\n               (:filter (s/f&lt; ?operationStartDate ?dateTo))))&quot;, :offset 897, :ns &quot;user&quot;} {:command &quot;((a/add-facts t3/namespaces-prefixes\n              #{?req-id ?cn-req-id ?airline ?dateTo ?oldestOfferDate ?connection}\n              ([?req-id mn:RequestItem ?item-id]\n                [?item-id mn:Connection ?connection mn:Status 0])\n\n              ([?connection t:ConnectionAirline ?airline\n                t:ConnectionFromAirport ?departureAirport\n                t:ConnectionToAirport ?arrivalAirport\n                ;t:ConnectionFlightDate ?flightDate ; &gt;1 therefore will get specific date\n                t:OperationStartDate ?operationStartDate]\n                (:minus [?offer t:OfferFlight ?flight t:date ?offerDate]\n                  [?flight s:arrivalAirport ?arrivalAirport\n                   s:departureAirport ?departureAirport\n                   t:FlightAirline ?airline]\n                  (:filter (s/f&gt; ?offerDate ?oldestOfferDate)))\n                (:filter (s/f&lt; ?operationStartDate ?dateTo))))\n  {:?req-id {:type :uri :prefix-ns \&quot;gg\&quot; :value \&quot;111\&quot;}\n   :?cn-req-id {:type :uri :prefix-ns \&quot;dd\&quot; :value \&quot;222\&quot;}\n   }\n  )&quot;, :offset 1032, :ns &quot;user&quot;} {:command &quot;(require '[test-project.action :as a])&quot;, :offset 38, :ns &quot;user&quot;} {:command &quot;(require '[test-project.ea :as e] '[test-project.test-plan3 :as t3])&quot;, :offset 68, :ns &quot;user&quot;} {:command &quot;(require '[test-project.sparql :as s])\\&quot;, :offset 39, :ns &quot;user&quot;} {:command &quot;(require '[test-project.sparql :as s])&quot;, :offset 38, :ns &quot;user&quot;} {:command &quot;(a/add-facts t3/namespaces-prefixes \n             #{?req-id ?airline ?dateTo ?oldestOfferDate}\n             ([?req-id mn:item ?cn]\n               [?cn mn:status 0])\n             ([?cn t:ConnectionAirline ?airline\n               t:ConnectionFromAirport ?departureAirport\n               t:ConnectionToAirport ?arrivalAirport\n               t:OperationStartDate ?operationStartDate]\n               (:minus [?offer t:OfferFlight ?flight t:date ?offerDate]\n                 [?flight s:arrivalAirport ?arrivalAirport\n                  s:departureAirport ?departureAirport\n                  t:FlightAirline ?airline]\n                 (:filter (s/f&gt; ?offerDate ?oldestOfferDate)))\n               (:filter (s/f&lt; ?operationStartDate ?dateTo))))&quot;, :offset 734, :ns &quot;user&quot;} {:command &quot;(macroexpand '(a/add-facts t3/namespaces-prefixes\n              #{?req-id ?airline ?dateTo ?oldestOfferDate}\n              ([?req-id mn:item ?cn]\n                [?cn mn:status 0])\n              ([?cn t:ConnectionAirline ?airline\n                t:ConnectionFromAirport ?departureAirport\n                t:ConnectionToAirport ?arrivalAirport\n                t:OperationStartDate ?operationStartDate]\n                (:minus [?offer t:OfferFlight ?flight t:date ?offerDate]\n                  [?flight s:arrivalAirport ?arrivalAirport\n                   s:departureAirport ?departureAirport\n                   t:FlightAirline ?airline]\n                  (:filter (s/f&gt; ?offerDate ?oldestOfferDate)))\n                (:filter (s/f&lt; ?operationStartDate ?dateTo)))))&quot;, :offset 761, :ns &quot;user&quot;} {:command &quot;(def f1 (a/add-facts t3/namespaces-prefixes\n              #{?req-id ?airline ?dateTo ?oldestOfferDate}\n              ([?req-id mn:item ?cn]\n                [?cn mn:status 0])\n              ([?cn t:ConnectionAirline ?airline\n                t:ConnectionFromAirport ?departureAirport\n                t:ConnectionToAirport ?arrivalAirport\n                t:OperationStartDate ?operationStartDate]\n                (:minus [?offer t:OfferFlight ?flight t:date ?offerDate]\n                  [?flight s:arrivalAirport ?arrivalAirport\n                   s:departureAirport ?departureAirport\n                   t:FlightAirline ?airline]\n                  (:filter (s/f&gt; ?offerDate ?oldestOfferDate)))\n                (:filter (s/f&lt; ?operationStartDate ?dateTo)))))&quot;, :offset 755, :ns &quot;user&quot;} {:command &quot;(def data1 {\n            :?airline          {:type :uri, :value \&quot;W6\&quot;, :prefix-ns \&quot;http://travelplanning.ex/Airline/\&quot;},\n            :?departureAirport {:type :uri, :value \&quot;KUN\&quot;, :prefix-ns \&quot;http://travelplanning.ex/Airport/\&quot;},\n            :?arrivalAirport   {:type :uri, :value \&quot;LTN\&quot;, :prefix-ns \&quot;http://travelplanning.ex/Airport/\&quot;},\n            :?oldestOfferDate  (ctx/datetime-var),\n            :?dateTo (ctx/datetime-var)\n            } )&quot;, :offset 439, :ns &quot;user&quot;} {:command &quot;(def data1 {\n            :?airline          {:type :uri, :value \&quot;W6\&quot;, :prefix-ns \&quot;http://travelplanning.ex/Airline/\&quot;},\n            :?departureAirport {:type :uri, :value \&quot;KUN\&quot;, :prefix-ns \&quot;http://travelplanning.ex/Airport/\&quot;},\n            :?arrivalAirport   {:type :uri, :value \&quot;LTN\&quot;, :prefix-ns \&quot;http://travelplanning.ex/Airport/\&quot;},\n            :?oldestOfferDate  (ctx/datetime-var (r/now)),\n            :?dateTo           (ctx/datetime-var (r/now))\n            } )&quot;, :offset 465, :ns &quot;user&quot;} {:command &quot;data1&quot;, :offset 5, :ns &quot;user&quot;} {:command &quot;(def data1 {\n            :?req-id           (ctx/time-id \&quot;http://somerequest/\&quot;)\n            :?airline          {:type :uri, :value \&quot;W6\&quot;, :prefix-ns \&quot;http://travelplanning.ex/Airline/\&quot;},\n            :?departureAirport {:type :uri, :value \&quot;KUN\&quot;, :prefix-ns \&quot;http://travelplanning.ex/Airport/\&quot;},\n            :?arrivalAirport   {:type :uri, :value \&quot;LTN\&quot;, :prefix-ns \&quot;http://travelplanning.ex/Airport/\&quot;},\n            :?oldestOfferDate  (ctx/datetime-var (r/now)),\n            :?dateTo           (ctx/datetime-var (r/now))\n            } )&quot;, :offset 532, :ns &quot;user&quot;} {:command &quot;(f1 data1)&quot;, :offset 10, :ns &quot;user&quot;} {:command &quot;(type 'isn)&quot;, :offset 11, :ns &quot;user&quot;} {:command &quot;(isa? 'isn Symbol)&quot;, :offset 18, :ns &quot;user&quot;} {:command &quot;(isa? 'isn symbol)&quot;, :offset 18, :ns &quot;user&quot;} {:command &quot;(isa? 'isn clojure.lang.Symbol)&quot;, :offset 31, :ns &quot;user&quot;} {:command &quot;(isa? clojure.lang.Symbol 'x)&quot;, :offset 29, :ns &quot;user&quot;} {:command &quot;(class 'x)&quot;, :offset 10, :ns &quot;user&quot;} {:command &quot;clojure.lang.Symbol&quot;, :offset 19, :ns &quot;user&quot;} {:command &quot;(seq? '(1 2))&quot;, :offset 13, :ns &quot;user&quot;} {:command &quot;(class '(1 2))&quot;, :offset 14, :ns &quot;user&quot;} {:command &quot;(isa? '(1 2) seq )&quot;, :offset 18, :ns &quot;user&quot;} {:command &quot;(isa? '(1 2) (type seq))&quot;, :offset 24, :ns &quot;user&quot;} {:command &quot;(conj '(1 2) \&quot;[\&quot; \&quot;]\&quot;)&quot;, :offset 21, :ns &quot;user&quot;} {:command &quot;(defn tst1 [p1 [p o &amp; r] output] (println p o r ))&quot;, :offset 50, :ns &quot;user&quot;} {:command &quot;(tst1 1 [2 3 4 5] \&quot;\&quot;)&quot;, :offset 21, :ns &quot;user&quot;} {:command &quot;(tst1 1 [2 3] \&quot;\&quot;)&quot;, :offset 17, :ns &quot;user&quot;} {:command &quot;(s/object-list-to-sparql \n  'vars \n  #'{?campaign}\n  '[mnri:source ?connection mnri:status 0]\n  )&quot;, :offset 97, :ns &quot;user&quot;} {:command &quot;(pst)&quot;, :offset 5, :ns &quot;user&quot;} {:command &quot;(s/property-list-to-sparql 'v #{} '[mnri:source ?connection mnri:status 0])&quot;, :offset 75, :ns &quot;user&quot;} {:command &quot;(s/property-list-to-sparql 'v #{} '[mnri:source ?connection mnri:status 0] [])&quot;, :offset 78, :ns &quot;user&quot;} {:command &quot;(s/property-list-to-sparql 'v #{'?connection} '[mnri:source ?connection mnri:status 0] [])&quot;, :offset 90, :ns &quot;user&quot;} {:command &quot;[(s/property-list-to-sparql 'v #{'?connection} '[mnri:source ?connection mnri:status 0] [])]&quot;, :offset 92, :ns &quot;user&quot;} {:command &quot;[\&quot;[\&quot; (s/property-list-to-sparql 'v #{'?connection} '[mnri:source ?connection mnri:status 0] []) \&quot;]\&quot;]&quot;, :offset 100, :ns &quot;user&quot;} {:command &quot;(s/object-list-to-sparql \n  'vars \n  #'{?connection}\n  '[mnri:source ?connection mnri:status 0]\n  )&quot;, :offset 99, :ns &quot;user&quot;} {:command &quot;(require '[test-project.ea :as e] '[test-project.test-plan3 :as t3] )&quot;, :offset 69, :ns &quot;user&quot;} {:command &quot;(s/property-list-to-sparql  'vars  #'{?connection} '[mnri:source ?connection mnri:status 0] [])&quot;, :offset 95, :ns &quot;user&quot;} {:command &quot;(s/property-list-to-sparql  'vars  #{'?connection} '[mnri:source ?connection mnri:status 0] [])&quot;, :offset 95, :ns &quot;user&quot;} {:command &quot;(s/object-list-to-sparql  'vars  #'{?connection} '[mnri:source ?connection mnri:status 0])&quot;, :offset 90, :ns &quot;user&quot;} {:command &quot;(s/object-list-to-sparql  'vars  #{'?connection} '[mnri:source ?connection mnri:status 0])&quot;, :offset 90, :ns &quot;user&quot;} {:command &quot;(s/process-query-where-statement '([?cn t:ConnectionAirline ?airline\n                                   t:ConnectionFromAirport ?departureAirport\n                                   t:ConnectionToAirport ?arrivalAirport\n                                   t:OperationStartDate ?operationStartDate]\n                                   (:minus [?offer t:OfferFlight ?flight t:date ?offerDate]\n                                     [?flight s:arrivalAirport ?arrivalAirport\n                                      s:departureAirport ?departureAirport\n                                      t:FlightAirline ?airline]\n                                     (:filter (s/f&gt; ?offerDate ?oldestOfferDate)))\n                                   (:filter (s/f&lt; ?operationStartDate ?dateTo))) \n                                 'v\n                                 #{?airline ?cn ?oldestOfferDate ?dateTo})&quot;, :offset 881, :ns &quot;user&quot;} {:command &quot;(s/process-query-where-statement '([?cn t:ConnectionAirline ?airline\n                                   t:ConnectionFromAirport ?departureAirport\n                                   t:ConnectionToAirport ?arrivalAirport\n                                   t:OperationStartDate ?operationStartDate]\n                                   (:minus [?offer t:OfferFlight ?flight t:date ?offerDate]\n                                     [?flight s:arrivalAirport ?arrivalAirport\n                                      s:departureAirport ?departureAirport\n                                      t:FlightAirline ?airline]\n                                     (:filter (s/f&gt; ?offerDate ?oldestOfferDate)))\n                                   (:filter (s/f&lt; ?operationStartDate ?dateTo))) \n                                 'v\n                                 #{'?airline '?cn '?oldestOfferDate '?dateTo})&quot;, :offset 885, :ns &quot;user&quot;} {:command &quot;(u/join-r \&quot; \&quot; [\&quot;[\&quot; \&quot;s\&quot; \&quot;]\&quot;])&quot;, :offset 28, :ns &quot;user&quot;} {:command &quot;(u/join-r \&quot; \&quot; [\&quot;[\&quot; \&quot;s\&quot; [ \&quot;s\&quot; \&quot;s\&quot;] \&quot;]\&quot;])&quot;, :offset 39, :ns &quot;user&quot;} {:command &quot;(u/join-r \&quot; \&quot; [])&quot;, :offset 17, :ns &quot;user&quot;} {:command &quot;(import 'test_project.ea)&quot;, :offset 25, :ns &quot;user&quot;} {:command &quot;(+ 2 3)&quot;, :offset 7, :ns &quot;user&quot;} {:command &quot;| (require '[test_project.ea as e])&quot;, :offset 35, :ns &quot;user&quot;} {:command &quot;(require '[test_project.ea as e])&quot;, :offset 33, :ns &quot;user&quot;} {:command &quot;(import 'test-project.ea)&quot;, :offset 25, :ns &quot;user&quot;} {:command &quot;(import 'test-project.action )&quot;, :offset 30, :ns &quot;user&quot;} {:command &quot;(ns test-project)&quot;, :offset 17, :ns &quot;user&quot;} {:command &quot;(import 'test-project.action as a)&quot;, :offset 34, :ns &quot;test-project&quot;} {:command &quot;(import '(test-project.action as a))&quot;, :offset 36, :ns &quot;test-project&quot;} {:command &quot;(import '(:test-project.action as a))&quot;, :offset 37, :ns &quot;test-project&quot;} {:command &quot;(require '[test-project.rdf :as r])&quot;, :offset 35, :ns &quot;user&quot;}], :remote []}}</component>
   <component name="RunDashboard">
     <option name="ruleStates">
       <list>
@@ -206,52 +216,54 @@
   <component name="RunManager">
     <configuration default="true" type="Application" factoryName="Application">
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
     </configuration>
-    <configuration name="Local REPL" type="ClojureREPL" factoryName="Local">
+    <configuration name="Local REPL" type="ClojureREPL" factoryName="Local" activateToolWindowBeforeRun="false">
       <module name="test-project" />
-      <setting name="replType" value="1" />
+      <setting name="replType" value="NREPL" />
+      <setting name="execution" value="LEININGEN" />
       <setting name="jvmArgs" value="" />
       <setting name="parameters" value="" />
       <setting name="workingDir" value="$PROJECT_DIR$" />
       <setting name="profiles" value="" />
+      <setting name="aliases" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="ClojureREPL" factoryName="Local" activateToolWindowBeforeRun="false">
+      <setting name="replType" value="NREPL" />
+      <setting name="execution" value="LEININGEN" />
+      <module name="" />
+      <setting name="jvmArgs" value="" />
+      <setting name="parameters" value="" />
+      <setting name="workingDir" value="" />
+      <setting name="profiles" value="" />
+      <setting name="aliases" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="ClojureREPL" factoryName="Remote" activateToolWindowBeforeRun="false">
+      <setting name="host" value="" />
+      <setting name="port" value="0" />
+      <setting name="replType" value="0" />
+      <module name="" />
+      <method v="2" />
     </configuration>
     <configuration default="true" type="JUnit" factoryName="JUnit">
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="METHOD_NAME" />
       <option name="TEST_OBJECT" value="class" />
-      <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PARAMETERS" />
       <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="singleModule" />
-      </option>
-      <patterns />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
     </configuration>
-    <configuration default="true" type="TestNG" factoryName="TestNG">
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="SUITE_NAME" />
-      <option name="PACKAGE_NAME" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="METHOD_NAME" />
-      <option name="GROUP_NAME" />
+    <configuration default="true" type="TestNG">
       <option name="TEST_OBJECT" value="CLASS" />
-      <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PARAMETERS" />
       <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
-      <option name="OUTPUT_DIRECTORY" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="singleModule" />
-      </option>
-      <option name="USE_DEFAULT_REPORTERS" value="false" />
-      <option name="PROPERTIES_FILE" />
       <properties />
       <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
     </configuration>
   </component>
   <component name="SvnConfiguration">
@@ -332,68 +344,39 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info anchor="right" id="Palette" order="9" />
-      <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="right" id="Palette&#9;" order="5" />
-      <window_info id="Image Layers" order="6" />
-      <window_info anchor="right" id="Capture Analysis" order="3" />
-      <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" weight="0.32939634" />
-      <window_info anchor="right" id="Maven Projects" order="6" />
-      <window_info active="true" anchor="right" x="1040" y="394" width="190" height="79" id="REPL" order="7" side_tool="true" visible="true" weight="0.356875" />
-      <window_info anchor="bottom" id="Run" order="2" />
-      <window_info anchor="bottom" id="Version Control" order="9" weight="0.328084" />
-      <window_info anchor="right" id="Leiningen" order="8" />
-      <window_info anchor="bottom" id="Terminal" order="7" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.12260128" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="3" />
-      <window_info content_ui="combo" id="Project" order="0" weight="0.1375" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info id="UI Designer" order="4" />
-      <window_info anchor="right" id="Theme Preview" order="4" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info id="Favorites" order="5" side_tool="true" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="Messages" order="8" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info id="Image Layers" order="6" />
       <window_info anchor="bottom" id="Message" order="0" />
+      <window_info active="true" anchor="bottom" id="Find" order="1" visible="true" weight="0.12892741" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Find" order="1" visible="true" weight="0.12992126" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Terminal" order="7" />
+      <window_info anchor="bottom" id="Messages" order="8" />
+      <window_info anchor="bottom" id="Version Control" order="9" weight="0.328084" />
+      <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" visible="true" weight="0.15709643" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Capture Analysis" order="3" />
+      <window_info anchor="right" id="Theme Preview" order="4" />
+      <window_info anchor="right" id="Palette&#9;" order="5" />
+      <window_info anchor="right" id="Maven Projects" order="6" />
+      <window_info anchor="right" x="1040" y="394" width="190" height="79" id="REPL" order="7" side_tool="true" weight="0.40298507" />
+      <window_info anchor="right" id="Leiningen" order="8" />
+      <window_info anchor="right" id="Palette" order="9" />
+      <window_info anchor="right" id="Maven" order="10" />
     </layout>
-    <layout-to-restore>
-      <window_info anchor="right" id="Palette" order="9" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="Capture Analysis" order="3" />
-      <window_info anchor="bottom" id="Run" order="2" />
-      <window_info anchor="right" id="Theme Preview" order="4" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.11125" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info active="true" anchor="right" x="1040" y="394" width="190" height="79" id="REPL" order="7" side_tool="true" visible="true" weight="0.34875" />
-      <window_info id="Image Layers" order="6" />
-      <window_info id="Designer" order="3" />
-      <window_info anchor="right" id="Leiningen" order="8" />
-      <window_info id="UI Designer" order="4" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.328084" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
-      <window_info anchor="right" id="Palette&#9;" order="5" />
-      <window_info anchor="bottom" id="Terminal" order="7" />
-      <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" weight="0.32939634" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="Version Control" order="9" weight="0.328084" />
-      <window_info id="Capture Tool" order="2" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Messages" order="8" />
-      <window_info anchor="right" id="Maven Projects" order="6" />
-      <window_info id="Favorites" order="5" side_tool="true" />
-    </layout-to-restore>
   </component>
   <component name="Vcs.Log.History.Properties">
     <option name="COLUMN_ORDER">
@@ -430,9 +413,20 @@
         </entry>
       </map>
     </option>
-  </component>
-  <component name="VcsContentAnnotationSettings">
-    <option name="myLimit" value="2678400000" />
+    <option name="RECENT_FILTERS">
+      <map>
+        <entry key="Branch">
+          <value>
+            <list />
+          </value>
+        </entry>
+        <entry key="User">
+          <value>
+            <list />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="async test projects" />
@@ -446,247 +440,11 @@
     <MESSAGE value="Merge branch 'master' of https://github.com/orunas/travel-test-project&#10;&#10;# Conflicts:&#10;#&#9;src/test_project/action.clj" />
     <option name="LAST_COMMIT_MESSAGE" value="Merge branch 'master' of https://github.com/orunas/travel-test-project&#10;&#10;# Conflicts:&#10;#&#9;src/test_project/action.clj" />
   </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <option name="time" value="3" />
-    </breakpoint-manager>
-  </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/test_project/test_plan3.clj">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1785">
-          <caret line="105" column="57" lean-forward="true" selection-start-line="105" selection-start-column="57" selection-end-line="105" selection-end-column="57" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test_project/task.clj">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="21" selection-start-column="21" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test_project/util.clj">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="16" column="9" selection-start-line="16" selection-start-column="9" selection-end-line="16" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test_project/action.clj">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" selection-start-line="14" selection-end-line="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/test_project/ea_test.clj">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2550">
-          <caret line="150" selection-start-line="150" selection-end-line="150" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test_project/receive.clj">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2448">
-          <caret line="144" column="29" selection-start-line="144" selection-start-column="29" selection-end-line="144" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test_project/test_plan3.clj">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1921">
-          <caret line="113" column="11" selection-start-line="113" selection-start-column="11" selection-end-line="113" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test_project/ea.clj">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4675">
-          <caret line="275" column="150" lean-forward="true" selection-start-line="275" selection-start-column="150" selection-end-line="275" selection-end-column="150" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test_project/task.clj">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="21" lean-forward="true" selection-start-column="21" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test_project/util.clj">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="16" column="9" lean-forward="true" selection-start-line="16" selection-start-column="9" selection-end-line="16" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test_project/action.clj">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/test_project/ea_test.clj">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2550">
-          <caret line="150" lean-forward="true" selection-start-line="150" selection-end-line="150" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test_project/receive.clj">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2448">
-          <caret line="144" column="29" selection-start-line="144" selection-start-column="29" selection-end-line="144" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test_project/test_plan3.clj">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1921">
-          <caret line="113" column="11" selection-start-line="113" selection-start-column="11" selection-end-line="113" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test_project/ea.clj">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4675">
-          <caret line="275" column="26" lean-forward="true" selection-start-line="275" selection-start-column="26" selection-end-line="275" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test_project/action.clj">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="6" selection-start-line="10" selection-start-column="6" selection-end-line="10" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/test_project/ea_test.clj">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1802">
-          <caret line="106" column="9" selection-start-line="106" selection-start-column="9" selection-end-line="106" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test_project/test_plan3.clj">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1343">
-          <caret line="79" column="7" lean-forward="true" selection-start-line="79" selection-start-column="7" selection-end-line="79" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test_project/ea.clj">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5304">
-          <caret line="312" column="17" lean-forward="true" selection-start-line="312" selection-start-column="17" selection-end-line="312" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/test_project/ea_test.clj">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3060">
-          <caret line="180" lean-forward="true" selection-start-line="180" selection-end-line="180" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test_project/ea.clj">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4539">
-          <caret line="267" column="78" lean-forward="true" selection-start-line="267" selection-start-column="78" selection-end-line="267" selection-end-column="78" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/clojure/clojure/1.9.0/clojure-1.9.0.jar!/clojure/core.clj">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="25415">
-          <caret line="1495" column="6" selection-start-line="1495" selection-start-column="6" selection-end-line="1495" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/test_project/ea_test.clj">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2788">
-          <caret line="164" column="92" lean-forward="true" selection-start-line="164" selection-start-column="3" selection-end-line="164" selection-end-column="92" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test_project/ea.clj">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3757">
-          <caret line="221" column="7" lean-forward="true" selection-start-line="221" selection-start-column="7" selection-end-line="221" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/test_project/ea_test.clj">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2822">
-          <caret line="166" lean-forward="true" selection-start-line="166" selection-end-line="166" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test_project/ea.clj">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3230">
-          <caret line="190" column="22" selection-start-line="190" selection-start-column="22" selection-end-line="190" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test_project/ea.clj">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3213">
-          <caret line="189" column="22" selection-start-line="189" selection-start-column="22" selection-end-line="189" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test_project/airport.clj">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="44" selection-start-line="7" selection-start-column="44" selection-end-line="7" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test_project/airport.clj">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="15" column="72" selection-start-line="15" selection-start-column="72" selection-end-line="15" selection-end-column="72" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test_project/airport.clj">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="15" column="72" lean-forward="true" selection-start-line="15" selection-start-column="72" selection-end-line="15" selection-end-column="72" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/test/test_project/task_test.clj">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
           <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/project.clj">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="40" lean-forward="true" selection-start-line="6" selection-start-column="40" selection-end-line="6" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test_project/jena.clj">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="604">
-          <caret line="44" column="6" lean-forward="true" selection-start-line="44" selection-start-column="6" selection-end-line="44" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test_project/receive.clj">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="703">
-          <caret line="128" column="30" selection-start-line="128" selection-start-column="30" selection-end-line="128" selection-end-column="30" />
         </state>
       </provider>
     </entry>
@@ -704,80 +462,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/clojure/clojure/1.9.0/clojure-1.9.0.jar!/clojure/core.clj">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="103547">
-          <caret line="6091" column="6" selection-start-line="6091" selection-start-column="6" selection-end-line="6091" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test_project/task.clj">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="19" column="29" lean-forward="true" selection-start-line="19" selection-start-column="29" selection-end-line="19" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test_project/ws.clj">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="544">
-          <caret line="32" lean-forward="true" selection-start-line="32" selection-end-line="32" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/clojure/clojure/1.9.0/clojure-1.9.0.jar!/clojure/core.clj" />
     <entry file="file://$PROJECT_DIR$/test/test_project/ea_test.clj">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2992">
           <caret line="176" column="57" selection-start-line="176" selection-start-column="56" selection-end-line="176" selection-end-column="57" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test_project/kb.clj">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="15" column="52" selection-start-line="15" selection-start-column="52" selection-end-line="15" selection-end-column="52" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test_project/airport.clj">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="23" column="6" selection-start-line="23" selection-start-column="6" selection-end-line="23" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test_project/json_ld.clj">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="13" selection-start-line="13" selection-end-line="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test_project/context.clj">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="25" selection-start-line="25" selection-end-line="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test_project/rdf.clj">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="901">
-          <caret line="53" column="6" selection-start-line="53" selection-start-column="6" selection-end-line="53" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test_project/util.clj">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="527">
-          <caret line="31" column="46" selection-start-line="31" selection-start-column="46" selection-end-line="31" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test_project/ea.clj">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2193">
-          <caret line="129" selection-start-line="129" selection-end-line="129" />
         </state>
       </provider>
     </entry>
@@ -788,6 +477,20 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/test_project/jena.clj">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="21" column="11" selection-start-line="21" selection-start-column="11" selection-end-line="21" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test_project/json_ld.clj">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-343">
+          <caret line="13" selection-start-line="13" selection-end-line="13" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/test_project/sparql.clj">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="7293">
@@ -795,17 +498,130 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test_project/test_plan3.clj">
+    <entry file="file://$PROJECT_DIR$/src/test_project/task.clj">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2516">
-          <caret line="148" column="23" selection-start-line="148" selection-start-column="23" selection-end-line="148" selection-end-column="23" />
+        <state relative-caret-position="323">
+          <caret line="19" column="29" selection-start-line="19" selection-start-column="29" selection-end-line="19" selection-end-column="29" />
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/test_project/rdf.clj">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2312">
+          <caret line="136" column="110" selection-start-line="136" selection-start-column="50" selection-end-line="136" selection-end-column="110" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/test_project/core_test.clj">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="13" column="16" selection-start-line="13" selection-start-column="16" selection-end-line="13" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test_project/test_plan2.clj">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2482">
+          <caret line="146" column="67" selection-start-line="146" selection-start-column="24" selection-end-line="146" selection-end-column="67" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test_project/kb.clj">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="18" column="12" selection-start-line="18" selection-start-column="12" selection-end-line="18" selection-end-column="108" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test_project/util.clj">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="527">
+          <caret line="31" column="46" selection-start-line="31" selection-start-column="46" selection-end-line="31" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test_project/ws.clj">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="25" column="16" selection-start-line="25" selection-start-column="16" selection-end-line="25" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/project.clj">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="15" selection-start-line="15" selection-end-line="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test_project/airport.clj">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="23" column="6" selection-start-line="23" selection-start-column="6" selection-end-line="23" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test_project/test_plan.clj">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1122">
+          <caret line="66" column="13" selection-start-line="66" selection-start-column="13" selection-end-line="66" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test_project/res.clj">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test_project/context.clj">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="25" selection-start-line="25" selection-end-line="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test_project/test.clj">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test_project/match.clj">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test_project/receive.clj">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2176">
+          <caret line="128" column="30" selection-start-line="128" selection-start-column="30" selection-end-line="128" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test_project/cond_test.clj">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/test_project/action.clj">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="312">
-          <caret line="42" column="12" lean-forward="true" selection-start-line="42" selection-start-column="12" selection-end-line="42" selection-end-column="12" />
+        <state relative-caret-position="251">
+          <caret line="70" column="6" selection-start-line="70" selection-start-column="6" selection-end-line="70" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test_project/ea.clj">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-731">
+          <caret line="50" column="17" selection-start-line="50" selection-start-column="5" selection-end-line="50" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test_project/test_plan3.clj">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="115">
+          <caret line="38" selection-start-line="38" selection-end-line="39" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test_project/test_plan_ev1.clj">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="561">
+          <caret line="33" column="47" selection-start-line="33" selection-start-column="32" selection-end-line="33" selection-end-column="47" />
         </state>
       </provider>
     </entry>

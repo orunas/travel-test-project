@@ -11,4 +11,5 @@
                  [aysylu/loom "1.0.1"]
                  [com.datomic/client-pro "0.8.14"]
                  [org.clojure/core.logic "0.8.11"]
+
                  ])
