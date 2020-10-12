@@ -28,12 +28,9 @@
 
 (def loc-methods-lib (atom {}) )
 
-(e/def-method check-station-form []
+(e/def-method check-station-form [?r]
                 :task  (:check-station )
-                :namespaces namespaces-prefixes :actions actions :methods loc-methods-lib       ;don't want to make global var actions
-                :precondition ((?connectionData t:CreatedDateTime ?createdTime
-                                                tcd:Connection ?connection)
-                                (?connection t:ConnectionAirline ?airline)
-                                (:filter (s/f> ?createdTime (r/add-days (r/now) -7)))
-                                (:order-by (:desc ?createdTime)))         ;we wa
+                :namespaces namespaces-prefixes :actions actions :methods loc-methods-lib
+                :precondition ((?r treq:RequestedStation ?station )
+                                (?station st:ID ?id))
                 :body [(fn [_] (println "connection data up to date!"))])

@@ -4,7 +4,9 @@
     <bookmark url="file://$PROJECT_DIR$/src/test_project/context.clj" line="12" mnemonic="8" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6ee8fef7-a94b-4b92-96ee-e58ce53bb662" name="Default" comment="Merge branch 'master' of https://github.com/orunas/travel-test-project&#10;&#10;# Conflicts:&#10;#&#9;src/test_project/action.clj" />
+    <list default="true" id="6ee8fef7-a94b-4b92-96ee-e58ce53bb662" name="Default" comment="Merge branch 'master' of https://github.com/orunas/travel-test-project&#10;&#10;# Conflicts:&#10;#&#9;src/test_project/action.clj">
+      <change beforePath="$PROJECT_DIR$/src/test_project/test_plan_ev1.clj" beforeDir="false" afterPath="$PROJECT_DIR$/src/test_project/test_plan_ev1.clj" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -16,8 +18,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/test_project/ea.clj">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-731">
-              <caret line="50" column="17" selection-start-line="50" selection-start-column="5" selection-end-line="50" selection-end-column="17" />
+            <state relative-caret-position="17">
+              <caret line="33" column="2" selection-start-line="33" selection-start-column="2" selection-end-line="33" selection-end-column="2" />
             </state>
           </provider>
         </entry>
@@ -25,8 +27,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/test_project/test_plan_ev1.clj">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="561">
-              <caret line="33" column="47" selection-start-line="33" selection-start-column="32" selection-end-line="33" selection-end-column="47" />
+            <state relative-caret-position="204">
+              <caret line="12" column="30" lean-forward="true" selection-start-line="12" selection-start-column="30" selection-end-line="12" selection-end-column="30" />
             </state>
           </provider>
         </entry>
@@ -34,7 +36,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/test_project/action.clj">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="251">
+            <state relative-caret-position="855">
               <caret line="70" column="6" selection-start-line="70" selection-start-column="6" selection-end-line="70" selection-end-column="6" />
             </state>
           </provider>
@@ -62,8 +64,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/test_project/test_plan3.clj">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="115">
-              <caret line="38" selection-start-line="38" selection-end-line="39" selection-end-column="46" />
+            <state relative-caret-position="-1547">
+              <caret line="136" column="42" selection-start-line="136" selection-start-column="2" selection-end-line="136" selection-end-column="42" />
             </state>
           </provider>
         </entry>
@@ -152,8 +154,8 @@
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-8" />
-    <option name="y" value="-8" />
+    <option name="x" value="-137" />
+    <option name="y" value="55" />
     <option name="width" value="1936" />
     <option name="height" value="1056" />
   </component>
@@ -163,6 +165,7 @@
     </navigator>
     <panes>
       <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -181,11 +184,21 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="test_project" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="travel-test-project" type="b2602c69:ProjectViewProjectNode" />
+              <item name="travel-test-project" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="travel-test-project" type="b2602c69:ProjectViewProjectNode" />
+              <item name="travel-test-project" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="test_project" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -340,8 +353,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.12260128" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.15565032" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="3" />
@@ -358,7 +372,7 @@
       <window_info anchor="bottom" id="Terminal" order="7" />
       <window_info anchor="bottom" id="Messages" order="8" />
       <window_info anchor="bottom" id="Version Control" order="9" weight="0.328084" />
-      <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" visible="true" weight="0.15709643" />
+      <window_info active="true" anchor="bottom" id="Event Log" order="10" side_tool="true" visible="true" weight="0.15709643" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -565,19 +579,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test_project/res.clj">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test_project/context.clj">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="25" selection-start-line="25" selection-end-line="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test_project/test.clj">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/test_project/match.clj">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -588,34 +589,47 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/test_project/test.clj">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/test_project/cond_test.clj">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test_project/action.clj">
+    <entry file="file://$PROJECT_DIR$/src/test_project/res.clj">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test_project/context.clj">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="251">
-          <caret line="70" column="6" selection-start-line="70" selection-start-column="6" selection-end-line="70" selection-end-column="6" />
+        <state relative-caret-position="425">
+          <caret line="25" selection-start-line="25" selection-end-line="25" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test_project/ea.clj">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-731">
-          <caret line="50" column="17" selection-start-line="50" selection-start-column="5" selection-end-line="50" selection-end-column="17" />
+        <state relative-caret-position="17">
+          <caret line="33" column="2" selection-start-line="33" selection-start-column="2" selection-end-line="33" selection-end-column="2" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test_project/test_plan3.clj">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="115">
-          <caret line="38" selection-start-line="38" selection-end-line="39" selection-end-column="46" />
+        <state relative-caret-position="-1547">
+          <caret line="136" column="42" selection-start-line="136" selection-start-column="2" selection-end-line="136" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test_project/action.clj">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="855">
+          <caret line="70" column="6" selection-start-line="70" selection-start-column="6" selection-end-line="70" selection-end-column="6" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test_project/test_plan_ev1.clj">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="561">
-          <caret line="33" column="47" selection-start-line="33" selection-start-column="32" selection-end-line="33" selection-end-column="47" />
+        <state relative-caret-position="204">
+          <caret line="12" column="30" lean-forward="true" selection-start-line="12" selection-start-column="30" selection-end-line="12" selection-end-column="30" />
         </state>
       </provider>
     </entry>
